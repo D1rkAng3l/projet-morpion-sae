@@ -368,13 +368,3 @@ Voir le fichier :
 ```text
 LICENCE
 ```
-
-
-
-
-
-
-
-
-
-

@@ -1,0 +1,16 @@
+# MSVC
+*.obj
+*.pdb
+*.ilk
+*.idb
+*.exe
+
+# Build
+Debug/
+Release/
+x64/
+x86/
+build/
+
+# VS Code
+.vscode/
