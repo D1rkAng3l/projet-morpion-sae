@@ -1,7 +1,7 @@
 # Morpion – SAÉ S1.01
 
 
-**Groupe** : `G[1][E]` -- [Mathis Bretonneau], [Ilan Guiot], [Elisa Mayet]
+**Groupe** : `G[1][E]` -- [Mathis Bretonneau], [Ilan Guiot], [Elisa Mayet], [Tilio Dabaji]
 
 
 ## Équipe projet
