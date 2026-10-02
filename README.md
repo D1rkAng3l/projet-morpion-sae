@@ -21,9 +21,10 @@ _________________________________________________________________
 | **Mathis Bretonneau** | Chef de projet |
 | **Ilan Guiot** | Responsable conception et algorithmique |
 | **Elisa Mayet** | Responsable tests, documentation et qualité |
+| **Tilio Dabaji** | Responsable des tests, de la documentation et de la qualité | 
 _________________________________________________________________
 
-### Mathis Bretonneau
+### Mathis 
 
 Chef de projet chargé notamment :
 
@@ -33,7 +34,7 @@ Chef de projet chargé notamment :
 - de la validation générale du projet ;
 - de la coordination des livrables.
 
-### Ilan Guiot
+### Ilan 
 
 Responsable de la conception et de l’algorithmique, notamment :
 
@@ -43,7 +44,7 @@ Responsable de la conception et de l’algorithmique, notamment :
 - conception de la gestion des tours ;
 - conception de la détection des victoires et des matchs nuls.
 
-### Elisa Mayet
+### Elisa 
 
 Responsable du développement et de l’intégration, notamment :
 
@@ -53,7 +54,7 @@ Responsable du développement et de l’intégration, notamment :
 - compilation ;
 - résolution des erreurs techniques.
 
-### Mathis Bretonneau
+### Mathis / Tilio 
 
 Responsable des tests, de la documentation et de la qualité, notamment :
 
