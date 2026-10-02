@@ -1,14 +1,6 @@
 # Morpion – SAÉ S1.01
 
 
-> **Ce fichier est un modèle à compléter.** Remplacez chaque passage entre
-> crochets `[...]` par le contenu de votre projet, puis supprimez ce
-> paragraphe. Gardez le reste (compilation, documentation, licences...), il
-> décrit déjà correctement ce dépôt de départ.
-
-> [Une ou deux phrases : quel jeu, pour qui, comment on y joue -- reprenez le
-> brief client de l'onglet « Sujet ».]
-
 **Groupe** : `G[1][E]` -- [Mathis Bretonneau], [Ilan Guiot], [Elisa Mayet]
 
 
