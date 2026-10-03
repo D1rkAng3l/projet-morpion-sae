@@ -37,6 +37,7 @@ utiles à la semaine concernée. !>
 
 - Initialisation du répertoire html avec index.html et style.css (@D1rkAng3l)
 
+- Index.html ajout du squelettes du fichier (@D1rkAng3l)
 ## Semaine 1 -- 02/10/26
 
 ### Modifié
