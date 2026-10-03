@@ -6,10 +6,6 @@ récente en haut. Format inspiré de
 précise qui l'a réalisé avec une mention `@prénom` ; un changement
 réalisé à plusieurs cite tous ses auteurs : `(@prénom1, @prénom2)`.
 
-## Semaine 1 -- 02/10/26
-
-### Ajouté
-
 - [MORPION] (@Mathis, @Ilan, @ELisa)
 
 <!--
@@ -56,4 +52,3 @@ utiles à la semaine concernée. !>
 - Répartition des taches (@Mathis)
 - Schéma de décompostion (@Ilan)
 - Ajout des premières idées d'implémentations (@ELisa)
-
