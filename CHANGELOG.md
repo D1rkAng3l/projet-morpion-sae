@@ -31,6 +31,12 @@ utiles à la semaine concernée. !>
     ... (@prénom)
     -->
 
+## Semaine 1 -- 01/10/26
+
+### Ajouté
+
+- Initialisation du répertoire html avec index.html et style.css (@D1rkAng3l)
+
 ## Semaine 1 -- 02/09/26
 
 ### Modifié
