@@ -333,10 +333,23 @@ L’évolution du projet est documentée dans :
 
 Ce fichier permet de conserver une trace des principales modifications réalisées au cours du développement :
 
+
 - ajout de fonctionnalités ;
+```bash
+git commit -m "add: fichier" ;
+```
 - modification de fonctionnalités ;
+```bash
+git commit -m "mod: fichier" ;
+```
 - correction d’erreurs ;
+```bash
+git commit -m "fix: fichier" ;
+```
 - changement dans l’organisation du code ;
+```bash
+git commit -m "feat: fichier"
+```
 - évolution de la documentation.
 
 ---
