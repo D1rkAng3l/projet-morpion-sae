@@ -6,7 +6,7 @@ récente en haut. Format inspiré de
 précise qui l'a réalisé avec une mention `@prénom` ; un changement
 réalisé à plusieurs cite tous ses auteurs : `(@prénom1, @prénom2)`.
 
-- [MORPION] (@Mathis, @Ilan, @ELisa)
+- [MORPION] (@Mathis, @Ilan, @ELisa, @Tilio)
 
 <!--
 Dupliquez ce gabarit chaque semaine, en l'ajoutant tout en haut du fichier
