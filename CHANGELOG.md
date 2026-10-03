@@ -31,7 +31,7 @@ utiles à la semaine concernée. !>
     ... (@prénom)
     -->
 
-## Semaine 1 -- 01/10/26
+## Semaine 1 -- 03/10/26
 
 ### Ajouté
 
@@ -41,7 +41,7 @@ utiles à la semaine concernée. !>
 
 ### Modifié
 
-    Schéma de composition (@Mathis)
+- Schéma de composition (@Mathis)
 
 
 ### Ajouté
