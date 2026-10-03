@@ -11,14 +11,11 @@ permissions:
 jobs:
   changelog:
 
-    # Évite que le commit automatique relance l'action
+    # Empêche le commit automatique du bot
+    # de relancer le traitement
     if: github.actor != 'github-actions[bot]'
 
     runs-on: ubuntu-latest
-
-    env:
-      # À modifier si la semaine 1 commence à une autre date
-      PROJECT_START_DATE: "2026-10-01"
 
     steps:
 
@@ -42,15 +39,15 @@ jobs:
       - name: Vérification des modifications
         id: changes
         run: |
-          if git diff --quiet; then
+          if git diff --quiet CHANGELOG.md; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
           else
             echo "changed=true" >> "$GITHUB_OUTPUT"
           fi
 
-      - name: Commit du CHANGELOG
+      - name: Commit automatique du CHANGELOG
         if: steps.changes.outputs.changed == 'true'
         run: |
           git add CHANGELOG.md
-          git commit -m "chore: mise à jour automatique du changelog"
-          git push
+          git commit -m "chore: mise à jour automatique du changelog [skip ci]"
+          git push origin HEAD:main

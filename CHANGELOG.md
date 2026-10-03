@@ -35,7 +35,16 @@ utiles à la semaine concernée. !>
     ... (@prénom)
     -->
 
+## Semaine 1 -- 02/09/26
 
+### Modifié
+
+    Schéma de composition (@Mathis)
+
+
+### Ajouté
+
+- Fichier html, output (@Elisa)
 
 ## Semaine 1 -- 01/09/26
 
@@ -48,13 +57,3 @@ utiles à la semaine concernée. !>
 - Schéma de décompostion (@Ilan)
 - Ajout des premières idées d'implémentations (@ELisa)
 
-## Semaine 1 -- 02/09/26
-
-### Modifié
-
-    Schéma de composition (@Mathis)
-
-
-### Ajouté
-
-- Fichier html, output (@Elisa)
