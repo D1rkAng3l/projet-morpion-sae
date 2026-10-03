@@ -37,7 +37,7 @@ utiles à la semaine concernée. !>
 
 - Initialisation du répertoire html avec index.html et style.css (@D1rkAng3l)
 
-## Semaine 1 -- 02/09/26
+## Semaine 1 -- 02/10/26
 
 ### Modifié
 
@@ -48,7 +48,7 @@ utiles à la semaine concernée. !>
 
 - Fichier html, output (@Elisa)
 
-## Semaine 1 -- 01/09/26
+## Semaine 1 -- 01/10/26
 
 ### Ajouté
 

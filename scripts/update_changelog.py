@@ -1,5 +1,5 @@
 from pathlib import Path
-from datetime import date, timedelta, datetime
+from datetime import date, datetime
 import subprocess
 import os
 import re
@@ -9,17 +9,13 @@ import re
 # CONFIGURATION
 # ============================================================
 
-# Le fichier CHANGELOG.md situé à la racine du projet
 CHANGELOG = Path("CHANGELOG.md")
 
-# Date officielle de lancement du projet :
-# 01/10/2026 = Semaine 1
+# Début officiel du projet
 PROJECT_START = date(2026, 10, 1)
 
-# Format imposé par le modèle du CHANGELOG
 DATE_FORMAT = "%d/%m/%y"
 
-# Préfixes autorisés dans les commits
 CATEGORIES = {
     "add": "Ajouté",
     "feat": "Ajouté",
@@ -30,7 +26,6 @@ CATEGORIES = {
     "fix": "Corrigé",
 }
 
-# Ordre des catégories dans le CHANGELOG
 CATEGORY_ORDER = [
     "Ajouté",
     "Modifié",
@@ -39,14 +34,10 @@ CATEGORY_ORDER = [
 
 
 # ============================================================
-# COMMANDES GIT
+# GIT
 # ============================================================
 
 def git(*args):
-    """
-    Exécute une commande Git et renvoie sa sortie.
-    """
-
     result = subprocess.run(
         ["git", *args],
         capture_output=True,
@@ -59,17 +50,10 @@ def git(*args):
 
 
 # ============================================================
-# GESTION DES AUTEURS
+# AUTEURS
 # ============================================================
 
 def first_name(name):
-    """
-    Transforme :
-
-        Mathis Dupont -> Mathis
-        @Mathis       -> Mathis
-        Ilan          -> Ilan
-    """
 
     name = name.strip().lstrip("@")
 
@@ -80,29 +64,66 @@ def first_name(name):
 
 
 # ============================================================
-# RÉCUPÉRATION DES COMMITS DU PUSH
+# DATE DU PUSH
+# ============================================================
+
+def get_push_date():
+
+    push_date = os.environ.get("PUSH_DATE")
+
+    if not push_date:
+        return date.today()
+
+    return datetime.strptime(
+        push_date,
+        "%Y-%m-%d"
+    ).date()
+
+
+# ============================================================
+# NUMÉRO DE SEMAINE
+# ============================================================
+
+def project_week(push_date):
+
+    delta = (
+        push_date
+        - PROJECT_START
+    ).days
+
+    if delta < 0:
+        return None
+
+    return (
+        delta // 7
+    ) + 1
+
+
+# ============================================================
+# COMMITS DU PUSH
 # ============================================================
 
 def get_commits():
 
-    before = os.environ.get("BEFORE", "")
-    after = os.environ.get("AFTER", "HEAD")
+    before = os.environ.get(
+        "BEFORE",
+        ""
+    )
 
-    # --------------------------------------------------------
-    # Premier push du dépôt
-    # --------------------------------------------------------
+    after = os.environ.get(
+        "AFTER",
+        "HEAD"
+    )
 
-    if not before or before == "0" * 40:
+    # Premier push
+    if (
+        not before
+        or before == "0" * 40
+    ):
 
-        hashes = git(
-            "rev-list",
-            "--reverse",
+        hashes = [
             after
-        ).splitlines()
-
-    # --------------------------------------------------------
-    # Push classique
-    # --------------------------------------------------------
+        ]
 
     else:
 
@@ -116,10 +137,6 @@ def get_commits():
 
     for commit_hash in hashes:
 
-        # ----------------------------------------------------
-        # Sujet du commit
-        # ----------------------------------------------------
-
         subject = git(
             "show",
             "-s",
@@ -127,21 +144,11 @@ def get_commits():
             commit_hash
         )
 
-        # Ignore les commits automatiques du bot
+        # Ignore le commit automatique
         if subject.startswith(
             "chore: mise à jour automatique du changelog"
         ):
             continue
-
-        # ----------------------------------------------------
-        # Vérification du préfixe
-        #
-        # add:
-        # feat:
-        # mod:
-        # update:
-        # fix:
-        # ----------------------------------------------------
 
         match = re.match(
             r"^(add|feat|mod|update|fix):\s*(.+)$",
@@ -149,19 +156,22 @@ def get_commits():
             re.IGNORECASE,
         )
 
-        # Commit sans préfixe valide :
-        # il n'est pas ajouté au CHANGELOG
+        # Commit normal sans préfixe :
+        # pas d'entrée dans le changelog
         if not match:
             continue
 
-        prefix = match.group(1).lower()
+        prefix = (
+            match.group(1)
+            .lower()
+        )
 
-        description = match.group(2).strip()
+        description = (
+            match.group(2)
+            .strip()
+        )
 
-        # ----------------------------------------------------
         # Auteur principal
-        # ----------------------------------------------------
-
         author = git(
             "show",
             "-s",
@@ -169,44 +179,18 @@ def get_commits():
             commit_hash
         )
 
-        # ----------------------------------------------------
-        # Date du commit
-        # ----------------------------------------------------
+        authors = [
+            first_name(author)
+        ]
 
-        commit_date_string = git(
-            "show",
-            "-s",
-            "--format=%as",
-            commit_hash
-        )
-
-        commit_date = datetime.strptime(
-            commit_date_string,
-            "%Y-%m-%d"
-        ).date()
-
-        # ----------------------------------------------------
-        # Corps complet du commit
-        # ----------------------------------------------------
-
+        # Corps complet pour récupérer
+        # les éventuels Co-authored-by
         body = git(
             "show",
             "-s",
             "--format=%B",
             commit_hash
         )
-
-        authors = [
-            first_name(author)
-        ]
-
-        # ----------------------------------------------------
-        # Gestion des co-auteurs
-        #
-        # Exemple :
-        #
-        # Co-authored-by: Ilan <mail@example.com>
-        # ----------------------------------------------------
 
         coauthors = re.findall(
             r"(?im)^Co-authored-by:\s*([^<\n]+)\s*<[^>]+>",
@@ -215,18 +199,21 @@ def get_commits():
 
         for coauthor in coauthors:
 
-            name = first_name(coauthor)
+            name = first_name(
+                coauthor
+            )
 
             if name.lower() not in [
-                author_name.lower()
-                for author_name in authors
+                existing.lower()
+                for existing in authors
             ]:
-                authors.append(name)
+
+                authors.append(
+                    name
+                )
 
         commits.append(
             {
-                "hash": commit_hash,
-                "date": commit_date,
                 "category": CATEGORIES[prefix],
                 "description": description,
                 "authors": authors,
@@ -237,52 +224,15 @@ def get_commits():
 
 
 # ============================================================
-# CALCUL DU NUMÉRO DE SEMAINE
-# ============================================================
-
-def project_week(commit_date):
-    """
-    01/10/2026 -> Semaine 1
-    08/10/2026 -> Semaine 2
-    15/10/2026 -> Semaine 3
-    etc.
-    """
-
-    delta = (
-        commit_date
-        - PROJECT_START
-    ).days
-
-    # Commit antérieur au lancement du projet
-    if delta < 0:
-        return None, None
-
-    week_number = (
-        delta // 7
-    ) + 1
-
-    week_start = (
-        PROJECT_START
-        + timedelta(
-            days=(week_number - 1) * 7
-        )
-    )
-
-    return (
-        week_number,
-        week_start
-    )
-
-
-# ============================================================
-# CRÉATION D'UNE LIGNE DU CHANGELOG
+# CRÉATION D'UNE LIGNE
 # ============================================================
 
 def make_entry(commit):
 
-    description = commit["description"]
+    description = (
+        commit["description"]
+    )
 
-    # Majuscule automatique
     if description:
 
         description = (
@@ -292,7 +242,8 @@ def make_entry(commit):
 
     authors = ", ".join(
         f"@{author}"
-        for author in commit["authors"]
+        for author
+        in commit["authors"]
     )
 
     return (
@@ -301,19 +252,10 @@ def make_entry(commit):
 
 
 # ============================================================
-# GESTION DES COMMENTAIRES HTML
+# COMMENTAIRES HTML
 # ============================================================
 
 def comment_ranges(content):
-    """
-    Récupère les zones comprises entre :
-
-        <!--
-        -->
-
-    afin que le modèle du CHANGELOG
-    ne soit jamais modifié.
-    """
 
     ranges = []
 
@@ -364,15 +306,16 @@ def inside_comment(
 
     return any(
         start <= position < end
-        for start, end in ranges
+        for start, end
+        in ranges
     )
 
 
 # ============================================================
-# RECHERCHE DES VRAIES SEMAINES
+# RECHERCHE DES SEMAINES EXISTANTES
 # ============================================================
 
-def week_sections(content):
+def get_week_sections(content):
 
     ranges = comment_ranges(
         content
@@ -398,27 +341,14 @@ def week_sections(content):
         ):
             continue
 
-        try:
-
-            section_date = (
-                datetime.strptime(
-                    match.group(2),
-                    DATE_FORMAT
-                ).date()
-            )
-
-        except ValueError:
-            continue
-
         sections.append(
             {
-                "start": match.start(),
-                "end_header": match.end(),
                 "number": int(
                     match.group(1)
                 ),
-                "date": section_date,
-                "header": match.group(0),
+                "date": match.group(2),
+                "start": match.start(),
+                "header_end": match.end(),
             }
         )
 
@@ -426,29 +356,52 @@ def week_sections(content):
 
 
 # ============================================================
-# LIMITES D'UNE SECTION SEMAINE
+# RECHERCHE D'UNE SEMAINE
 # ============================================================
 
-def section_bounds(
+def find_week(
+    content,
+    week_number
+):
+
+    for section in get_week_sections(
+        content
+    ):
+
+        if (
+            section["number"]
+            == week_number
+        ):
+
+            return section
+
+    return None
+
+
+# ============================================================
+# FIN D'UNE SECTION
+# ============================================================
+
+def get_section_end(
     content,
     section
 ):
 
-    sections = week_sections(
+    sections = get_week_sections(
         content
     )
 
-    next_sections = [
+    positions = [
         item["start"]
         for item in sections
         if item["start"]
         > section["start"]
     ]
 
-    if next_sections:
+    if positions:
 
         end = min(
-            next_sections
+            positions
         )
 
     else:
@@ -457,138 +410,44 @@ def section_bounds(
             content
         )
 
-    # --------------------------------------------------------
-    # Si le modèle HTML est juste après la semaine,
-    # on s'arrête avant le modèle.
-    # --------------------------------------------------------
-
-    comment_start = content.find(
+    # Ne jamais entrer dans le modèle commenté
+    comment = content.find(
         "<!--",
-        section["end_header"]
+        section["header_end"]
     )
 
     if (
-        comment_start != -1
-        and comment_start < end
+        comment != -1
+        and comment < end
     ):
 
-        end = comment_start
+        end = comment
 
-    return (
-        section["start"],
-        end
-    )
+    return end
 
 
 # ============================================================
-# RECHERCHE D'UNE SEMAINE EXISTANTE
+# AJOUT DANS UNE SEMAINE EXISTANTE
 # ============================================================
 
-def find_or_normalize_week(
+def add_entry(
     content,
     week_number,
-    week_start
-):
-
-    sections = week_sections(
-        content
-    )
-
-    # --------------------------------------------------------
-    # Cas idéal :
-    # date déjà correcte
-    # --------------------------------------------------------
-
-    for section in sections:
-
-        if (
-            section["number"]
-            == week_number
-            and section["date"]
-            == week_start
-        ):
-
-            return (
-                content,
-                section
-            )
-
-    # --------------------------------------------------------
-    # Correction automatique d'une petite erreur de date
-    #
-    # Exemple actuel :
-    #
-    # ## Semaine 1 -- 02/10/26
-    #
-    # alors que la semaine commence le 01/10/26.
-    # --------------------------------------------------------
-
-    week_end = (
-        week_start
-        + timedelta(days=6)
-    )
-
-    for section in sections:
-
-        if (
-            section["number"]
-            == week_number
-            and week_start
-            <= section["date"]
-            <= week_end
-        ):
-
-            expected_header = (
-                f"## Semaine "
-                f"{week_number} -- "
-                f"{week_start.strftime(DATE_FORMAT)}"
-            )
-
-            content = (
-                content[:section["start"]]
-                + expected_header
-                + content[
-                    section["end_header"]:
-                ]
-            )
-
-            # Relecture après modification
-            sections = week_sections(
-                content
-            )
-
-            for new_section in sections:
-
-                if (
-                    new_section["number"]
-                    == week_number
-                    and new_section["date"]
-                    == week_start
-                ):
-
-                    return (
-                        content,
-                        new_section
-                    )
-
-    return (
-        content,
-        None
-    )
-
-
-# ============================================================
-# AJOUT D'UNE ENTRÉE DANS UNE SEMAINE
-# ============================================================
-
-def add_entry_to_section(
-    content,
-    section,
     category,
     entry
 ):
 
-    start, end = section_bounds(
+    section = find_week(
+        content,
+        week_number
+    )
+
+    if not section:
+        return content
+
+    start = section["start"]
+
+    end = get_section_end(
         content,
         section
     )
@@ -598,7 +457,10 @@ def add_entry_to_section(
     ]
 
     # --------------------------------------------------------
-    # Empêche les doublons
+    # NE TOUCHE PAS AUX ENTRÉES EXISTANTES
+    #
+    # Si la même entrée existe déjà,
+    # rien n'est fait.
     # --------------------------------------------------------
 
     if entry in block:
@@ -616,7 +478,7 @@ def add_entry_to_section(
         )
     )
 
-    existing_heading = None
+    target = None
 
     for heading in headings:
 
@@ -625,29 +487,27 @@ def add_entry_to_section(
             == category
         ):
 
-            existing_heading = (
-                heading
-            )
-
+            target = heading
             break
 
     # ========================================================
-    # CATÉGORIE DÉJÀ EXISTANTE
+    # CATÉGORIE EXISTANTE
     # ========================================================
 
-    if existing_heading:
+    if target:
 
-        next_headings = [
+        following = [
             heading.start()
-            for heading in headings
+            for heading
+            in headings
             if heading.start()
-            > existing_heading.start()
+            > target.start()
         ]
 
-        if next_headings:
+        if following:
 
             insertion = min(
-                next_headings
+                following
             )
 
         else:
@@ -656,22 +516,14 @@ def add_entry_to_section(
                 block
             )
 
-        before = (
-            block[:insertion]
-            .rstrip()
-        )
-
-        after = (
-            block[insertion:]
-            .lstrip("\n")
-        )
+        ### Insertion uniquement
+        ### Aucun caractère existant n'est supprimé ou modifié
 
         block = (
-            before
-            + "\n"
+            block[:insertion]
             + entry
-            + "\n\n"
-            + after
+            + "\n"
+            + block[insertion:]
         )
 
     # ========================================================
@@ -686,58 +538,53 @@ def add_entry_to_section(
             )
         )
 
-        next_heading = None
+        insertion = None
+
+        # Cherche la prochaine catégorie
+        # pour conserver :
+        #
+        # Ajouté
+        # Modifié
+        # Corrigé
 
         for heading in headings:
 
-            existing_category = (
+            heading_category = (
                 heading.group(1)
             )
 
-            existing_order = (
+            heading_order = (
                 CATEGORY_ORDER.index(
-                    existing_category
+                    heading_category
                 )
             )
 
             if (
-                existing_order
+                heading_order
                 > target_order
             ):
 
-                next_heading = (
-                    heading
+                insertion = (
+                    heading.start()
                 )
 
                 break
 
         fragment = (
-            f"### {category}\n\n"
+            f"### {category}\n"
             f"{entry}\n\n"
         )
 
-        # ----------------------------------------------------
-        # Insère avant la catégorie suivante
-        # ----------------------------------------------------
-
-        if next_heading:
-
-            position = (
-                next_heading.start()
-            )
+        if insertion is not None:
 
             block = (
-                block[:position]
+                block[:insertion]
                 .rstrip()
                 + "\n\n"
                 + fragment
-                + block[position:]
+                + block[insertion:]
                 .lstrip("\n")
             )
-
-        # ----------------------------------------------------
-        # Sinon ajoute à la fin
-        # ----------------------------------------------------
 
         else:
 
@@ -746,6 +593,12 @@ def add_entry_to_section(
                 + "\n\n"
                 + fragment
             )
+
+    # --------------------------------------------------------
+    # Seule la section ciblée est remplacée.
+    #
+    # Tout le reste du fichier reste strictement intact.
+    # --------------------------------------------------------
 
     return (
         content[:start]
@@ -758,14 +611,18 @@ def add_entry_to_section(
 # CRÉATION D'UNE NOUVELLE SEMAINE
 # ============================================================
 
-def create_week_section(
+def create_week(
     week_number,
-    week_start,
+    push_date,
     entries
 ):
 
+    # IMPORTANT :
+    # ici on prend la date réelle du PUSH,
+    # PAS la date de début théorique de semaine.
+
     date_string = (
-        week_start.strftime(
+        push_date.strftime(
             DATE_FORMAT
         )
     )
@@ -776,14 +633,6 @@ def create_week_section(
         f"{date_string}\n"
     )
 
-    # --------------------------------------------------------
-    # Respecte l'ordre du modèle :
-    #
-    # Ajouté
-    # Modifié
-    # Corrigé
-    # --------------------------------------------------------
-
     for category in CATEGORY_ORDER:
 
         category_entries = [
@@ -791,18 +640,18 @@ def create_week_section(
             for (
                 entry_category,
                 entry
-            ) in entries
+            )
+            in entries
             if entry_category
             == category
         ]
 
-        # Ne crée pas de catégorie vide
         if not category_entries:
             continue
 
         result += (
             f"\n### "
-            f"{category}\n\n"
+            f"{category}\n"
         )
 
         for entry in category_entries:
@@ -819,40 +668,36 @@ def create_week_section(
 
 
 # ============================================================
-# INSERTION D'UNE NOUVELLE SEMAINE
+# INSERTION EN HAUT DU CHANGELOG
 # ============================================================
 
 def insert_new_week(
     content,
-    section
+    new_section
 ):
 
-    sections = week_sections(
+    sections = get_week_sections(
         content
     )
 
-    # --------------------------------------------------------
-    # La nouvelle semaine est placée avant
-    # toutes les semaines existantes.
-    # --------------------------------------------------------
-
+    # Nouvelle semaine avant
+    # la plus récente existante
     if sections:
 
-        position = (
-            sections[0]["start"]
+        position = min(
+            section["start"]
+            for section
+            in sections
         )
 
         return (
             content[:position]
-            + section
+            + new_section
             + content[position:]
         )
 
-    # --------------------------------------------------------
-    # Aucun historique présent :
-    # insertion avant le modèle commenté.
-    # --------------------------------------------------------
-
+    # S'il n'y a encore aucune semaine :
+    # insertion avant le modèle commenté
     template = content.find(
         "<!--"
     )
@@ -861,41 +706,44 @@ def insert_new_week(
 
         return (
             content[:template]
-            + section
+            + new_section
             + content[template:]
         )
-
-    # --------------------------------------------------------
-    # Aucun modèle non plus
-    # --------------------------------------------------------
 
     return (
         content.rstrip()
         + "\n\n"
-        + section
+        + new_section
     )
 
 
 # ============================================================
-# PROGRAMME PRINCIPAL
+# MAIN
 # ============================================================
 
 def main():
 
-    # --------------------------------------------------------
-    # Vérification du fichier
-    # --------------------------------------------------------
-
     if not CHANGELOG.exists():
 
         raise FileNotFoundError(
-            "CHANGELOG.md est introuvable "
+            "CHANGELOG.md introuvable "
             "à la racine du projet."
         )
 
-    # --------------------------------------------------------
-    # Récupération des commits
-    # --------------------------------------------------------
+    push_date = get_push_date()
+
+    week_number = project_week(
+        push_date
+    )
+
+    if week_number is None:
+
+        print(
+            "Push antérieur au lancement "
+            "du projet."
+        )
+
+        return
 
     commits = get_commits()
 
@@ -908,134 +756,59 @@ def main():
 
         return
 
-    # --------------------------------------------------------
-    # Lecture du vrai CHANGELOG.md
-    # --------------------------------------------------------
-
-    content = (
-        CHANGELOG.read_text(
-            encoding="utf-8"
-        )
+    content = CHANGELOG.read_text(
+        encoding="utf-8"
     )
 
-    weeks = {}
-
-    # --------------------------------------------------------
-    # Classement des commits par semaine
-    # --------------------------------------------------------
-
-    for commit in commits:
-
+    entries = [
         (
-            week_number,
-            week_start
-        ) = project_week(
-            commit["date"]
+            commit["category"],
+            make_entry(commit)
         )
+        for commit in commits
+    ]
 
-        # Commit avant le lancement
-        if week_number is None:
-            continue
+    # ========================================================
+    # LA SEMAINE EXISTE DÉJÀ
+    #
+    # IMPORTANT :
+    # - on ne change PAS sa date
+    # - on ne change PAS ses anciennes lignes
+    # - on ajoute uniquement les nouvelles entrées
+    # ========================================================
 
-        key = (
-            week_number,
-            week_start
-        )
+    if find_week(
+        content,
+        week_number
+    ):
 
-        weeks.setdefault(
-            key,
-            []
-        )
+        for category, entry in entries:
 
-        weeks[key].append(
-            (
-                commit["category"],
-                make_entry(commit)
-            )
-        )
-
-    # --------------------------------------------------------
-    # Semaine la plus récente en premier
-    # --------------------------------------------------------
-
-    ordered_weeks = sorted(
-        weeks.items(),
-        key=lambda item: item[0][1],
-        reverse=True,
-    )
-
-    # --------------------------------------------------------
-    # Mise à jour du fichier
-    # --------------------------------------------------------
-
-    for (
-        week_number,
-        week_start
-    ), entries in ordered_weeks:
-
-        # Cherche la semaine existante
-        content, section = (
-            find_or_normalize_week(
+            content = add_entry(
                 content,
                 week_number,
-                week_start
-            )
-        )
-
-        # ====================================================
-        # SEMAINE EXISTANTE
-        # ====================================================
-
-        if section:
-
-            for (
                 category,
                 entry
-            ) in entries:
-
-                # Relecture de la section après
-                # chaque modification
-                content, section = (
-                    find_or_normalize_week(
-                        content,
-                        week_number,
-                        week_start
-                    )
-                )
-
-                content = (
-                    add_entry_to_section(
-                        content,
-                        section,
-                        category,
-                        entry
-                    )
-                )
-
-        # ====================================================
-        # NOUVELLE SEMAINE
-        # ====================================================
-
-        else:
-
-            new_section = (
-                create_week_section(
-                    week_number,
-                    week_start,
-                    entries
-                )
             )
 
-            content = (
-                insert_new_week(
-                    content,
-                    new_section
-                )
-            )
+    # ========================================================
+    # PREMIER PUSH DE CETTE SEMAINE
+    #
+    # On crée la semaine avec LA DATE DU PUSH.
+    # ========================================================
 
-    # --------------------------------------------------------
-    # Écriture finale
-    # --------------------------------------------------------
+    else:
+
+        new_section = create_week(
+            week_number,
+            push_date,
+            entries
+        )
+
+        content = insert_new_week(
+            content,
+            new_section
+        )
 
     CHANGELOG.write_text(
         content,
@@ -1043,8 +816,9 @@ def main():
     )
 
     print(
-        "CHANGELOG.md mis à jour "
-        "avec succès."
+        f"CHANGELOG mis à jour : "
+        f"Semaine {week_number}, "
+        f"{push_date.strftime(DATE_FORMAT)}"
     )
 
 
