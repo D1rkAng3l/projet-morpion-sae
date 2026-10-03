@@ -43,6 +43,10 @@ utiles à la semaine concernée. !>
 - Mise à jour du fichier README.md (@D1rkAng3l)
 
 - Mise à jour du fichier CHANGELOG.md (@D1rkAng3l)
+
+### Corrigé
+- Correction de log qui ne remontaient pas (@D1rkAng3l)
+
 ## Semaine 1 -- 02/10/26
 
 ### Modifié
