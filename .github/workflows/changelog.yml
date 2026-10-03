@@ -1,0 +1,56 @@
+name: Mise à jour automatique du CHANGELOG
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  changelog:
+
+    # Évite que le commit automatique relance l'action
+    if: github.actor != 'github-actions[bot]'
+
+    runs-on: ubuntu-latest
+
+    env:
+      # À modifier si la semaine 1 commence à une autre date
+      PROJECT_START_DATE: "2026-10-01"
+
+    steps:
+
+      - name: Récupération du dépôt
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Configuration Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Mise à jour du CHANGELOG
+        env:
+          BEFORE: ${{ github.event.before }}
+          AFTER: ${{ github.sha }}
+        run: |
+          python3 scripts/update_changelog.py
+
+      - name: Vérification des modifications
+        id: changes
+        run: |
+          if git diff --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Commit du CHANGELOG
+        if: steps.changes.outputs.changed == 'true'
+        run: |
+          git add CHANGELOG.md
+          git commit -m "chore: mise à jour automatique du changelog"
+          git push
