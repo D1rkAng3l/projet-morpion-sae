@@ -336,15 +336,15 @@ Ce fichier permet de conserver une trace des principales modifications réalisé
 
 - ajout de fonctionnalités ;
 ```bash
-git commit -m "add: fichier" ;
+git commit -m "add: fichier" 
 ```
 - modification de fonctionnalités ;
 ```bash
-git commit -m "mod: fichier" ;
+git commit -m "mod: fichier" 
 ```
 - correction d’erreurs ;
 ```bash
-git commit -m "fix: fichier" ;
+git commit -m "fix: fichier" 
 ```
 - changement dans l’organisation du code ;
 ```bash
