@@ -31,6 +31,11 @@ utiles à la semaine concernée. !>
     ... (@prénom)
     -->
 
+## Semaine 1 -- 06/10/26
+
+### Ajouté
+- Test (@Mathis)
+
 ## Semaine 1 -- 03/10/26
 
 ### Ajouté
