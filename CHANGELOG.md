@@ -39,6 +39,8 @@ réalisé à plusieurs cite tous ses auteurs : `(@prénom1, @prénom2)`.
 - Modification du CHANGELOG.md (@Mathis)
 
 - Mise à jour du CHANGELOG.md (@Mathis)
+- Premières réflexions autour des fonctions à utiliser dans le cadre duu codage du morpion (@Ilan)
+- Premières reflexions autour des fonctions dans le cadre du codage du morpion (@Ilan)
 ### Corrigé
 - Tableau de répartition de m'équiê du CHANGELOG.m ne s'affiche pas correctement (@Mathis)
 
