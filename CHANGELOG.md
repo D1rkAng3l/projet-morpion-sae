@@ -41,8 +41,19 @@ réalisé à plusieurs cite tous ses auteurs : `(@prénom1, @prénom2)`.
 - Mise à jour du CHANGELOG.md (@Mathis)
 - Premières réflexions autour des fonctions à utiliser dans le cadre duu codage du morpion (@Ilan)
 - Premières reflexions autour des fonctions dans le cadre du codage du morpion (@Ilan)
+=======
+- Mise à jour du README.md (@Mathis)
+
 ### Corrigé
-- Tableau de répartition de m'équiê du CHANGELOG.m ne s'affiche pas correctement (@Mathis)
+- Tableau de répartition de l'équipe du README.md ne s'affiche pas correctement (@Mathis)
+
+| Membre | Rôle |
+|---|---|
+| **Mathis Bretonneau** | Chef de projet |
+| **Ilan Guiot** | Responsable conception et algorithmique |
+| **Elisa Mayet** | Responsable développement et implémentation |
+| **Tilio Dabaji** | Responsable des tests, de la documentation et de la qualité |
+
 
 ## Semaine 1 -- 03/10/26
 
