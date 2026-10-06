@@ -34,7 +34,7 @@ utiles à la semaine concernée. !>
 ## Semaine 1 -- 06/10/26
 
 ### Ajouté
-- Test (@Mathis)
+- Mise à jour du système de log (@Mathis)
 
 ## Semaine 1 -- 03/10/26
 
