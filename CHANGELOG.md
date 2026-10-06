@@ -39,6 +39,7 @@ utiles à la semaine concernée. !>
 
 - Index.html ajout du squelettes du fichier (@D1rkAng3l)
 
+- Test (@Mathis)
 ### Modifié
 - Mise à jour du fichier README.md (@D1rkAng3l)
 
