@@ -38,6 +38,7 @@ utiles à la semaine concernée. !>
 
 - Test (@LeGuiotus)
 - Test de connexion pour Ilan (@Ilan)
+- Ajout du fichier algo.txt dans le dossier lib (@Ilan)
 ### Modifié
 - Test de mise à jour (@Mathis)
 
