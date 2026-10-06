@@ -36,6 +36,7 @@ utiles à la semaine concernée. !>
 ### Ajouté
 - Mise à jour du système de log (@Mathis)
 
+- Test (@LeGuiotus)
 ### Modifié
 - Test de mise à jour (@Mathis)
 
