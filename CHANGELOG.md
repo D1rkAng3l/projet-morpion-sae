@@ -36,6 +36,12 @@ réalisé à plusieurs cite tous ses auteurs : `(@prénom1, @prénom2)`.
 ### Modifié
 - Test de mise à jour (@Mathis)
 
+- Modification du CHANGELOG.md (@Mathis)
+
+- Mise à jour du CHANGELOG.md (@Mathis)
+### Corrigé
+- Tableau de répartition de m'équiê du CHANGELOG.m ne s'affiche pas correctement (@Mathis)
+
 ## Semaine 1 -- 03/10/26
 
 ### Ajouté
