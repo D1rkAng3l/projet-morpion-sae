@@ -1,20 +1,20 @@
 # Morpion – SAÉ S1.01
 
 
-**Groupe** : `G[1][E]` -- [Mathis Bretonneau], [Ilan Guiot], [Elisa Mayet], [Tilio Dabaji]
+**Groupe** : `G1E` -- Mathis Bretonneau, Ilan Guiot, Elisa Mayet, Tilio Dabaji
 
 
 ## Équipe projet
 
 Le projet est réalisé par :
 
+
 | Membre | Rôle |
-_________________________________________________________________
+|---|---|
 | **Mathis Bretonneau** | Chef de projet |
 | **Ilan Guiot** | Responsable conception et algorithmique |
-| **Elisa Mayet** | Responsable tests, documentation et qualité |
-| **Tilio Dabaji** | Responsable des tests, de la documentation et de la qualité | 
-_________________________________________________________________
+| **Elisa Mayet** | Responsable développement et implémentation |
+| **Tilio Dabaji** | Responsable des tests, de la documentation et de la qualité |
 
 ### Mathis 
 
@@ -66,6 +66,7 @@ Le programme permet notamment :
 - l’initialisation d’une grille de 3 × 3 cases ;
 - l’affichage de la grille ;
 - la gestion de deux joueurs ;
+- la gestion d'un adversaire automatique avec la possibilité de plusieurs niveaux
 - l’attribution des symboles `X` et `O` ;
 - l’alternance automatique des joueurs ;
 - la sélection d’une case ;
@@ -124,8 +125,8 @@ Options utilisées :
 Le projet ne nécessite actuellement aucune bibliothèque externe supplémentaire.
 
 ________________________________________________________________________________________
-[Précisez ici toute dépendance ou option particulière propre à votre projet :
-bibliothèque externe, arguments de lancement, mode de jeu...]
+Précisez ici toute dépendance ou option particulière propre à votre projet :
+bibliothèque externe, arguments de lancement, mode de jeu...
 ________________________________________________________________________________________
 
 ## Schéma de décomposition
