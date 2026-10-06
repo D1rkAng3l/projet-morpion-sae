@@ -44,6 +44,7 @@ réalisé à plusieurs cite tous ses auteurs : `(@prénom1, @prénom2)`.
 =======
 - Mise à jour du README.md (@Mathis)
 
+- Homogénisation du fichier log (@Mathis)
 ### Corrigé
 - Tableau de répartition de l'équipe du README.md ne s'affiche pas correctement (@Mathis)
 
