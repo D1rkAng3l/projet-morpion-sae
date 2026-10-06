@@ -361,22 +361,26 @@ def get_week_sections(content):
 
 def find_week(
     content,
-    week_number
+    week_number,
+    push_date
 ):
+
+    target_date = push_date.strftime(
+        DATE_FORMAT
+    )
 
     for section in get_week_sections(
         content
     ):
 
         if (
-            section["number"]
-            == week_number
+            section["number"] == week_number
+            and section["date"] == target_date
         ):
 
             return section
 
     return None
-
 
 # ============================================================
 # FIN D'UNE SECTION
@@ -433,15 +437,16 @@ def get_section_end(
 def add_entry(
     content,
     week_number,
+    push_date,
     category,
     entry
 ):
 
     section = find_week(
         content,
-        week_number
+        week_number,
+        push_date
     )
-
     if not section:
         return content
 
@@ -778,18 +783,20 @@ def main():
     # ========================================================
 
     if find_week(
-        content,
-        week_number
+    content,
+    week_number,
+    push_date
     ):
 
         for category, entry in entries:
 
             content = add_entry(
-                content,
-                week_number,
-                category,
-                entry
-            )
+    content,
+    week_number,
+    push_date,
+    category,
+    entry
+    )
 
     # ========================================================
     # PREMIER PUSH DE CETTE SEMAINE
