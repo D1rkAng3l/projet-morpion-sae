@@ -26,6 +26,11 @@ réalisé à plusieurs cite tous ses auteurs : `(@prénom1, @prénom2)`.
     -->
 
 
+## Semaine 1 -- 07/10/26
+
+### Ajouté
+- Test de connection pour Elisa (@Elisa)
+
 ## Semaine 1 -- 06/10/26
 
 ### Ajouté
