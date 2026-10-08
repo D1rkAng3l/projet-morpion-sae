@@ -14,3 +14,13 @@ build/
 
 # VS Code
 .vscode/
+
+
+# ne suit pas les exécutables
+jeu
+
+# documentation
+html/
+
+# backups
+*.bak/
