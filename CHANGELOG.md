@@ -32,6 +32,7 @@ réalisé à plusieurs cite tous ses auteurs : `(@prénom1, @prénom2)`.
 - Test de connexion Tilio (@Tilio)
 - Test de connexion Ilan (@Ilan)
 
+- Modification jeu.c, définition de fonctions et de procédures (@Tilio)
 ### Modifié
 - Modification des fonctions nécessaires à l'implémentation de la grille (@Ilan)
 
