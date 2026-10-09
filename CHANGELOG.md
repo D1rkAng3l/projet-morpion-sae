@@ -30,8 +30,6 @@ réalisé à plusieurs cite tous ses auteurs : `(@prénom1, @prénom2)`.
 
 ### Ajouté
 - Test de connexion Tilio (@Tilio)
-
-- Test de connexion Ilan (@Guiot)
 - Test de connexion Ilan (@Ilan)
 
 ### Modifié
