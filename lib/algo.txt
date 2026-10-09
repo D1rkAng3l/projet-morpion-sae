@@ -53,10 +53,15 @@
 **fonction qui enregistre les coups des utilisateurs(ligne, colonne, symbole)**
 --> "Afficher "jouez votre coup {joueur x}"
 --> enregistrer "X" (joueur 1) **taper le nom de la ligne, le nom de la colonne, le symbole demandé**
+--> s'il y a un autre symbole que O ou X, renvoyer un message d'invalidité
 
+--> procédure qui affiche le coup du joueur dans la grille
+--> afficher (variable) dans [ligne][colonne]
 
 **fonction qui enregistre les modifications apportées et réaffiche le tableau modifié(tableau_modifie)**
 --> créer une variable "tableau de jeu"
 --> à chaque tour, la variable est modifiée par la grille contenant les deux nouveaux coups des joueurs
 
-
+prochaines fonctions:
+-fonction qui vérifie la victoire
+-fonction qui affiche le nombre de tour
