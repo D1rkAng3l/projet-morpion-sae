@@ -1,0 +1,17 @@
+name: Verification semaine 2 sous Linux
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  verification:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compiler et verifier la semaine 2
+        run: python3 scripts/verifier.py --cc gcc
+      - name: Verifier le journal
+        run: python3 -m unittest discover -s tests -p 'test_*.py'
+      - uses: actions/upload-artifact@v4
+        with:
+          name: traces-semaine-2
+          path: output/

@@ -1,0 +1,12 @@
+{
+  "systeme": "Windows-11-10.0.26300-SP0",
+  "compilateur": "clang version 21.1.0",
+  "options": [
+    "-std=c23",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-pedantic"
+  ],
+  "perimetre": "semaine 2"
+}

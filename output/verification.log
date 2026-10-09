@@ -1,0 +1,7 @@
+Compilation stricte : PASS
+joueurs : PASS
+nom-long : PASS
+nom-vide : PASS
+nom-limite : PASS
+eof : PASS
+eof-second-joueur : PASS

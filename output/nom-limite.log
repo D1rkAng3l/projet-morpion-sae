@@ -1,0 +1,30 @@
+ENTREES
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+Bob
+
+ATTENDU
+Joueurs : AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA (X) et Bob (O).
+OBTENU
+Nom du joueur 1 (1 a 63 octets) : Nom du joueur 2 (1 a 63 octets) : Joueurs : AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA (X) et Bob (O).
+Plateau initial :
+      1   2   3 
+    +---+---+---+
+  1 |   |   |   |
+    +---+---+---+
+  2 |   |   |   |
+    +---+---+---+
+  3 |   |   |   |
+    +---+---+---+
+Demonstration : deux pions places dans le code.
+      1   2   3 
+    +---+---+---+
+  1 | X |   |   |
+    +---+---+---+
+  2 |   |   |   |
+    +---+---+---+
+  3 |   |   | O |
+    +---+---+---+
+A AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA de jouer (X).
+La saisie des coups sera ajoutee lors d'une prochaine etape.
+
+VALIDATION : PASS

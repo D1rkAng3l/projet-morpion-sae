@@ -1,9 +1,17 @@
-/// Fichier texte pour la saisi de l'algorithme du morpion ///
+MORPION — groupe G1E
 
-// Premiere etape: initialisation de la grille
+ALGORITHME ACTUEL — SEMAINE 2
+1. Demander et conserver le nom de chacun des deux joueurs.
+2. Refuser les noms vides ou trop longs ; quitter proprement à EOF.
+3. Initialiser un tableau TAILLE × TAILLE rempli d'espaces.
+4. Afficher le plateau vide avec lignes et colonnes numérotées depuis 1.
+5. Placer directement X et O dans le code et afficher le même tableau.
+6. Annoncer le nom du premier joueur dont ce serait le tour, puis terminer.
 
-/Vu d'ensemble de la grille terminé dans la console
-
+NOTES INITIALES DU GROUPE POUR LES ÉTAPES SUIVANTES
+Les propositions ci-dessous sont conservées comme travaux de conception.
+Elles ne sont pas encore implémentées. Le programme actuel utilise des
+coordonnées depuis 1 et ne demande ni coup ni symbole à l'utilisateur.
 
 **tour n°x**
 **nom d'utilisateur**

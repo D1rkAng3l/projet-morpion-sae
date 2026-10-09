@@ -1,21 +1,3 @@
-# MSVC
-*.obj
-*.pdb
-*.ilk
-*.idb
-*.exe
-
-# Build
-Debug/
-Release/
-x64/
-x86/
-build/
-
-# VS Code
-.vscode/
-
-
 # ne suit pas les ex√©cutables
 jeu
 
@@ -24,3 +6,27 @@ html/
 
 # backups
 *.bak/
+# Verification locale et outils temporaires
+.tools/
+.cache/
+__pycache__/
+*.pyc
+jeu.exe
+output/test-regles
+output/test-regles.exe
+output/comparer
+output/comparer.exe
+s101-sae-main.zip
+# Artefacts du compilateur portable utilis√© pour les contr√¥les locaux
+*.obj
+*.pdb
+*.o
+*.ilk
+*.idb
+*.pch
+*.ipch
+*.exp
+*.tlog
+
+# Travaux des Ètapes ultÈrieures conservÈs localement
+.hors-semaine2/

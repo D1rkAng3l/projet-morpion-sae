@@ -4,38 +4,20 @@ import subprocess
 import os
 import re
 
-
-# ============================================================
-# CONFIGURATION
-# ============================================================
-
 CHANGELOG = Path("CHANGELOG.md")
-
-# Début officiel du projet
 PROJECT_START = date(2026, 10, 1)
-
 DATE_FORMAT = "%d/%m/%y"
 
 CATEGORIES = {
     "add": "Ajouté",
     "feat": "Ajouté",
-
     "mod": "Modifié",
     "update": "Modifié",
-
     "fix": "Corrigé",
 }
 
-CATEGORY_ORDER = [
-    "Ajouté",
-    "Modifié",
-    "Corrigé",
-]
+CATEGORY_ORDER = ["Ajouté", "Modifié", "Corrigé"]
 
-
-# ============================================================
-# GIT
-# ============================================================
 
 def git(*args):
     result = subprocess.run(
@@ -45,172 +27,71 @@ def git(*args):
         encoding="utf-8",
         check=True,
     )
-
     return result.stdout.strip()
 
 
-# ============================================================
-# AUTEURS
-# ============================================================
-
 def first_name(name):
-
     name = name.strip().lstrip("@")
+    return name.split()[0] if name else "Inconnu"
 
-    if not name:
-        return "Inconnu"
-
-    return name.split()[0]
-
-
-# ============================================================
-# DATE DU PUSH
-# ============================================================
 
 def get_push_date():
-
     push_date = os.environ.get("PUSH_DATE")
-
     if not push_date:
         return date.today()
+    return datetime.strptime(push_date, "%Y-%m-%d").date()
 
-    return datetime.strptime(
-        push_date,
-        "%Y-%m-%d"
-    ).date()
-
-
-# ============================================================
-# NUMÉRO DE SEMAINE
-# ============================================================
 
 def project_week(push_date):
-
-    delta = (
-        push_date
-        - PROJECT_START
-    ).days
-
+    delta = (push_date - PROJECT_START).days
     if delta < 0:
         return None
+    return (delta // 7) + 1
 
-    return (
-        delta // 7
-    ) + 1
-
-
-# ============================================================
-# COMMITS DU PUSH
-# ============================================================
 
 def get_commits():
+    before = os.environ.get("BEFORE", "")
+    after = os.environ.get("AFTER", "HEAD")
 
-    before = os.environ.get(
-        "BEFORE",
-        ""
-    )
-
-    after = os.environ.get(
-        "AFTER",
-        "HEAD"
-    )
-
-    # Premier push
-    if (
-        not before
-        or before == "0" * 40
-    ):
-
-        hashes = [
-            after
-        ]
-
+    if not before or before == "0" * 40:
+        hashes = [after]
     else:
-
-        hashes = git(
-            "rev-list",
-            "--reverse",
-            f"{before}..{after}"
-        ).splitlines()
+        hashes = git("rev-list", "--reverse", f"{before}..{after}").splitlines()
 
     commits = []
 
     for commit_hash in hashes:
+        subject = git("show", "-s", "--format=%s", commit_hash)
 
-        subject = git(
-            "show",
-            "-s",
-            "--format=%s",
-            commit_hash
-        )
-
-        # Ignore le commit automatique
-        if subject.startswith(
-            "chore: mise à jour automatique du changelog"
-        ):
+        if subject.lower().startswith("chore: mise à jour automatique du changelog"):
             continue
 
+        # Accepte add:, add :, mod:, mod :, fix:, fix :
         match = re.match(
-            r"^(add|feat|mod|update|fix):\s*(.+)$",
+            r"^(add|feat|mod|update|fix)\s*:\s*(.+)$",
             subject,
             re.IGNORECASE,
         )
 
-        # Commit normal sans préfixe :
-        # pas d'entrée dans le changelog
         if not match:
             continue
 
-        prefix = (
-            match.group(1)
-            .lower()
-        )
+        prefix = match.group(1).lower()
+        description = match.group(2).strip()
 
-        description = (
-            match.group(2)
-            .strip()
-        )
+        author = git("show", "-s", "--format=%an", commit_hash)
+        authors = [first_name(author)]
 
-        # Auteur principal
-        author = git(
-            "show",
-            "-s",
-            "--format=%an",
-            commit_hash
-        )
-
-        authors = [
-            first_name(author)
-        ]
-
-        # Corps complet pour récupérer
-        # les éventuels Co-authored-by
-        body = git(
-            "show",
-            "-s",
-            "--format=%B",
-            commit_hash
-        )
-
+        body = git("show", "-s", "--format=%B", commit_hash)
         coauthors = re.findall(
             r"(?im)^Co-authored-by:\s*([^<\n]+)\s*<[^>]+>",
-            body
+            body,
         )
 
         for coauthor in coauthors:
-
-            name = first_name(
-                coauthor
-            )
-
-            if name.lower() not in [
-                existing.lower()
-                for existing in authors
-            ]:
-
-                authors.append(
-                    name
-                )
+            name = first_name(coauthor)
+            if name.lower() not in [a.lower() for a in authors]:
+                authors.append(name)
 
         commits.append(
             {
@@ -223,609 +104,221 @@ def get_commits():
     return commits
 
 
-# ============================================================
-# CRÉATION D'UNE LIGNE
-# ============================================================
-
 def make_entry(commit):
-
-    description = (
-        commit["description"]
-    )
-
+    description = commit["description"].strip()
     if description:
+        description = description[0].upper() + description[1:]
 
-        description = (
-            description[0].upper()
-            + description[1:]
-        )
-
-    authors = ", ".join(
-        f"@{author}"
-        for author
-        in commit["authors"]
-    )
-
-    return (
-        f"- {description} ({authors})"
-    )
+    # Le point final est ajouté après la liste des auteurs
+    description = description.rstrip(". ")
+    authors = ", ".join(f"@{author}" for author in commit["authors"])
+    return f"- {description} ({authors})."
 
 
-# ============================================================
-# COMMENTAIRES HTML
-# ============================================================
+def template_start(content):
+    return content.find("<!--")
 
-def comment_ranges(content):
-
-    ranges = []
-
-    cursor = 0
-
-    while True:
-
-        start = content.find(
-            "<!--",
-            cursor
-        )
-
-        if start == -1:
-            break
-
-        end = content.find(
-            "-->",
-            start + 4
-        )
-
-        if end == -1:
-
-            ranges.append(
-                (
-                    start,
-                    len(content)
-                )
-            )
-
-            break
-
-        ranges.append(
-            (
-                start,
-                end + 3
-            )
-        )
-
-        cursor = end + 3
-
-    return ranges
-
-
-def inside_comment(
-    position,
-    ranges
-):
-
-    return any(
-        start <= position < end
-        for start, end
-        in ranges
-    )
-
-
-# ============================================================
-# RECHERCHE DES SEMAINES EXISTANTES
-# ============================================================
 
 def get_week_sections(content):
+    """Ne lit que les semaines placées avant le gabarit commenté."""
+    end_of_logs = template_start(content)
+    if end_of_logs == -1:
+        end_of_logs = len(content)
 
-    ranges = comment_ranges(
-        content
-    )
+    log_area = content[:end_of_logs]
 
     pattern = re.compile(
-        r"(?m)^## Semaine "
-        r"(\d+) -- "
-        r"(\d{2}/\d{2}/\d{2})"
-        r"[ \t]*$"
+        r"(?m)^## Semaine (\d+) -- (\d{2}/\d{2}/\d{2})[ \t]*$"
     )
 
     sections = []
-
-    for match in pattern.finditer(
-        content
-    ):
-
-        # Ignore le modèle commenté
-        if inside_comment(
-            match.start(),
-            ranges
-        ):
-            continue
-
+    for match in pattern.finditer(log_area):
         sections.append(
             {
-                "number": int(
-                    match.group(1)
-                ),
+                "number": int(match.group(1)),
                 "date": match.group(2),
                 "start": match.start(),
                 "header_end": match.end(),
             }
         )
-
     return sections
 
 
-# ============================================================
-# RECHERCHE D'UNE SEMAINE
-# ============================================================
-
-def find_week(
-    content,
-    week_number,
-    push_date
-):
-
-    target_date = push_date.strftime(
-        DATE_FORMAT
-    )
-
-    for section in get_week_sections(
-        content
-    ):
-
-        if (
-            section["number"] == week_number
-            and section["date"] == target_date
-        ):
-
+def find_week(content, week_number):
+    """Une seule section par semaine. La date existante n'est jamais modifiée."""
+    for section in get_week_sections(content):
+        if section["number"] == week_number:
             return section
-
     return None
 
-# ============================================================
-# FIN D'UNE SECTION
-# ============================================================
 
-def get_section_end(
-    content,
-    section
-):
+def get_section_end(content, section):
+    sections = get_week_sections(content)
+    later = [s["start"] for s in sections if s["start"] > section["start"]]
 
-    sections = get_week_sections(
-        content
-    )
+    if later:
+        return min(later)
 
-    positions = [
-        item["start"]
-        for item in sections
-        if item["start"]
-        > section["start"]
-    ]
-
-    if positions:
-
-        end = min(
-            positions
-        )
-
-    else:
-
-        end = len(
-            content
-        )
-
-    # Ne jamais entrer dans le modèle commenté
-    comment = content.find(
-        "<!--",
-        section["header_end"]
-    )
-
-    if (
-        comment != -1
-        and comment < end
-    ):
-
-        end = comment
-
-    return end
+    end = template_start(content)
+    return len(content) if end == -1 else end
 
 
-# ============================================================
-# AJOUT DANS UNE SEMAINE EXISTANTE
-# ============================================================
-
-def add_entry(
-    content,
-    week_number,
-    push_date,
-    category,
-    entry
-):
-
-    section = find_week(
-        content,
-        week_number,
-        push_date
-    )
+def add_entry(content, week_number, category, entry):
+    """Ajoute uniquement du nouveau texte sans réécrire les anciens logs."""
+    section = find_week(content, week_number)
     if not section:
         return content
 
     start = section["start"]
-
-    end = get_section_end(
-        content,
-        section
-    )
-
-    block = content[
-        start:end
-    ]
-
-    # --------------------------------------------------------
-    # NE TOUCHE PAS AUX ENTRÉES EXISTANTES
-    #
-    # Si la même entrée existe déjà,
-    # rien n'est fait.
-    # --------------------------------------------------------
+    end = get_section_end(content, section)
+    block = content[start:end]
 
     if entry in block:
         return content
 
     category_pattern = re.compile(
-        r"(?m)^### "
-        r"(Ajouté|Modifié|Corrigé)"
-        r"[ \t]*$"
+        r"(?m)^### (Ajouté|Modifié|Corrigé)[ \t]*$"
     )
-
-    headings = list(
-        category_pattern.finditer(
-            block
-        )
-    )
+    headings = list(category_pattern.finditer(block))
 
     target = None
-
     for heading in headings:
-
-        if (
-            heading.group(1)
-            == category
-        ):
-
+        if heading.group(1) == category:
             target = heading
             break
 
-    # ========================================================
-    # CATÉGORIE EXISTANTE
-    # ========================================================
-
     if target:
+        following = [h.start() for h in headings if h.start() > target.start()]
+        insertion = min(following) if following else len(block)
 
-        following = [
-            heading.start()
-            for heading
-            in headings
-            if heading.start()
-            > target.start()
-        ]
-
-        if following:
-
-            insertion = min(
-                following
-            )
-
-        else:
-
-            insertion = len(
-                block
-            )
-
-        ### Insertion uniquement
-        ### Aucun caractère existant n'est supprimé ou modifié
-
-        block = (
+        prefix = "" if block[:insertion].endswith("\n") else "\n"
+        new_block = (
             block[:insertion]
+            + prefix
             + entry
             + "\n"
             + block[insertion:]
         )
-
-    # ========================================================
-    # CATÉGORIE ABSENTE
-    # ========================================================
-
     else:
-
-        target_order = (
-            CATEGORY_ORDER.index(
-                category
-            )
-        )
-
+        target_order = CATEGORY_ORDER.index(category)
         insertion = None
 
-        # Cherche la prochaine catégorie
-        # pour conserver :
-        #
-        # Ajouté
-        # Modifié
-        # Corrigé
-
         for heading in headings:
-
-            heading_category = (
-                heading.group(1)
-            )
-
-            heading_order = (
-                CATEGORY_ORDER.index(
-                    heading_category
-                )
-            )
-
-            if (
-                heading_order
-                > target_order
-            ):
-
-                insertion = (
-                    heading.start()
-                )
-
+            existing_category = heading.group(1)
+            if CATEGORY_ORDER.index(existing_category) > target_order:
+                insertion = heading.start()
                 break
 
-        fragment = (
-            f"### {category}\n"
-            f"{entry}\n\n"
-        )
+        if insertion is None:
+            insertion = len(block)
 
-        if insertion is not None:
+        fragment = f"### {category}\n\n{entry}\n\n"
 
-            block = (
-                block[:insertion]
-                .rstrip()
-                + "\n\n"
-                + fragment
-                + block[insertion:]
-                .lstrip("\n")
-            )
-
+        if block[:insertion].endswith("\n\n"):
+            prefix = ""
+        elif block[:insertion].endswith("\n"):
+            prefix = "\n"
         else:
+            prefix = "\n\n"
 
-            block = (
-                block.rstrip()
-                + "\n\n"
-                + fragment
-            )
-
-    # --------------------------------------------------------
-    # Seule la section ciblée est remplacée.
-    #
-    # Tout le reste du fichier reste strictement intact.
-    # --------------------------------------------------------
-
-    return (
-        content[:start]
-        + block
-        + content[end:]
-    )
-
-
-# ============================================================
-# CRÉATION D'UNE NOUVELLE SEMAINE
-# ============================================================
-
-def create_week(
-    week_number,
-    push_date,
-    entries
-):
-
-    # IMPORTANT :
-    # ici on prend la date réelle du PUSH,
-    # PAS la date de début théorique de semaine.
-
-    date_string = (
-        push_date.strftime(
-            DATE_FORMAT
+        new_block = (
+            block[:insertion]
+            + prefix
+            + fragment
+            + block[insertion:]
         )
-    )
 
-    result = (
-        f"## Semaine "
-        f"{week_number} -- "
-        f"{date_string}\n"
-    )
+    return content[:start] + new_block + content[end:]
+
+
+def create_week(week_number, push_date, entries):
+    """La date du titre est celle du premier log créé pour cette semaine."""
+    date_string = push_date.strftime(DATE_FORMAT)
+    result = f"## Semaine {week_number} -- {date_string}\n"
 
     for category in CATEGORY_ORDER:
-
         category_entries = [
             entry
-            for (
-                entry_category,
-                entry
-            )
-            in entries
-            if entry_category
-            == category
+            for entry_category, entry in entries
+            if entry_category == category
         ]
 
         if not category_entries:
             continue
 
-        result += (
-            f"\n### "
-            f"{category}\n"
-        )
-
+        result += f"\n### {category}\n\n"
         for entry in category_entries:
+            result += entry + "\n"
 
-            result += (
-                entry
-                + "\n"
-            )
-
-    return (
-        result.rstrip()
-        + "\n\n"
-    )
+    return result.rstrip() + "\n\n"
 
 
-# ============================================================
-# INSERTION EN HAUT DU CHANGELOG
-# ============================================================
+def insert_new_week(content, new_section):
+    """Insère toujours la nouvelle semaine avant les anciennes et avant le gabarit."""
+    sections = get_week_sections(content)
+    candidates = []
 
-def insert_new_week(
-    content,
-    new_section
-):
-
-    sections = get_week_sections(
-        content
-    )
-
-    # Nouvelle semaine avant
-    # la plus récente existante
     if sections:
+        candidates.append(min(section["start"] for section in sections))
 
-        position = min(
-            section["start"]
-            for section
-            in sections
-        )
-
-        return (
-            content[:position]
-            + new_section
-            + content[position:]
-        )
-
-    # S'il n'y a encore aucune semaine :
-    # insertion avant le modèle commenté
-    template = content.find(
-        "<!--"
-    )
-
+    template = template_start(content)
     if template != -1:
+        candidates.append(template)
 
-        return (
-            content[:template]
-            + new_section
-            + content[template:]
-        )
+    if candidates:
+        position = min(candidates)
+        return content[:position] + new_section + content[position:]
 
-    return (
-        content.rstrip()
-        + "\n\n"
-        + new_section
-    )
+    return content.rstrip() + "\n\n" + new_section
 
-
-# ============================================================
-# MAIN
-# ============================================================
 
 def main():
-
     if not CHANGELOG.exists():
-
-        raise FileNotFoundError(
-            "CHANGELOG.md introuvable "
-            "à la racine du projet."
-        )
+        raise FileNotFoundError("CHANGELOG.md introuvable à la racine du projet.")
 
     push_date = get_push_date()
-
-    week_number = project_week(
-        push_date
-    )
+    week_number = project_week(push_date)
 
     if week_number is None:
-
-        print(
-            "Push antérieur au lancement "
-            "du projet."
-        )
-
+        print("Push antérieur au lancement du projet.")
         return
 
     commits = get_commits()
 
     if not commits:
-
-        print(
-            "Aucun commit add:, mod: "
-            "ou fix: à ajouter."
-        )
-
+        print("Aucun commit add:, mod: ou fix: à ajouter.")
         return
 
-    content = CHANGELOG.read_text(
-        encoding="utf-8"
-    )
+    content = CHANGELOG.read_text(encoding="utf-8")
 
     entries = [
-        (
-            commit["category"],
-            make_entry(commit)
-        )
+        (commit["category"], make_entry(commit))
         for commit in commits
     ]
 
-    # ========================================================
-    # LA SEMAINE EXISTE DÉJÀ
-    #
-    # IMPORTANT :
-    # - on ne change PAS sa date
-    # - on ne change PAS ses anciennes lignes
-    # - on ajoute uniquement les nouvelles entrées
-    # ========================================================
-
-    if find_week(
-    content,
-    week_number,
-    push_date
-    ):
-
+    # Une seule section par semaine.
+    # Si elle existe déjà, sa date reste inchangée.
+    if find_week(content, week_number):
         for category, entry in entries:
-
             content = add_entry(
-    content,
-    week_number,
-    push_date,
-    category,
-    entry
-    )
-
-    # ========================================================
-    # PREMIER PUSH DE CETTE SEMAINE
-    #
-    # On crée la semaine avec LA DATE DU PUSH.
-    # ========================================================
-
+                content,
+                week_number,
+                category,
+                entry,
+            )
     else:
-
         new_section = create_week(
             week_number,
             push_date,
-            entries
+            entries,
         )
+        content = insert_new_week(content, new_section)
 
-        content = insert_new_week(
-            content,
-            new_section
-        )
-
-    CHANGELOG.write_text(
-        content,
-        encoding="utf-8"
-    )
+    CHANGELOG.write_text(content, encoding="utf-8")
 
     print(
-        f"CHANGELOG mis à jour : "
-        f"Semaine {week_number}, "
-        f"{push_date.strftime(DATE_FORMAT)}"
+        f"CHANGELOG mis à jour : Semaine {week_number}, "
+        f"push du {push_date.strftime(DATE_FORMAT)}"
     )
 
 

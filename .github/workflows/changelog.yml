@@ -10,13 +10,12 @@ permissions:
 
 jobs:
   changelog:
-
+    # Le commit automatique du bot ne doit pas relancer le workflow
     if: github.actor != 'github-actions[bot]'
 
     runs-on: ubuntu-latest
 
     steps:
-
       - name: Récupération du dépôt
         uses: actions/checkout@v4
         with:
@@ -27,15 +26,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-      # ------------------------------------------------------
-      # DATE RÉELLE DU PUSH
-      #
-      # On utilise Europe/Paris pour éviter qu'un push
-      # effectué après minuit en France soit daté du jour
-      # précédent à cause de l'UTC de GitHub Actions.
-      # ------------------------------------------------------
-
-      - name: Détermination de la date du push
+      - name: Détermination de la date réelle du push
         run: |
           echo "PUSH_DATE=$(TZ=Europe/Paris date +%Y-%m-%d)" >> "$GITHUB_ENV"
 

@@ -1,388 +1,94 @@
-# Morpion – SAÉ S1.01
+# Morpion — SAÉ 1.01 et 1.02
 
-**Groupe** : `G1E` -- Mathis Bretonneau, Ilan Guiot, Elisa Mayet, Tilio Dabaji
+**Groupe** : `G1E` — Mathis Bretonneau, Ilan Guiot, Elisa Mayet, Tilio Dabaji.
 
 ## Équipe projet
 
-Le projet est réalisé par :
+| Membre | Mention | Rôle |
+| --- | --- | --- |
+| Mathis Bretonneau | @Mathis | Coordination, suivi et configuration |
+| Ilan Guiot | @Ilan | Conception et algorithmique |
+| Elisa Mayet | @ELisa | Développement et intégration |
+| Tilio Dabaji | @Tilio | Tests, documentation et qualité |
 
-| Membre                | Rôle                                                        |
-| --------------------- | ----------------------------------------------------------- |
-| **Mathis Bretonneau** | Chef de projet                                              |
-| **Ilan Guiot**        | Responsable conception et algorithmique                     |
-| **Elisa Mayet**       | Responsable développement et implémentation                 |
-| **Tilio Dabaji**      | Responsable des tests, de la documentation et de la qualité |
+## Sujet et avancement
 
-### Mathis
+Le jeu choisi est le morpion : deux joueurs posent alternativement X et O sur une grille de 3 × 3. Un alignement horizontal, vertical ou diagonal gagne. Un plateau plein sans alignement donne un match nul. Ces règles décrivent le jeu prévu ; leur implémentation viendra après la semaine 2.
 
-Chef de projet chargé notamment :
+La version actuelle correspond uniquement au jalon de **semaine 2** : connaître les joueurs, mémoriser et initialiser le plateau, puis vérifier son affichage. Elle ne permet pas encore de jouer une partie.
 
-- de la coordination du groupe ;
-- de la répartition des tâches ;
-- du suivi de l’avancement ;
-- de la validation générale du projet ;
-- de la coordination des livrables.
+## Fonctionnalités de semaine 2
 
-### Ilan
+### Connaître les joueurs
 
-Responsable de la conception et de l’algorithmique, notamment :
+Le programme demande le nom de chaque joueur et le conserve dans un tableau de caractères de 64 octets. Un nom peut contenir jusqu’à 63 octets. Les noms vides et les saisies trop longues sont refusés ; le reste d’une ligne trop longue est consommé avant une nouvelle demande. X est associé au premier joueur, O au second. Le message « À nom de jouer » identifie le premier joueur. Une fin de saisie termine proprement le programme.
 
-- analyse des règles du Morpion ;
-- conception des algorithmes ;
-- décomposition du programme en fonctions ;
-- conception de la gestion des tours ;
-- conception de la détection des victoires et des matchs nuls.
+### Mémoriser et initialiser le plateau
 
-### Elisa
+`Grille` désigne un tableau `char[TAILLE][TAILLE]`. Chaque case contient `VIDE` (un espace), `X` ou `O`. La taille est définie en un seul endroit, dans `lib/grille.h`. `initialiserGrille` remet toutes les cases à VIDE au lancement. Le même tableau reste en mémoire et sert à tous les affichages de cette exécution.
 
-Responsable du développement et de l’intégration, notamment :
+### Afficher le plateau
 
-- implémentation des fonctions ;
-- organisation des modules ;
-- intégration des différentes parties du programme ;
-- compilation ;
-- résolution des erreurs techniques.
+La grille est affichée en console avec des cases alignées et des lignes et colonnes numérotées à partir de 1. Le programme affiche d’abord le plateau vide, puis place directement X et O dans le code et réaffiche le tableau pour vérifier que l’affichage suit son état. Il annonce ensuite le joueur dont ce serait le tour. Aucune saisie de coup n’est proposée à ce stade.
 
-### Mathis / Tilio
+## Compilation et exécution sous Linux
 
-Responsable des tests, de la documentation et de la qualité, notamment :
-
-- création des jeux d’essais ;
-- exécution des tests ;
-- conservation des traces ;
-- documentation Doxygen ;
-- mise à jour de la documentation du projet.
-
----
-
-### Fonctionnalités principales
-
-Le programme permet notamment :
-
-- l’initialisation d’une grille de 3 × 3 cases ;
-- l’affichage de la grille ;
-- la gestion de deux joueurs ;
-- la gestion d'un adversaire automatique avec la possibilité de plusieurs niveaux
-- l’attribution des symboles `X` et `O` ;
-- l’alternance automatique des joueurs ;
-- la sélection d’une case ;
-- la vérification de la validité d’un coup ;
-- le refus d’une case déjà occupée ;
-- la détection d’une victoire ;
-- la détection d’un match nul ;
-- l’affichage du résultat de la partie ;
-- la gestion des principales erreurs de saisie.
-
-D’autres fonctionnalités pourront être ajoutées au cours du développement selon les fonctionnalités valorisées retenues dans le cahier des charges.
-
----
-
-## Description
-
-Ce projet est réalisé dans le cadre de la **SAÉ S1.01 – Implémentation d’un besoin client** du BUT Informatique.
-
-L’objectif est de développer en langage **C** un jeu de **Morpion** permettant à deux joueurs de s’affronter sur une grille de 3 × 3 cases.
-
-Chaque joueur possède un symbole :
-
-- Joueur 1 : `X`
-- Joueur 2 : `O`
-
-Les joueurs jouent chacun leur tour en sélectionnant une case disponible de la grille.
-
-Une partie se termine lorsqu’un joueur parvient à aligner trois symboles identiques :
-
-- horizontalement ;
-- verticalement ;
-- diagonalement.
-
-Si les neuf cases sont occupées sans qu’aucun joueur n’ait réalisé un alignement de trois symboles, la partie se termine par un **match nul**.
-
-## Compilation et exécution
-
-Sous VSCode, la touche `F5` compile le fichier actif (`jeu.c`) avec tous les
-modules du dossier `lib/` et lance l'exécutable.
-
-En ligne de commande :
+Utiliser GCC avec le support de C23. Aucune bibliothèque externe n’est nécessaire.
 
 ```bash
-# TODO: adaptez si votre point d'entrée ou vos options de compilation changent
-gcc -std=c23 -Wall -Werror jeu.c lib/*.c -o jeu -lm
+gcc -std=c23 -Wall -Wextra -Werror -pedantic jeu.c lib/*.c -o jeu -lm
 ./jeu
 ```
 
-Options utilisées :
-
-- `-std=c23` : utilisation de la norme C23 ;
-- `-Wall` : activation des principaux avertissements du compilateur ;
-- `-Werror` : les avertissements sont considérés comme des erreurs ;
-- `-o jeu` : création d’un exécutable nommé `jeu` ;
-- `-lm` : liaison avec la bibliothèque mathématique.
-
-Le projet ne nécessite actuellement aucune bibliothèque externe supplémentaire.
-
----
-
-Précisez ici toute dépendance ou option particulière propre à votre projet :
-bibliothèque externe, arguments de lancement, mode de jeu...
-
----
+Saisir les deux noms, puis observer les deux affichages. Ctrl+D termine la saisie sous Linux. Dans VS Code/Linux, ouvrir `jeu.c` à la racine et utiliser Ctrl+Maj+B pour la tâche GCC. La configuration `.vscode/` et `.clang-format` provient du modèle fourni.
 
 ## Schéma de décomposition
 
-Le programme est décomposé en plusieurs fonctions afin de séparer la gestion de la grille, les interactions avec les joueurs et la vérification des règles du Morpion.
-
-Le schéma suivant représente la structure prévue du programme. Il sera mis à jour au cours du développement si le découpage évolue.
+Les signatures correspondent aux fonctions actuellement implémentées.
 
 ```text
 int main(void)
-│
-├── void initialiserGrille(char grille[3][3])
-│
-├── void afficherGrille(const char grille[3][3])
-│
-├── void jouerPartie(char grille[3][3])
-│   │
-│   ├── int demanderCoup(const char grille[3][3], char joueur)
-│   │   │
-│   │   └── bool coupValide(const char grille[3][3], int position)
-│   │
-│   ├── void placerCoup(char grille[3][3], int position, char joueur)
-│   │
-│   ├── bool verifierVictoire(const char grille[3][3], char joueur)
-│   │
-│   ├── bool grillePleine(const char grille[3][3])
-│   │
-│   └── char changerJoueur(char joueur)
-│
-└── void afficherResultat(char resultat)
+├── bool demanderNom(char *nom, size_t capacite, int numero) — pour chacun des deux joueurs
+│   └── int lireLigne(char *texte, size_t capacite)
+├── void initialiserGrille(Grille grille)
+└── void afficherGrille(const Grille grille) — plateau vide puis avec pions de démonstration
 ```
-
-Cette décomposition est provisoire et pourra être adaptée en fonction de l’évolution du projet.
-
----
 
 ## Organisation du projet
 
-Le projet est organisé afin de séparer le programme principal des différents modules.
+| Chemin | Rôle |
+| --- | --- |
+| `jeu.c` | Lecture des noms et démonstration du plateau |
+| `lib/grille.c`, `lib/grille.h` | Représentation, initialisation et affichage |
+| `lib/saisie.c`, `lib/saisie.h` | Lecture bornée des noms |
+| `lib/exemple.c`, `lib/exemple.h` | Exemple original, non utilisé par la démonstration |
+| `lib/algo.txt` | Algorithme actuel et notes de conception du groupe pour la suite |
+| `scripts/update_changelog.py` | Mise à jour du journal à partir des commits |
+| `scripts/verifier.py`, `tests/test_changelog.py` | Vérifications de la démonstration et du journal |
+| `output/` | Traces des vérifications de semaine 2 |
+| `Doxyfile` | Configuration du modèle conservée pour une étape ultérieure, sans génération de documentation |
 
-```text
-.
-├── jeu.c
-├── lib/
-│   ├── grille.c
-│   ├── grille.h
-│   ├── jeu.c
-│   ├── jeu.h
-│   ├── saisie.c
-│   └── saisie.h
-│
-├── output/
-│
-├── html/
-│
-├── README.md
-├── CHANGELOG.md
-├── Doxyfile
-├── LICENCE
-└── LICENCE-CONTENT
-```
+Les propositions initiales du groupe sont conservées dans `lib/algo.txt`. Elles décrivent aussi des fonctionnalités futures et ne doivent pas être confondues avec le programme actuel.
 
-### Rôle des fichiers
-
-| Fichier        | Rôle                                              |
-| -------------- | ------------------------------------------------- |
-| `jeu.c`        | Point d’entrée principal de l’application         |
-| `lib/grille.c` | Gestion de la grille et de son affichage          |
-| `lib/grille.h` | Déclarations des fonctions liées à la grille      |
-| `lib/jeu.c`    | Gestion des règles et du déroulement d’une partie |
-| `lib/jeu.h`    | Déclarations des fonctions liées au jeu           |
-| `lib/saisie.c` | Gestion et validation des saisies utilisateur     |
-| `lib/saisie.h` | Déclarations des fonctions liées aux saisies      |
-| `output/`      | Traces d’exécution et résultats des jeux d’essais |
-| `html/`        | Documentation HTML générée par Doxygen            |
-| `README.md`    | Présentation et documentation générale du projet  |
-| `CHANGELOG.md` | Historique des modifications du projet            |
-| `Doxyfile`     | Configuration de Doxygen                          |
-
-L’organisation des modules pourra évoluer au cours du développement.
-
-## Documentation
-
-La documentation du code est générée avec [Doxygen](https://www.doxygen.nl/).
-
-La documentation HTML est produite dans le dossier :
-
-```text
-html/
-```
-
-Pour générer la documentation :
+## Vérifications
 
 ```bash
-doxygen Doxyfile
+python3 scripts/verifier.py --cc gcc
+python3 -m unittest discover -s tests -p 'test_*.py'
 ```
 
-Dans le fichier `Doxyfile`, la valeur de `PROJECT_NAME` doit correspondre au nom du projet.
+Le premier script compile le programme et vérifie les noms, le refus des lignes trop longues, les noms vides, la fin de saisie, le plateau vide et les pions placés dans le code. Les traces indiquent les entrées, les résultats attendus et ceux obtenus. `output/environnement.json` précise le système et le compilateur réellement utilisés ; une vérification locale Windows ne remplace pas la validation GCC/Linux.
 
-Exemple :
+## Journal et rendu
 
-```text
-PROJECT_NAME = "Morpion"
-```
+[CHANGELOG.md](CHANGELOG.md) conserve les modifications par semaine, avec les catégories Ajouté, Modifié et Corrigé et les mentions des membres. La dernière entrée décrit le retour au périmètre de semaine 2 ; les entrées précédentes restent historiques.
 
-Les fonctions et modules du projet devront être documentés à l’aide de commentaires compatibles avec Doxygen.
+La capture de semaine 2 fixe le rendu au **vendredi 9 octobre 2026 à 23 h 59** : un ZIP du dossier complet `s101-sae-main`, un seul par groupe, de 50 Mo maximum. La fiche détaillée de semaine 1 n’a pas été fournie ; le choix du jeu, le groupe, les rôles et le schéma sont renseignés conformément aux éléments disponibles.
 
-Exemple :
+La saisie des coups est prévue à l’étape suivante. L’adversaire automatique, le rejeu, les scores, les comparaisons, Doxygen et le compte rendu HTML ne sont pas réalisés dans cette version.
 
-```c
-/**
- * @brief Vérifie si un joueur a gagné la partie.
- *
- * @param grille Grille actuelle du Morpion.
- * @param joueur Symbole du joueur à vérifier.
- *
- * @return true si le joueur possède un alignement gagnant,
- *         false sinon.
- */
-bool verifierVictoire(const char grille[3][3], char joueur);
-```
-
----
-
-## Jeux d’essais
-
-Les traces d’exécution permettant de vérifier le fonctionnement du programme sont stockées dans le dossier :
-
-```text
-output/
-```
-
-Les jeux d’essais permettent notamment de vérifier :
-
-- le placement d’un symbole dans une case vide ;
-- le refus d’une case déjà occupée ;
-- le refus d’une position incorrecte ;
-- l’alternance des joueurs ;
-- une victoire horizontale ;
-- une victoire verticale ;
-- une victoire diagonale ;
-- un match nul ;
-- le comportement du programme après la fin d’une partie.
-
-### Exemple de jeu d’essai
-
-```text
-Test : victoire horizontale du joueur X
-
-Entrées :
-X → case 1
-O → case 4
-X → case 2
-O → case 5
-X → case 3
-
-Résultat attendu :
-X | X | X
----------
-O | O |
----------
-  |   |
-
-Victoire du joueur X.
-```
-
-Les traces devront permettre de comparer :
-
-```text
-Entrées
-   ↓
-Résultat attendu
-   ↓
-Résultat obtenu
-   ↓
-Validation du test
-```
-
-La procédure permettant de rejouer automatiquement ou manuellement les scénarios de test sera précisée au cours du développement.
-
----
-
-## Qualité du code
-
-Le projet devra respecter plusieurs règles de qualité :
-
-- découpage du programme en fonctions ;
-- fonctions ayant une responsabilité clairement définie ;
-- noms de variables et de fonctions explicites ;
-- limitation de la duplication de code ;
-- commentaires lorsque cela est nécessaire ;
-- documentation des fonctions avec Doxygen ;
-- compilation sans avertissement avec `-Wall -Werror` ;
-- tests des principales fonctionnalités.
-
----
-
-## Journal des changements
-
-L’évolution du projet est documentée dans :
-
-[CHANGELOG.md](./CHANGELOG.md)
-
-Ce fichier permet de conserver une trace des principales modifications réalisées au cours du développement :
-
-- ajout de fonctionnalités ;
-
-```bash
-git commit -m "add: fichier"
-```
-
-- modification de fonctionnalités ;
-
-```bash
-git commit -m "mod: fichier"
-```
-
-- correction d’erreurs ;
-
-```bash
-git commit -m "fix: fichier"
-```
-
-- changement dans l’organisation du code ;
-
-```bash
-git commit -m "feat: fichier"
-```
-
-- évolution de la documentation.
-
----
+Les travaux des étapes ultérieures ont été conservés localement dans `.hors-semaine2/`, exclu de Git. Ils ne sont ni compilés ni utilisés par cette version. Ce dossier ne doit pas être inclus dans le ZIP de semaine 2.
 
 ## Licences
 
-Ce projet utilise deux licences libres pour son contenu.
-
-### Contenu écrit
-
-Le contenu écrit est publié sous licence :
-
-[CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
-
-Voir le fichier :
-
-```text
-LICENCE-CONTENT
-```
-
-### Code source
-
-Les programmes et exemples de code sont publiés sous :
-
-[The Unlicense](https://unlicense.org/)
-
-Voir le fichier :
-
-```text
-LICENCE
-```
+Code : [The Unlicense](LICENCE). Contenu écrit : [CC BY-SA 4.0](LICENCE-CONTENT).
