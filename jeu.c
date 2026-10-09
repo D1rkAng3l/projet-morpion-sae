@@ -7,13 +7,24 @@
 
 #include "./lib/exemple.h"
 
-int main() {
-  // afficheSep est déclarée dans lib/exemple.h et définie dans lib/exemple.c
-  afficheSep();
+void initialiserGrille(char grille[3][3]);
+void afficherGrille(const char grille[3][3]);
+void jouerPartie(char grille[3][3]);
+int demanderCoup(const char grille[3][3], char joueur);
+bool coupValide(const char grille[3][3], int position);
+void placerCoup(char grille[3][3], int position, char joueur);
+bool verifierVictoire(const char grille[3][3], char joueur);
+bool grillePleine(const char grille[3][3]);
+char changerJoueur(char joueur);
+void afficherResultat(char resultat);
+int main()
 
-  printf("Hello world with separators!\n");
+    // afficheSep est déclarée dans lib/exemple.h et définie dans lib/exemple.c
+    afficheSep();
 
-  afficheSep();
+printf("Hello world with separators!\n");
 
-  return 0;
+afficheSep();
+
+return 0;
 }
