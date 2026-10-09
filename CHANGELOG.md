@@ -37,6 +37,7 @@ réalisé à plusieurs cite tous ses auteurs : `(@prénom1, @prénom2)`.
 - Modification des fonctions nécessaires à l'implémentation de la grille (@Ilan)
 
 - Modification du CHANGELOG.md (@Mathis)
+- Fichier jeu.c initialisation boucle, initialiser grille + afficher grille (@Elisa)
 ## Semaine 2 -- 08/10/26
 
 ### Modifié
