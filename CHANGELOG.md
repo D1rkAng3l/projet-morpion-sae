@@ -33,6 +33,10 @@ réalisé à plusieurs cite tous ses auteurs : `(@prénom1, @prénom2)`.
 
 - Test de connexion Ilan (@Guiot)
 - Test de connexion Ilan (@Ilan)
+
+### Modifié
+- Modification des fonctions nécessaires à l'implémentation de la grille (@Ilan)
+
 ## Semaine 2 -- 08/10/26
 
 ### Modifié
