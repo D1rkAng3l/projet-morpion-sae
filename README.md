@@ -1,22 +1,19 @@
 # Morpion – SAÉ S1.01
 
-
 **Groupe** : `G1E` -- Mathis Bretonneau, Ilan Guiot, Elisa Mayet, Tilio Dabaji
-
 
 ## Équipe projet
 
 Le projet est réalisé par :
 
+| Membre                | Rôle                                                        |
+| --------------------- | ----------------------------------------------------------- |
+| **Mathis Bretonneau** | Chef de projet                                              |
+| **Ilan Guiot**        | Responsable conception et algorithmique                     |
+| **Elisa Mayet**       | Responsable développement et implémentation                 |
+| **Tilio Dabaji**      | Responsable des tests, de la documentation et de la qualité |
 
-| Membre | Rôle |
-|---|---|
-| **Mathis Bretonneau** | Chef de projet |
-| **Ilan Guiot** | Responsable conception et algorithmique |
-| **Elisa Mayet** | Responsable développement et implémentation |
-| **Tilio Dabaji** | Responsable des tests, de la documentation et de la qualité |
-
-### Mathis 
+### Mathis
 
 Chef de projet chargé notamment :
 
@@ -26,7 +23,7 @@ Chef de projet chargé notamment :
 - de la validation générale du projet ;
 - de la coordination des livrables.
 
-### Ilan 
+### Ilan
 
 Responsable de la conception et de l’algorithmique, notamment :
 
@@ -36,7 +33,7 @@ Responsable de la conception et de l’algorithmique, notamment :
 - conception de la gestion des tours ;
 - conception de la détection des victoires et des matchs nuls.
 
-### Elisa 
+### Elisa
 
 Responsable du développement et de l’intégration, notamment :
 
@@ -46,7 +43,7 @@ Responsable du développement et de l’intégration, notamment :
 - compilation ;
 - résolution des erreurs techniques.
 
-### Mathis / Tilio 
+### Mathis / Tilio
 
 Responsable des tests, de la documentation et de la qualité, notamment :
 
@@ -57,7 +54,6 @@ Responsable des tests, de la documentation et de la qualité, notamment :
 - mise à jour de la documentation du projet.
 
 ---
-
 
 ### Fonctionnalités principales
 
@@ -114,6 +110,7 @@ En ligne de commande :
 gcc -std=c23 -Wall -Werror jeu.c lib/*.c -o jeu -lm
 ./jeu
 ```
+
 Options utilisées :
 
 - `-std=c23` : utilisation de la norme C23 ;
@@ -124,10 +121,12 @@ Options utilisées :
 
 Le projet ne nécessite actuellement aucune bibliothèque externe supplémentaire.
 
-________________________________________________________________________________________
+---
+
 Précisez ici toute dépendance ou option particulière propre à votre projet :
 bibliothèque externe, arguments de lancement, mode de jeu...
-________________________________________________________________________________________
+
+---
 
 ## Schéma de décomposition
 
@@ -191,24 +190,22 @@ Le projet est organisé afin de séparer le programme principal des différents 
 
 ### Rôle des fichiers
 
-| Fichier | Rôle |
-| --- | --- |
-| `jeu.c` | Point d’entrée principal de l’application |
-| `lib/grille.c` | Gestion de la grille et de son affichage |
-| `lib/grille.h` | Déclarations des fonctions liées à la grille |
-| `lib/jeu.c` | Gestion des règles et du déroulement d’une partie |
-| `lib/jeu.h` | Déclarations des fonctions liées au jeu |
-| `lib/saisie.c` | Gestion et validation des saisies utilisateur |
-| `lib/saisie.h` | Déclarations des fonctions liées aux saisies |
-| `output/` | Traces d’exécution et résultats des jeux d’essais |
-| `html/` | Documentation HTML générée par Doxygen |
-| `README.md` | Présentation et documentation générale du projet |
-| `CHANGELOG.md` | Historique des modifications du projet |
-| `Doxyfile` | Configuration de Doxygen |
+| Fichier        | Rôle                                              |
+| -------------- | ------------------------------------------------- |
+| `jeu.c`        | Point d’entrée principal de l’application         |
+| `lib/grille.c` | Gestion de la grille et de son affichage          |
+| `lib/grille.h` | Déclarations des fonctions liées à la grille      |
+| `lib/jeu.c`    | Gestion des règles et du déroulement d’une partie |
+| `lib/jeu.h`    | Déclarations des fonctions liées au jeu           |
+| `lib/saisie.c` | Gestion et validation des saisies utilisateur     |
+| `lib/saisie.h` | Déclarations des fonctions liées aux saisies      |
+| `output/`      | Traces d’exécution et résultats des jeux d’essais |
+| `html/`        | Documentation HTML générée par Doxygen            |
+| `README.md`    | Présentation et documentation générale du projet  |
+| `CHANGELOG.md` | Historique des modifications du projet            |
+| `Doxyfile`     | Configuration de Doxygen                          |
 
 L’organisation des modules pourra évoluer au cours du développement.
-
-
 
 ## Documentation
 
@@ -334,23 +331,30 @@ L’évolution du projet est documentée dans :
 
 Ce fichier permet de conserver une trace des principales modifications réalisées au cours du développement :
 
-
 - ajout de fonctionnalités ;
+
 ```bash
-git commit -m "add: fichier" 
+git commit -m "add: fichier"
 ```
+
 - modification de fonctionnalités ;
+
 ```bash
-git commit -m "mod: fichier" 
+git commit -m "mod: fichier"
 ```
+
 - correction d’erreurs ;
+
 ```bash
-git commit -m "fix: fichier" 
+git commit -m "fix: fichier"
 ```
+
 - changement dans l’organisation du code ;
+
 ```bash
 git commit -m "feat: fichier"
 ```
+
 - évolution de la documentation.
 
 ---
