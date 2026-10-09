@@ -11,43 +11,52 @@
 
 
          0          1          2
-               |          |          
-0              |          |          
-               |          |          
-    -----------+----------+----------
-               |          |          
-1              |          |          
-               |          |          
-    -----------+----------+----------
-               |          |          
-2              |          |          
-               |          |           
+
+         
+  1             |          |          
+0 2             |          |          
+  3             |          |          
+  4  -----------+----------+----------
+  5             |          |          
+1 6             |          |          
+  7             |          |          
+  8  -----------+----------+----------
+  9             |          |          
+2 10            |          |          
+  11            |          |           
+
+
+** le jeu tourne dans une boucle do while**
+
 
 **fonction joueur1(nom_joueur_1)**
 --> demander un nom de joueur
 --> l'enregistrer dans une variable
 --> afficher "Votre nom de joueur est: {nom_joueur_1}"
 
+
 **fonction joueur2(nom_joueur_2)**
 --> demander un nom de joueur
 --> l'enregistrer dans une variable
 --> afficher "Votre nom de joueur est: {nom_joueur2}"
 
+
 **fonction qui initialise une grile avec lignes et colonnes numérotées**
 --> créer une table imbriqué (la numérotation de la grille correspond à celle de la table)
---> l'afficher dans la console
-
+--> l'afficher dans la console ligne par ligne
 
 
 **fonction qui compte le nombre de tours**
 --> compte le nombre de fois que les deux joueurs ont fait un coup (un tour correspond au deux coups des deux joueurs, un tour = 2 coups)
 
 
-
-**fonction qui enregistre les modifications apportées et réaffiche le tableau modifié(tableau_modifie)**
---> 
-
-
 **fonction qui enregistre les coups des utilisateurs(ligne, colonne, symbole)**
 --> "Afficher "jouez votre coup {joueur x}"
 --> enregistrer "X" (joueur 1) **taper le nom de la ligne, le nom de la colonne, le symbole demandé**
+
+
+**fonction qui enregistre les modifications apportées et réaffiche le tableau modifié(tableau_modifie)**
+--> créer une variable "tableau de jeu"
+--> à chaque tour, la variable est modifiée par la grille contenant les deux nouveaux coups des joueurs
+
+
