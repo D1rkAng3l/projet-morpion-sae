@@ -60,7 +60,7 @@
 
 **fonction qui enregistre les modifications apportées et réaffiche le tableau modifié(tableau_modifie)**
 --> créer une variable "tableau de jeu"
---> à chaque tour, la variable est modifiée par la grille contenant les deux nouveaux coups des joueurs
+--> à chaque tour, la variable est modifiée par la grille contenant les deux nouveaux coups des joueursz
 
 prochaines fonctions:
 -fonction qui vérifie la victoire
