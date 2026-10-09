@@ -35,6 +35,7 @@ réalisé à plusieurs cite tous ses auteurs : `(@prénom1, @prénom2)`.
 ### Modifié
 - Modification des fonctions nécessaires à l'implémentation de la grille (@Ilan)
 
+- Modification du CHANGELOG.md (@Mathis)
 ## Semaine 2 -- 08/10/26
 
 ### Modifié
