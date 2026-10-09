@@ -46,22 +46,28 @@
 --> l'afficher dans la console ligne par ligne
 
 
-**fonction qui compte le nombre de tours**
---> compte le nombre de fois que les deux joueurs ont fait un coup (un tour correspond au deux coups des deux joueurs, un tour = 2 coups)
-
-
 **fonction qui enregistre les coups des utilisateurs(ligne, colonne, symbole)**
 --> "Afficher "jouez votre coup {joueur x}"
+--> afficher la fonction {fonction qui compte le nombre de tour}: "Tour n°x"
 --> enregistrer "X" (joueur 1) **taper le nom de la ligne, le nom de la colonne, le symbole demandé**
 --> s'il y a un autre symbole que O ou X, renvoyer un message d'invalidité
 
---> procédure qui affiche le coup du joueur dans la grille
+** procédure qui affiche le coup du joueur dans la grille **
 --> afficher (variable) dans [ligne][colonne]
 
 **fonction qui enregistre les modifications apportées et réaffiche le tableau modifié(tableau_modifie)**
 --> créer une variable "tableau de jeu"
---> à chaque tour, la variable est modifiée par la grille contenant les deux nouveaux coups des joueursz
+--> à chaque tour, la variable est modifiée par la grille contenant les deux nouveaux coups des joueurs
 
-prochaines fonctions:
--fonction qui vérifie la victoire
--fonction qui affiche le nombre de tour
+
+** condition qui vérifie la victoire(tableau_modifie) **
+--> tourne à chaque tour, après la saisi des deux coup de chaque utilisateur
+--> renvoie true si trois même signe sont aligné horizontalement, verticalement ou en diagonal, sinon false
+--> affiche le message "Bravo {joueur x}, vous avez gagné la partie
+--> termine la boucle de jeu grâce au retour 
+
+** fonction qui compte le nombre de tour **
+--> à implémenter dans la fonction principale de jeu
+--> créer une variable {nb_de_tours}
+--> à chaque fois qu'un tour est terminé (=que chaque joueur a joué un coup)^, incrémenter nb_de_tours de 1
+--> retour nb_de_tours
