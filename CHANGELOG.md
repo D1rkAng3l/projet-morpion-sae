@@ -26,6 +26,11 @@ réalisé à plusieurs cite tous ses auteurs : `(@prénom1, @prénom2)`.
     -->
 
 
+## Semaine 2 -- 09/10/26
+
+### Ajouté
+- Test de connexion Tilio (@Tilio)
+
 ## Semaine 2 -- 08/10/26
 
 ### Modifié
