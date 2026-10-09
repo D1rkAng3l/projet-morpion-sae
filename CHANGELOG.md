@@ -38,6 +38,7 @@ réalisé à plusieurs cite tous ses auteurs : `(@prénom1, @prénom2)`.
 
 - Modification du CHANGELOG.md (@Mathis)
 - Fichier jeu.c initialisation boucle, initialiser grille + afficher grille (@Elisa)
+- Ajout et modification des fonctions permettant le comptage des tours et la relation entre le jeu et l'utilisateur à propos de la victoire ou non d'un des deux et lequel des deux doit jouer (@Ilan)
 ## Semaine 2 -- 08/10/26
 
 ### Modifié
