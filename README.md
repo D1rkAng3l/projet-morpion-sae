@@ -1,93 +1,107 @@
 # Morpion — SAÉ 1.01 et 1.02
 
-**Groupe** : `G1E` — Mathis Bretonneau, Ilan Guiot, Elisa Mayet, Tilio Dabaji.
+**Groupe : G1E** — Mathis Bretonneau, Ilan Guiot, Elisa Mayet, Tilio Dabaji.
 
 ## Équipe projet
 
-| Membre | Mention | Rôle |
+| Membre | Mention | Responsabilité |
 | --- | --- | --- |
 | Mathis Bretonneau | @Mathis | Coordination, suivi et configuration |
 | Ilan Guiot | @Ilan | Conception et algorithmique |
 | Elisa Mayet | @ELisa | Développement et intégration |
-| Tilio Dabaji | @Tilio | Tests, documentation et qualité |
+| Tilio Dabaji | @Tilio | Vérifications, documentation et qualité |
 
-## Sujet et avancement
+Les mentions de semaine 3 dans le journal indiquent les responsables selon cette répartition. Elles restent à relire et valider par chacun et ne constituent pas une preuve de contribution personnelle.
 
-Le jeu choisi est le morpion : deux joueurs posent alternativement X et O sur une grille de 3 × 3. Un alignement horizontal, vertical ou diagonal gagne. Un plateau plein sans alignement donne un match nul. Ces règles décrivent le jeu prévu ; leur implémentation viendra après la semaine 2.
+## Cadre du cours et règle de développement
 
-La version actuelle correspond uniquement au jalon de **semaine 2** : connaître les joueurs, mémoriser et initialiser le plateau, puis vérifier son affichage. Elle ne permet pas encore de jouer une partie.
+La référence autorisée est le [cours R1.01](https://but.lyceum.fr/r101/). Son planning place le chapitre 7 pendant la semaine du 12 octobre 2026 ; le [chapitre 7](https://but.lyceum.fr/r101/c07/) est publié le 12 octobre et aborde les structures. Les numéros des semaines de SAÉ ne sont donc pas les numéros des chapitres.
 
-## Fonctionnalités de semaine 2
+Toutes les instructions du morpion doivent rester dans **`main` de `jeu.c` à la racine**, y compris les déclarations des structures. Les seuls éléments extérieurs sont l’inclusion de `stdio.h` et les constantes. Aucun module propre au jeu ni fonction auxiliaire n’est utilisé. Lors d’une nouvelle étape, vérifier le chapitre réellement vu avant d’introduire une nouvelle notion ; la présence d’une notion dans un chapitre futur ne l’autorise pas encore.
 
-### Connaître les joueurs
+| Notion utilisée | Ressource du cours |
+| --- | --- |
+| Types simples, calculs, `printf`, `scanf`, `getchar` | [Chapitre 1](https://but.lyceum.fr/r101/c01/) |
+| Conditions, boucles, `break`, `return` | [Chapitre 2](https://but.lyceum.fr/r101/c02/) |
+| Tableaux, matrices, indices et parcours | [Chapitre 5](https://but.lyceum.fr/r101/c05/) |
+| Noms dans des tableaux de caractères, `%63s`, affichage aligné | [Chapitre 6](https://but.lyceum.fr/r101/c06/) |
+| Structures imbriquées, tableaux de structures, accès par `.` | [Chapitre 7](https://but.lyceum.fr/r101/c07/) |
 
-Le programme demande le nom de chaque joueur et le conserve dans un tableau de caractères de 64 octets. Un nom peut contenir jusqu’à 63 octets. Les noms vides et les saisies trop longues sont refusés ; le reste d’une ligne trop longue est consommé avant une nouvelle demande. X est associé au premier joueur, O au second. Le message « À nom de jouer » identifie le premier joueur. Une fin de saisie termine proprement le programme.
+La lecture des coups combine uniquement les opérations élémentaires de ces chapitres. Elle n’utilise ni `fgets`, ni `isspace`, ni `strchr`, ni `memmove`, ni `fflush`, ni conversion avancée.
 
-### Mémoriser et initialiser le plateau
+## Règles et avancement : semaine 3
 
-`Grille` désigne un tableau `char[TAILLE][TAILLE]`. Chaque case contient `VIDE` (un espace), `X` ou `O`. La taille est définie en un seul endroit, dans `lib/grille.h`. `initialiserGrille` remet toutes les cases à VIDE au lancement. Le même tableau reste en mémoire et sert à tous les affichages de cette exécution.
+Deux joueurs posent alternativement X et O sur une grille de 3 × 3. Dans le jeu complet, trois pions identiques alignés horizontalement, verticalement ou en diagonale donnent la victoire. Un plateau plein sans alignement donne un match nul.
 
-### Afficher le plateau
+Cette version permet de saisir les coups, refuse les cases invalides ou occupées, affiche chaque coup accepté et passe la main au joueur suivant, appelé par son nom. La partie s’arrête après neuf coups acceptés, quand aucune case n’est libre. La détection de victoire est prévue en semaine 4 : un alignement ne termine pas encore la partie, et aucun vainqueur ni match nul n’est annoncé.
 
-La grille est affichée en console avec des cases alignées et des lignes et colonnes numérotées à partir de 1. Le programme affiche d’abord le plateau vide, puis place directement X et O dans le code et réaffiche le tableau pour vérifier que l’affichage suit son état. Il annonce ensuite le joueur dont ce serait le tour. Aucune saisie de coup n’est proposée à ce stade.
+La consigne de semaine 3 demande également des fonctions échangeant les structures. Sur instruction de l’utilisateur, le programme conserve tout dans `main` : les regroupements de données sont réalisés, mais cette partie de la décomposition en fonctions n’est pas appliquée.
 
 ## Compilation et exécution sous Linux
 
-Utiliser GCC avec le support de C23. Aucune bibliothèque externe n’est nécessaire.
+Utiliser GCC avec le support C23, comme dans la configuration du modèle. Aucune bibliothèque externe n’est nécessaire.
 
 ```bash
-gcc -std=c23 -Wall -Wextra -Werror -pedantic jeu.c lib/*.c -o jeu -lm
+gcc -std=c23 -Wall -Wextra -Werror -pedantic jeu.c -o jeu
 ./jeu
 ```
 
-Saisir les deux noms, puis observer les deux affichages. Ctrl+D termine la saisie sous Linux. Dans VS Code/Linux, ouvrir `jeu.c` à la racine et utiliser Ctrl+Maj+B pour la tâche GCC. La configuration `.vscode/` et `.clang-format` provient du modèle fourni.
+Dans VS Code, ouvrir le dossier du projet et utiliser **Ctrl+Maj+B** : la tâche compile uniquement `jeu.c`, indépendamment de l’onglet actif. Les fichiers d’exemple de `lib/` ne sont pas compilés.
 
-## Schéma de décomposition
+## Utilisation et saisies
 
-Les signatures correspondent aux fonctions actuellement implémentées.
+1. Saisir les noms des deux joueurs, un nom par ligne. Le premier reçoit X, le second O.
+2. Observer le plateau vide, avec lignes et colonnes numérotées de 1 à 3.
+3. Le joueur appelé saisit deux entiers sans signe sur une ligne : `2 3` vise la ligne 2, colonne 3.
+4. Une saisie refusée affiche une explication ; le même joueur recommence.
+5. Après chaque coup accepté, le plateau et le nombre de coups sont affichés. Après neuf coups, la partie termine.
+
+Un nom est un mot de 1 à 63 octets, conservé dans un tableau de 64 octets avec `scanf("%63s", ...)`. Une ligne vide est ignorée pour les noms ; seul le premier mot d’une ligne est conservé. Un mot trop long est refusé, et sa fin de ligne est consommée avant de recommencer. Les accents UTF-8 peuvent occuper plusieurs octets, donc il sera demandé de ne pas utiliser d'accents.
+
+Pour les coups, les lignes vides, le texte, les nombres signés ou décimaux, les coordonnées manquantes et les éléments supplémentaires sont refusés. Les valeurs 0 ou supérieures à 3 donnent un message de case hors plateau. Une case occupée donne un message distinct. Aucun refus ne change le joueur, le compteur ou le plateau.
+
+**Ctrl+D** sur une entrée vide termine proprement la saisie sous Linux. Une dernière ligne complète sans retour à la ligne est traitée avant cette fin de saisie.
+
+## Représentation des données
+
+| Structure locale à `main` | Champs |
+| --- | --- |
+| `struct Joueur` | `char nom[CAPACITE_NOM]`, `char pion` |
+| `struct Coup` | `int ligne`, `int colonne` |
+| `struct Partie` | `char grille[TAILLE][TAILLE]`, `struct Joueur joueurs[NB_JOUEURS]`, `int joueurCourant`, `int nombreCoups` |
+
+`TAILLE` vaut 3, `VIDE` est un espace, `CAPACITE_NOM` vaut 64 et `NB_JOUEURS` vaut 2. Les coordonnées saisies commencent à 1, les indices internes à 0. Les limites sont vérifiées avant tout accès à la case visée.
+
+`joueurCourant` vaut 0 ou 1 ; `nombreCoups` ne compte que les coups acceptés. Chaque acceptation remplit une case libre. Les nombres lus caractère par caractère sont plafonnés à `TAILLE + 1` : même un très long nombre reste hors plateau sans provoquer de débordement d’entier.
+
+## Schéma de décomposition de `main`
 
 ```text
 int main(void)
-├── bool demanderNom(char *nom, size_t capacite, int numero) — pour chacun des deux joueurs
-│   └── int lireLigne(char *texte, size_t capacite)
-├── void initialiserGrille(Grille grille)
-└── void afficherGrille(const Grille grille) — plateau vide puis avec pions de démonstration
+├── déclarer Joueur, Coup et Partie
+├── initialiser le plateau, les pions, le joueur courant et le compteur
+├── saisir les deux noms
+└── boucle principale
+    ├── afficher la partie et son plateau
+    ├── terminer si le plateau est plein
+    ├── recommencer la saisie tant que le coup est refusé
+    │   ├── lire la ligne et vérifier son format
+    │   ├── vérifier les coordonnées
+    │   └── vérifier que la case est libre
+    ├── poser le pion et compter le coup
+    └── passer la main à l’autre joueur
 ```
 
-## Organisation du projet
+## Architecture et rendu
 
-| Chemin | Rôle |
-| --- | --- |
-| `jeu.c` | Lecture des noms et démonstration du plateau |
-| `lib/grille.c`, `lib/grille.h` | Représentation, initialisation et affichage |
-| `lib/saisie.c`, `lib/saisie.h` | Lecture bornée des noms |
-| `lib/exemple.c`, `lib/exemple.h` | Exemple original, non utilisé par la démonstration |
-| `lib/algo.txt` | Algorithme actuel et notes de conception du groupe pour la suite |
-| `scripts/update_changelog.py` | Mise à jour du journal à partir des commits |
-| `scripts/verifier.py`, `tests/test_changelog.py` | Vérifications de la démonstration et du journal |
-| `output/` | Traces des vérifications de semaine 2 |
-| `Doxyfile` | Configuration du modèle conservée pour une étape ultérieure, sans génération de documentation |
+Le projet conserve les fichiers du modèle : `jeu.c`, `README.md`, `CHANGELOG.md`, les deux licences, `.clang-format`, `.gitignore`, `.vscode/`, `Doxyfile` et `lib/exemple.c/.h`. Les exemples sont inchangés et inutilisés. `Doxyfile` est conservé sans générer de documentation HTML.
 
-Les propositions initiales du groupe sont conservées dans `lib/algo.txt`. Elles décrivent aussi des fonctionnalités futures et ne doivent pas être confondues avec le programme actuel.
 
-## Vérifications
+## Vérification et suivi
 
-```bash
-python3 scripts/verifier.py --cc gcc
-python3 -m unittest discover -s tests -p 'test_*.py'
-```
+Vérifier la compilation sans avertissement, le plateau initial vide, une partie de neuf coups, les pions alternés et le plateau final. Tester les cases occupées ou hors limites, les lignes invalides et les nombres très longs : le même joueur doit rejouer. Tester la fin de saisie pendant les noms et les coups. Un alignement avant le neuvième coup doit laisser la partie continuer.
 
-Le premier script compile le programme et vérifie les noms, le refus des lignes trop longues, les noms vides, la fin de saisie, le plateau vide et les pions placés dans le code. Les traces indiquent les entrées, les résultats attendus et ceux obtenus. `output/environnement.json` précise le système et le compilateur réellement utilisés ; une vérification locale Windows ne remplace pas la validation GCC/Linux.
-
-## Journal et rendu
-
-[CHANGELOG.md](CHANGELOG.md) conserve les modifications par semaine, avec les catégories Ajouté, Modifié et Corrigé et les mentions des membres. La dernière entrée décrit le retour au périmètre de semaine 2 ; les entrées précédentes restent historiques.
-
-La capture de semaine 2 fixe le rendu au **vendredi 9 octobre 2026 à 23 h 59** : un ZIP du dossier complet `s101-sae-main`, un seul par groupe, de 50 Mo maximum. La fiche détaillée de semaine 1 n’a pas été fournie ; le choix du jeu, le groupe, les rôles et le schéma sont renseignés conformément aux éléments disponibles.
-
-La saisie des coups est prévue à l’étape suivante. L’adversaire automatique, le rejeu, les scores, les comparaisons, Doxygen et le compte rendu HTML ne sont pas réalisés dans cette version.
-
-Les travaux des étapes ultérieures ont été conservés localement dans `.hors-semaine2/`, exclu de Git. Ils ne sont ni compilés ni utilisés par cette version. Ce dossier ne doit pas être inclus dans le ZIP de semaine 2.
+[CHANGELOG.md](CHANGELOG.md) décrit les changements par semaine. La victoire sera ajoutée à l’étape prévue ; l’IA, le rejeu et les scores restent hors du périmètre actuel.
 
 ## Licences
 
