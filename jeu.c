@@ -7,7 +7,7 @@
 #define CAPACITE_NOM 64
 #define NB_JOUEURS 2
 
-int main(void) {
+int main() {
   // ensemble de fonction regroupé avec des typedef
   struct Joueur {
     char nom[CAPACITE_NOM];
