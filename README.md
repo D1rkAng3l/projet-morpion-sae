@@ -44,18 +44,6 @@ Un nom est un mot de 1 à 63 octets, conservé dans un tableau de 64 octets. Une
 
 Pour les coups, les lignes vides, le texte, les nombres signés ou décimaux, les coordonnées manquantes et les éléments supplémentaires sont refusés. Les valeurs 0 ou supérieures à 3 donnent un message de case hors plateau. Une case occupée donne un message distinct. Aucun refus ne change le joueur, le compteur ou le plateau.
 
-## Représentation des données
-
-| Structure locale à `main` | Champs                                                                                                     |
-| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| `struct Joueur`           | `char nom[CAPACITE_NOM]`, `char pion`                                                                      |
-| `struct Coup`             | `int ligne`, `int colonne`                                                                                 |
-| `struct Partie`           | `char grille[TAILLE][TAILLE]`, `struct Joueur joueurs[NB_JOUEURS]`, `int joueurCourant`, `int nombreCoups` |
-
-`TAILLE` vaut 3, `VIDE` est un espace, `CAPACITE_NOM` vaut 64 et `NB_JOUEURS` vaut 2. Les coordonnées saisies commencent à 1, les indices internes à 0. Les limites sont vérifiées avant tout accès à la case visée.
-
-`joueurCourant` vaut 0 ou 1 ; `nombreCoups` ne compte que les coups acceptés. Chaque acceptation remplit une case libre. Les nombres lus caractère par caractère sont plafonnés à `TAILLE + 1` : même un très long nombre reste hors plateau sans provoquer de débordement d’entier.
-
 ## Schéma de décomposition de `main`
 
 ```text
@@ -76,21 +64,23 @@ int main()
 
 ## Architecture et rendu
 
+```text
 projet/
 ├── jeu.c
 ├── README.md
 ├── CHANGELOG.md
 ├── LICENSE
-├── LICENSE.\*
+├── LICENSE.*
 ├── .clang-format
 ├── .gitignore
 ├── .vscode/
 ├── Doxyfile
 └── lib/
-├── exemple.c
-├── exemple.h
-├── fonctions.c
-└── fonctions.h
+    ├── exemple.c
+    ├── exemple.h
+    ├── fonctions.c
+    └── fonctions.h
+```
 
 ## Licences
 
