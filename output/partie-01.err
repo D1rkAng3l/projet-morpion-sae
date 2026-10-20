@@ -1,0 +1,3 @@
+Saisie invalide : entrez deux entiers sans signe, par exemple 2 3.
+Case hors du plateau : ligne et colonne doivent etre entre 1 et 3.
+Case deja occupee : choisissez une case vide.

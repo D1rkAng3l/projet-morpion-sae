@@ -14,7 +14,7 @@
  *
  * Cette fonction affiche une ligne de séparation de 80 -
  */
-void afficheSep() {
+void afficheSep(void) {
   printf("\n");
   for (int i = 0; i < 80; i++) {
     printf("-");

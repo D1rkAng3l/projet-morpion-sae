@@ -1,0 +1,22 @@
+Nom du joueur 1 (1 a 63 octets, sans espace) : Nom du joueur 2 (1 a 63 octets, sans espace) : Joueurs : Alice (X) et Bob (O).
+
+Coups poses : 0
+      1   2   3 
+    +---+---+---+
+  1 |   |   |   |
+    +---+---+---+
+  2 |   |   |   |
+    +---+---+---+
+  3 |   |   |   |
+    +---+---+---+
+A Alice de jouer (X). Saisir ligne colonne (1 a 3) : 
+Coups poses : 1
+      1   2   3 
+    +---+---+---+
+  1 | X |   |   |
+    +---+---+---+
+  2 |   |   |   |
+    +---+---+---+
+  3 |   |   |   |
+    +---+---+---+
+A Bob de jouer (O). Saisir ligne colonne (1 a 3) : 

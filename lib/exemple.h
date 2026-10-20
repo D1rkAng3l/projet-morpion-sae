@@ -7,4 +7,5 @@
  */
 #pragma once
 
-void afficheSep();
+/** @brief Affiche une séparation de 80 tirets, sans paramètre. */
+void afficheSep(void);
