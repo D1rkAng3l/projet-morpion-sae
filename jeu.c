@@ -64,6 +64,7 @@ int main() {
          partie.joueurs[1].nom);
 
   // Afficher l'état initial, puis chaque état après un coup accepté.
+  // Boucle principale
   while (1) {
     printf("\nCoups poses : %d\n    ", partie.nombreCoups);
     for (int colonne = 0; colonne < TAILLE; colonne++) {
@@ -92,6 +93,7 @@ int main() {
       break;
     }
 
+    // Vérifier si le coup est valide ou non
     int coupValide = 0;
     do {
       printf("A %s de jouer (%c). Saisir ligne colonne (1 a %d) : ",
@@ -158,7 +160,6 @@ int main() {
       }
     } while (!coupValide);
     // Tant Que le coup n'est pas valide, vérification jusqu'à ce qu'il le soit
-    // //
     partie.grille[coup.ligne - 1][coup.colonne - 1] =
         partie.joueurs[partie.joueurCourant].pion;
     partie.nombreCoups++;
