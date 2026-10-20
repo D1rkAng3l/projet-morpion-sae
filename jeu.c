@@ -1,18 +1,24 @@
-/** @file jeu.c @brief Point d'entrée : arguments, joueurs et boucle de rejeu. */
+/** @file jeu.c @brief Point d'entrée : arguments, joueurs et boucle de rejeu.
+ */
 #include <stdio.h>
 #include <string.h>
+
 #include "lib/fonctions.h"
 #include "lib/saisie.h"
 
 /** @brief Lance les parties ou affiche l'aide.
  * @param argc Nombre d'arguments, nom du programme compris.
  * @param argv Arguments ; seule l'option --aide est acceptée.
- * @return 0 après une sortie normale, 1 en cas d'argument ou d'entrée invalide. */
-int main(int argc, char *argv[]) {
+ * @return 0 après une sortie normale, 1 en cas d'argument ou d'entrée invalide.
+ */
+int main(int argc, char* argv[]) {
   if (argc == 2 && strcmp(argv[1], "--aide") == 0) {
-    printf("Morpion : ./jeu [--aide]\nDeux noms puis un coup ligne colonne par ligne.\n"
-           "Apres le resultat : o pour rejouer, n pour terminer.\n"
-           "Rejeu automatique : ./jeu < output/partie-01.in > output/partie-01.out 2> output/partie-01.err\n");
+    printf(
+        "Morpion : ./jeu [--aide]\nDeux noms puis un coup ligne colonne par "
+        "ligne.\n"
+        "Apres le resultat : o pour rejouer, n pour terminer.\n"
+        "Rejeu automatique : ./jeu < output/partie-01.in > "
+        "output/partie-01.out 2> output/partie-01.err\n");
     return 0;
   }
   if (argc != 1) {
@@ -26,7 +32,8 @@ int main(int argc, char *argv[]) {
       return 1;
     }
   }
-  printf("Joueurs : %s (X) et %s (O).\n", partie.joueurs[0].nom, partie.joueurs[1].nom);
+  printf("Joueurs : %s (X) et %s (O).\n", partie.joueurs[0].nom,
+         partie.joueurs[1].nom);
   int rejouer;
   do {
     if (!jouerPartie(&partie)) {
