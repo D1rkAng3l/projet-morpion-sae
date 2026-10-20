@@ -2,6 +2,8 @@
 // Toutes les instructions du jeu restent dans main.
 #include <stdio.h>
 
+#include "./lib/exemple.c"
+
 #define TAILLE 3
 #define VIDE ' '
 #define CAPACITE_NOM 64
@@ -155,7 +157,8 @@ int main() {
         }
       }
     } while (!coupValide);
-
+    // Tant Que le coup n'est pas valide, vérification jusqu'à ce qu'il le soit
+    // //
     partie.grille[coup.ligne - 1][coup.colonne - 1] =
         partie.joueurs[partie.joueurCourant].pion;
     partie.nombreCoups++;
