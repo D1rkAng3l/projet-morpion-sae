@@ -1,8 +1,6 @@
 # ne suit pas les ex√©cutables
 jeu
 
-# documentation
-html/
 
 # backups
 *.bak/
@@ -11,12 +9,8 @@ html/
 .cache/
 __pycache__/
 *.pyc
-jeu.exe
-output/test-regles
-output/test-regles.exe
-output/comparer
-output/comparer.exe
-s101-sae-main.zip
+
+
 # Artefacts du compilateur portable utilis√© pour les contr√¥les locaux
 *.obj
 *.pdb
@@ -28,5 +22,3 @@ s101-sae-main.zip
 *.exp
 *.tlog
 
-# Travaux des Ètapes ultÈrieures conservÈs localement
-.hors-semaine2/

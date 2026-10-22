@@ -1,4 +1,49 @@
 <!doctype html>
-<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Morpion : jeu terminé — Morpion G1E</title><link rel="stylesheet" href="style.css"></head><body><nav><a href="index.html">Le jeu</a><a href="conception.html">Conception</a><a href="suivi.html">Suivi</a><a href="../README.md">README</a><a href="../html/index.html">Documentation du code</a></nav><main><h1>Morpion : jeu terminé</h1><p>Mathis Bretonneau, Ilan Guiot, Elisa Mayet et Tilio Dabaji réalisent un morpion console en C dans les SAÉ 1.01 et 1.02.</p><h2>Règles et fonctionnalités</h2><p>Deux joueurs choisissent leurs noms et posent X et O à tour de rôle sur une grille 3 × 3. La saisie indique une ligne et une colonne de 1 à 3. Un coup hors plateau, mal formé ou sur une case occupée est refusé ; le joueur recommence.</p><p>Un alignement de trois pions gagne. Le programme nomme le vainqueur, ou annonce un nul si le plateau est plein sans alignement. Le rejeu conserve les noms et recommence avec un plateau vide. Aucun adversaire automatique n’est encore présent.</p><h2>Progression</h2><p>Semaine 2 : identité, plateau et démonstration. Semaine 3 : coups, alternance et structures. Semaine 4 : fin de partie, modules, flux et documentation. Les choix et difficultés sont détaillés dans les pages de conception et de suivi.</p><h2>Utiliser et vérifier</h2><pre>gcc -std=c23 -Wall -Werror jeu.c lib/*.c -o jeu -lm
+<html lang="fr"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Morpion : jeu terminé — Morpion G1E</title>
+    <link rel="stylesheet" href="style.css"></head>
+    <body><nav><a href="index.html">Le jeu</a>
+        <a href="conception.html">Conception</a>
+        <a href="suivi.html">Suivi</a>
+        <a href="../README.md">README</a>
+        <a href="../html/index.html">Documentation du code</a>
+    </nav>
+    <main>
+        <h1>Morpion : jeu terminé</h1>
+        <p>
+            Mathis Bretonneau, 
+            Ilan Guiot, 
+            Elisa Mayet et 
+            Tilio Dabaji réalisent un morpion console en C dans les SAÉ 1.01 et 1.02.
+        </p>
+        <h2>Règles et fonctionnalités</h2>
+        <p>
+            Deux joueurs choisissent leurs noms et posent X et O à tour de rôle sur une grille 3 × 3. 
+            La saisie indique une ligne et une colonne de 1 à 3. 
+            Un coup hors plateau, mal formé ou sur une case occupée est refusé ; le joueur recommence.
+        </p>
+        <p>Un alignement de trois pions gagne. Le programme nomme le vainqueur, 
+            ou annonce un nul si le plateau est plein sans alignement. 
+            Le rejeu conserve les noms et recommence avec un plateau vide. 
+            Aucun adversaire automatique n’est encore présent.
+        </p>
+        <h2>Progression</h2>
+        <p>
+            Semaine 2 : identité, plateau et démonstration. 
+            Semaine 3 : coups, alternance et structures. 
+            Semaine 4 : fin de partie, modules, flux et documentation. 
+            Les choix et difficultés sont détaillés dans les pages de conception et de suivi.</p>
+            <h2>Utiliser et vérifier</h2>
+            <pre>gcc -std=c23 -Wall -Werror jeu.c lib/*.c -o jeu -lm
 ./jeu
-./jeu &lt; output/partie-01.in &gt; output/partie-01.out 2&gt; output/partie-01.err</pre><p>Les <a href="../output/README.md">sept jeux d’essai</a> couvrent les résultats et les erreurs. Le cours autorisé est <a href="https://but.lyceum.fr/r101/">R1.01, chapitres 1 à 8</a>.</p></main><footer>G1E — Semaine 4, 20 octobre 2026. Compte rendu en cours de construction.</footer></body></html>
+./jeu &lt; output/partie-01.in &gt; output/partie-01.out 2&gt; output/partie-01.err</pre>
+<p>
+    Les <a href="../output/README.md">sept jeux d’essai</a> couvrent les résultats et les erreurs. 
+    Le cours autorisé est <a href="https://but.lyceum.fr/r101/">R1.01, chapitres 1 à 8</a>.
+</p>
+</main>
+<footer>G1E — Semaine 4, 20 octobre 2026. Compte rendu en cours de construction.</footer>
+</body>
+</html>
