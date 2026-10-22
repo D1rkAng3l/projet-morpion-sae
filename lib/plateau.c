@@ -58,7 +58,8 @@ int chercherGagnant(const struct Partie *partie) {
   return -1;
 }
 
-/** @brief Pose un coup valide, actualise le résultat, sinon passe la main.
+/** @brief Pose un coup valide et actualise le résultat.
+ * La main passe seulement après un coup accepté si la partie continue.
  * Un coup refusé ne modifie aucune information.
  * @param partie Partie à modifier. @param coup Case visée.
  * @return Motif du refus ou COUP_VALIDE après placement. */

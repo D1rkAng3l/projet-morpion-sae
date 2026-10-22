@@ -23,6 +23,11 @@ Les mentions identifient les responsables selon le README ; les contributions pe
 
 ### Corrigé
 
+- 22/10 : restauration de `lib/fonctions.c/.h`, nécessaires à `jouerPartie`, après leur suppression (`@ELisa`).
+- Après audit du 22/10, suppression de la configuration GDB ajoutée et de sa tâche : les quatre fichiers `.vscode/` sont strictement identiques au ZIP fourni (`@Mathis`).
+- Retrait du module d’exemple inutilisé ; README complété avec le rôle de chaque module et la commande de rejeu des essais (`@ELisa`, `@Tilio`).
+- Contrats de `jouerCoup` et `main` précisés, documentation et vérifications actualisées (`@Tilio`).
+
 - Configuration VS Code restaurée à l’identique depuis le ZIP, avec la tâche compilant lib/*.c ; aucune réécriture de cette tâche (`@Mathis`).
 - Inclusion directe de exemple.c supprimée ; ébauche invalide de fonctions.c remplacée par un module compilable (`@ELisa`).
 - Erreurs sur stderr et arrêt immédiat avec code 1 sur entrée incomplète ; code 0 après une session complète (`@ELisa`).

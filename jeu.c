@@ -9,7 +9,8 @@
 /** @brief Lance les parties ou affiche l'aide.
  * @param argc Nombre d'arguments, nom du programme compris.
  * @param argv Arguments ; seule l'option --aide est acceptée.
- * @return 0 après une sortie normale, 1 en cas d'argument ou d'entrée invalide.
+ * @return 0 après une sortie normale, 1 si les arguments sont invalides ou si
+ * l’entrée se termine avant la fin attendue de la session.
  */
 int main(int argc, char* argv[]) {
   if (argc == 2 && strcmp(argv[1], "--aide") == 0) {

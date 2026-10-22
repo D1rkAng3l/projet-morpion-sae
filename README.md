@@ -28,6 +28,28 @@ gcc -std=c23 -Wall -Werror jeu.c lib/*.c -o jeu -lm
 ./jeu
 ```
 
+## Configuration VS Code du modèle
+
+Le dossier `.vscode/` contient uniquement les quatre fichiers du ZIP fourni, identiques octet par octet : `tasks.json`, `settings.json`, `c_cpp_properties.json` et `extensions.json`. Aucune tâche supplémentaire ni configuration `launch.json` n’est conservée.
+
+Pour **Ctrl+Maj+B**, ouvrir `jeu.c` à la racine comme fichier actif. La tâche originale utilise `${file}` et compile aussi `lib/*.c`. Lancer cette tâche avec un autre onglet actif ne compile pas correctement le projet. Aucune configuration personnalisée de F5 n’est livrée.
+
+## Organisation du projet
+
+| Fichier | Responsabilité |
+| --- | --- |
+| `jeu.c` | Point d’entrée : arguments, noms et boucle de rejeu |
+| `lib/types.h` | Constantes, structures Joueur/Coup/Partie et états partagés |
+| `lib/plateau.c/.h` | Initialisation, contrôle des coups, placement, victoire et nul ; aucune entrée-sortie |
+| `lib/saisie.c/.h` | Lecture des noms, des coordonnées et de la réponse au rejeu |
+| `lib/affichage.c/.h` | Affichage du plateau, du compteur et du résultat |
+| `lib/fonctions.c/.h` | Déroulement d’une partie et coordination des autres modules |
+| `Doxyfile` | Configuration de la documentation générée dans `html/` |
+| `output/` | Jeux d’essai, sorties réelles, erreurs et bilan des vérifications |
+| `rapport/` | Compte rendu HTML : présentation, conception et suivi |
+
+Les fonctions échangent les structures ; les fonctions qui consultent la partie reçoivent un pointeur constant. Les règles peuvent être utilisées sans lire le clavier ni afficher de texte. `lib/fonctions.c/.h` sont nécessaires à `jouerPartie` et doivent être conservés avec le reste des sources. Le module d’exemple inutilisé a été retiré.
+
 ## Arbre fonctionnel avec signatures
 
 ```text
@@ -58,9 +80,11 @@ int main(int argc, char *argv[])
 ├── .gitignore
 ├── .vscode/
 ├── Doxyfile
+├── html/       (documentation générée)
+├── output/     (jeux d’essai et traces)
+├── rapport/    (compte rendu HTML)
 └── lib/
-    ├── exemple.c
-    ├── exemple.h
+    ├── types.h
     ├── saisie.c
     ├── saisie.h
     ├── plateau.c
@@ -84,6 +108,14 @@ Ouvrir ensuite `html/index.html`. Le README est la page d’accueil, le [CHANGEL
 ## Jeux d’essai et flux standard
 
 Le dialogue, les plateaux et les résultats vont sur `stdout`. Les seuls messages sur `stderr` sont les erreurs : saisie invalide, coup refusé, argument invalide ou fin prématurée d’entrée. Une erreur de saisie récupérable ne termine pas le jeu.
+
+Les sept jeux d’essai sont décrits dans [output/README.md](output/README.md). Pour en rejouer un depuis la racine, séparer les deux flux :
+
+```bash
+./jeu < output/partie-01.in > output/partie-01.out 2> output/partie-01.err
+```
+
+Remplacer `01` par le numéro souhaité. Les scénarios 01 à 04, 06 et 07 terminent normalement avec le code 0. Le scénario 05 coupe volontairement l’entrée : le programme annonce l’interruption sur `stderr` et renvoie 1 sans redemander indéfiniment un coup. Une même entrée donne les mêmes sorties ; aucun hasard n’est utilisé.
 
 ## Compte rendu HTML et suivi
 

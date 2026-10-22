@@ -12,7 +12,8 @@ enum ControleCoup verifierCoup(const struct Partie *partie, struct Coup coup);
 /** @brief Cherche un alignement de trois pions identiques non vides.
  * @param partie Partie à consulter. @return Indice du gagnant, ou -1. */
 int chercherGagnant(const struct Partie *partie);
-/** @brief Pose un coup valide, actualise le résultat, sinon passe la main.
+/** @brief Pose un coup valide et actualise le résultat.
+ * La main passe seulement après un coup accepté si la partie continue.
  * Un coup refusé ne modifie aucune information.
  * @param partie Partie à modifier. @param coup Case visée.
  * @return Motif du refus ou COUP_VALIDE après placement. */

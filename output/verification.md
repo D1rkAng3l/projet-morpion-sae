@@ -1,4 +1,13 @@
-# Vérifications réelles — 20/10/2026
+# Vérifications réelles
+
+## Contrôle après corrections — 22/10/2026
+
+- Les quatre fichiers `.vscode/` sont identiques octet par octet au ZIP fourni. Aucun `launch.json` ni tâche de débogage supplémentaire n’est conservé.
+- Compilation stricte, sept jeux d’essai et génération Doxygen revérifiés après correction.
+- README complété : rôle des modules et commande pour rejouer les entrées avec deux flux séparés.
+- Commentaires présents pour les 11 fonctions et procédures ; contrats de placement et code de retour précisés.
+
+## Contrôle initial — 20/10/2026
 
 - Compilation GCC/Linux avec la commande du modèle et avec `-Wextra -pedantic` : réussie sans avertissement.
 - Paramètres VS Code et `.clang-format` comparés octet par octet au ZIP fourni : identiques.
