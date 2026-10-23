@@ -11,13 +11,13 @@
 | Elisa Mayet       | `@ELisa`  | Développement et intégration         |
 | Tilio Dabaji      | `@Tilio`  | Essais, documentation et qualité     |
 
-Mathis Bretonneau, Ilan Guiot, Elisa Mayet et Tilio Dabaji ont confirmé leurs contributions le 23 octobre 2026, selon la confirmation transmise dans l’échange de suivi. La répartition ci-dessus et le suivi individuel du rapport reprennent ces contributions.
+
 
 ## Version actuelle : semaine 4
 
 Le morpion se joue à deux sur une grille de 3 × 3. Le premier joueur utilise X, le second O. Les joueurs alternent uniquement après un coup accepté. Trois pions identiques alignés sur une ligne, une colonne ou une diagonale donnent la victoire, annoncée avec le nom du gagnant. Si le plateau est plein sans alignement, le programme annonce un match nul. Une victoire au neuvième coup reste une victoire.
 
-Le résultat arrête la partie immédiatement. Le programme propose de rejouer avec les mêmes joueurs : une nouvelle partie commence sur un plateau vide, compteur à zéro et X au premier tour. Il n’y a pas d’IA, de hasard ou de score cumulé dans cette version.
+Le résultat arrête la partie immédiatement. Le programme propose de rejouer avec les mêmes joueurs : une nouvelle partie commence sur un plateau vide, compteur à zéro et X au premier tour. 
 
 ## Compilation sous Linux
 
@@ -40,8 +40,6 @@ Sous Linux, **Ctrl+D** sur une entrée vide signale la fin de saisie. Si la sess
 `./jeu --aide` affiche le mode d’emploi et renvoie 0. Les autres arguments sont refusés avec le code 1.
 
 ## Configuration VS Code du modèle
-
-Le dossier `.vscode/` contient uniquement les quatre fichiers du ZIP fourni, identiques octet par octet : `tasks.json`, `settings.json`, `c_cpp_properties.json` et `extensions.json`. Aucune tâche supplémentaire ni configuration `launch.json` n’est conservée.
 
 Pour **Ctrl+Maj+B**, ouvrir `jeu.c` à la racine comme fichier actif. La tâche originale utilise `${file}` et compile aussi `lib/*.c`. Lancer cette tâche avec un autre onglet actif ne compile pas correctement le projet. Aucune configuration personnalisée de F5 n’est livrée.
 
@@ -145,7 +143,7 @@ Remplacer `01` par le numéro souhaité. Les scénarios 01 à 04, 06 et 07 termi
 
 Le compte rendu HTML (`rapport/index.html`) contient la présentation du jeu et des fonctionnalités, la conception en modules, et un tableau des difficultés et solutions avec responsables. Les observations des quatre premières séances ont été confirmées par les quatre membres le 23 octobre 2026 ; le suivi sera poursuivi lors des prochaines séances. Ce compte rendu est distinct de la documentation Doxygen.
 
-[CHANGELOG.md](CHANGELOG.md) suit les modifications par semaine. Aucun script de génération ni workflow n’est ajouté. Les exécutables locaux et les métadonnées de Git ne font pas partie du rendu. Aucun ZIP n’est créé.
+[CHANGELOG.md](CHANGELOG.md) suit les modifications par semaine. 
 
 ## Licences
 

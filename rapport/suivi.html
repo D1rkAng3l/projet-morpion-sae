@@ -14,72 +14,275 @@
         </nav>
         <main>
             <h1>Difficultés, solutions et responsabilités</h1>
-            <p>
-                Le premier tableau récapitule les corrections techniques et les responsabilités confirmées par les membres.
-                Le suivi individuel qui suit présente les difficultés et les démarches du groupe, semaine par semaine.
-            </p>
+            <p>Les tableaux techniques ci-dessous reprennent toutes les entrées du <a href="../CHANGELOG.md">CHANGELOG.md</a>, avec leurs catégories et leurs auteurs. Le journal est la référence pour l’attribution des changements. Les explications précisent l’objectif de chaque évolution sans ajouter d’auteur.</p>
+            <p>Une même personne peut développer une correction, une autre la vérifier et une troisième coordonner sa livraison. Elisa implémente la gestion d’EOF et Tilio vérifie son fonctionnement dans les jeux d’essai : ces deux interventions sont complémentaires.</p>
+            <h2>Semaine 1 — 01/10/26</h2>
             <table>
-                <thead>
-                    <tr>
-                        <th>Séance</th>
-                        <th>Responsables</th>
-                        <th>Difficulté</th>
-                        <th>Solution et vérification</th>
-                    </tr>
-                </thead>
+                <thead><tr><th scope="col">Catégorie</th><th scope="col">Évolution consignée dans le CHANGELOG</th><th scope="col">Auteurs du journal</th><th scope="col">Explication et lien avec le projet</th></tr></thead>
                 <tbody>
-                    <tr>
-                        <td>S3, retour daté du 16/10</td>
-                        <td>Ilan, Elisa</td>
-                        <td>Tout le code était dans main malgré la demande de fonctions.</td>
-                        <td>Structures partagées et séparation en saisie, affichage, règles et déroulement en S4.</td>
+                    <tr data-changelog="s1-01">
+                        <td>Ajouté</td>
+                        <td>Premières idées de conception et décomposition du morpion</td>
+                        <td><code>@ELisa</code>, <code>@Ilan</code></td>
+                        <td>Définir les étapes du jeu fournit une base commune à l’algorithme et à sa traduction en C.</td>
                     </tr>
-                    <tr>
-                        <td>S4, 20/10</td>
-                        <td>Elisa</td>
-                        <td>Inclusion directe d’un .c et ébauche de module non compilable.</td>
-                        <td>Inclusions de .h seulement ; compilation séparée de lib/*.c.</td>
+                    <tr data-changelog="s1-02">
+                        <td>Ajouté</td>
+                        <td>Présentation du groupe et répartition des rôles</td>
+                        <td><code>@Mathis</code></td>
+                        <td>Identifier les membres et répartir les rôles rend l’organisation du groupe explicite.</td>
                     </tr>
-                    <tr>
-                        <td>S4, 20/10</td>
-                        <td>Ilan, Elisa</td>
-                        <td>Une victoire au dernier coup peut être confondue avec un nul.</td>
-                        <td>Chercher l’alignement avant de tester le plateau plein ; scénario partie-06.</td>
+                    <tr data-changelog="s1-03">
+                        <td>Modifié</td>
+                        <td>Mise à jour du README et organisation du journal</td>
+                        <td><code>@Mathis</code></td>
+                        <td>Le README explique le projet ; le journal conserve ses évolutions et les auteurs associés.</td>
                     </tr>
-                    <tr>
-                        <td>S4, 20/10</td>
-                        <td>Tilio</td>
-                        <td>Fin prématurée d’un fichier d’entrée et risque de redemande infinie.</td>
-                        <td>Propagation d’EOF, erreur sur stderr et code 1 ; scénario partie-05.</td>
+                </tbody>
+            </table>
+            <h2>Semaine 2 — 08/10/26</h2>
+            <table>
+                <thead><tr><th scope="col">Catégorie</th><th scope="col">Évolution consignée dans le CHANGELOG</th><th scope="col">Auteurs du journal</th><th scope="col">Explication et lien avec le projet</th></tr></thead>
+                <tbody>
+                    <tr data-changelog="s2-01">
+                        <td>Ajouté</td>
+                        <td>Saisie des noms, initialisation du plateau et affichage repéré</td>
+                        <td><code>@ELisa</code>, <code>@Ilan</code></td>
+                        <td>Identifier les deux joueurs et afficher un plateau initialisé permet de vérifier les premières données du jeu.</td>
                     </tr>
-                    <tr>
-                        <td>S4, 20/10</td>
-                        <td>Mathis</td>
-                        <td>La tâche VS Code avait été modifiée hors de la demande.</td>
-                        <td>
-                            Restauration exacte des quatre fichiers du ZIP et compilation avec les bibliothèques.
-                            Contrôle du 22/10 : retrait de launch.json et de la tâche GDB ajoutée.</td>
-                        </tr>
-                        <tr>
-                            <td>S4, 20/10</td>
-                            <td>Tilio</td>
-                            <td>Expliquer les fonctions et rendre les contrats consultables.</td>
-                            <td>Commentaires Doxygen, tableau des fonctions, arbre signé et documentation HTML.</td>
-                        </tr>
-                    </tbody>
-                </table>
+                    <tr data-changelog="s2-02">
+                        <td>Ajouté</td>
+                        <td>Pions de démonstration placés directement dans le code</td>
+                        <td><code>@ELisa</code></td>
+                        <td>Les pions placés dans le code servent à contrôler l’affichage avant la saisie interactive des coups.</td>
+                    </tr>
+                    <tr data-changelog="s2-03">
+                        <td>Modifié</td>
+                        <td>Recentrage du programme sur le jalon de semaine 2 et mise à jour du README</td>
+                        <td><code>@ELisa</code>, <code>@Ilan</code>, <code>@Tilio</code>, <code>@Mathis</code></td>
+                        <td>Le périmètre de semaine 2 doit correspondre au programme livré et à sa documentation.</td>
+                    </tr>
+                    <tr data-changelog="s2-04">
+                        <td>Modifié</td>
+                        <td>Paramètres du modèle et suivi du projet</td>
+                        <td><code>@Mathis</code></td>
+                        <td>Le modèle fourni sert de cadre de travail et de compilation pour le projet.</td>
+                    </tr>
+                </tbody>
+            </table>
+            <h2>Semaine 3 — 16/10/26</h2>
+            <table>
+                <thead><tr><th scope="col">Catégorie</th><th scope="col">Évolution consignée dans le CHANGELOG</th><th scope="col">Auteurs du journal</th><th scope="col">Explication et lien avec le projet</th></tr></thead>
+                <tbody>
+                    <tr data-changelog="s3-01">
+                        <td>Ajouté</td>
+                        <td>Partie à deux joueurs : saisie des coordonnées, placement des pions et alternance après chaque coup accepté</td>
+                        <td><code>@ELisa</code>, <code>@Ilan</code></td>
+                        <td>Un coup accepté modifie le plateau puis passe la main ; un refus laisse rejouer le même joueur.</td>
+                    </tr>
+                    <tr data-changelog="s3-02">
+                        <td>Ajouté</td>
+                        <td>Regroupement du nom et du pion dans <code>Joueur</code>, des coordonnées dans <code>Coup</code> et de l’état du jeu dans <code>Partie</code></td>
+                        <td><code>@Ilan</code>, <code>@ELisa</code></td>
+                        <td>Les données liées sont réunies pour manipuler un joueur, un coup ou une partie comme une unité.</td>
+                    </tr>
+                    <tr data-changelog="s3-03">
+                        <td>Ajouté</td>
+                        <td>Contrôle des formats, des cases hors plateau et des cases occupées ; nouvelle tentative du même joueur après un refus</td>
+                        <td><code>@ELisa</code></td>
+                        <td>Les contrôles précèdent l’indexation et la pose d’un pion, afin de préserver le plateau et le tour en cas de refus.</td>
+                    </tr>
+                    <tr data-changelog="s3-04">
+                        <td>Ajouté</td>
+                        <td>Compteur des coups acceptés et arrêt au plateau plein, sans détection de victoire</td>
+                        <td><code>@Ilan</code>, <code>@ELisa</code></td>
+                        <td>En semaine 3, le plateau plein suffit à arrêter la partie ; la détection de victoire vient en semaine 4.</td>
+                    </tr>
+                    <tr data-changelog="s3-05">
+                        <td>Modifié</td>
+                        <td>Toutes les instructions et structures du morpion regroupées dans <code>main</code> de <code>jeu.c</code>, selon la demande de l’utilisateur</td>
+                        <td><code>@ELisa</code></td>
+                        <td>Cette entrée décrit le choix historique de semaine 3. La modularisation de semaine 4 le remplace.</td>
+                    </tr>
+                    <tr data-changelog="s3-06">
+                        <td>Modifié</td>
+                        <td>README détaillé : cours de référence, notions autorisées, utilisation, structures et schéma de <code>main</code> ; écart avec la demande de fonctions de semaine 3 explicité</td>
+                        <td><code>@Tilio</code></td>
+                        <td>La documentation décrit le fonctionnement réel et signale l’écart alors présent avec la demande de fonctions.</td>
+                    </tr>
+                    <tr data-changelog="s3-07">
+                        <td>Modifié</td>
+                        <td>Tâche VS Code limitée à <code>jeu.c</code>, avec compilation stricte GCC/Linux</td>
+                        <td><code>@Mathis</code></td>
+                        <td>Il s’agit d’une modification historique de semaine 3 ; la semaine 4 rétablit ensuite la tâche originale avec lib/*.c.</td>
+                    </tr>
+                    <tr data-changelog="s3-08">
+                        <td>Corrigé</td>
+                        <td>Retrait des saisies avancées et des modules propres au jeu ; utilisation des notions des chapitres 1 à 7</td>
+                        <td><code>@ELisa</code>, <code>@Ilan</code></td>
+                        <td>Le code est limité aux notions vues à cette étape ; la modularisation est réintroduite au chapitre 8.</td>
+                    </tr>
+                    <tr data-changelog="s3-09">
+                        <td>Corrigé</td>
+                        <td>Lecture des nombres plafonnée pour éviter les débordements et arrêt propre à la fin de saisie</td>
+                        <td><code>@ELisa</code></td>
+                        <td>Le plafonnement évite un débordement sans empêcher de consommer tous les chiffres d’une entrée trop longue.</td>
+                    </tr>
+                    <tr data-changelog="s3-10">
+                        <td>Corrigé</td>
+                        <td>Retrait des scripts, tests Python, workflows, notes algorithmiques, traces et exécutables hors rendu</td>
+                        <td><code>@Mathis</code></td>
+                        <td>Ces fichiers ne faisaient pas partie du rendu de semaine 3 ; les jeux d’essai demandés sont ajoutés en semaine 4.</td>
+                    </tr>
+                    <tr data-changelog="s3-11">
+                        <td>Corrigé</td>
+                        <td>Vérifications de compilation, des tours, des refus et de la poursuite après un alignement</td>
+                        <td><code>@Tilio</code></td>
+                        <td>Ces vérifications portent sur les règles de semaine 3 : un alignement ne termine pas encore la partie.</td>
+                    </tr>
+                </tbody>
+            </table>
+            <h2>Semaine 4 — 20/10/26</h2>
+            <table>
+                <thead><tr><th scope="col">Catégorie</th><th scope="col">Évolution consignée dans le CHANGELOG</th><th scope="col">Auteurs du journal</th><th scope="col">Explication et lien avec le projet</th></tr></thead>
+                <tbody>
+                    <tr data-changelog="s4-01">
+                        <td>Ajouté</td>
+                        <td>Détection des trois lignes, trois colonnes et deux diagonales gagnantes, annonce du vainqueur ou du nul, priorité à la victoire au neuvième coup</td>
+                        <td><code>@Ilan</code>, <code>@ELisa</code></td>
+                        <td>La victoire est recherchée avant le nul : un alignement au neuvième coup doit rester une victoire.</td>
+                    </tr>
+                    <tr data-changelog="s4-02">
+                        <td>Ajouté</td>
+                        <td>Rejeu avec les mêmes joueurs sur un plateau vide, compteur réinitialisé et X au premier tour</td>
+                        <td><code>@ELisa</code></td>
+                        <td>Les noms sont conservés, mais le plateau, le compteur, le résultat et le premier tour sont réinitialisés.</td>
+                    </tr>
+                    <tr data-changelog="s4-03">
+                        <td>Ajouté</td>
+                        <td>Modules de logique, saisie, affichage et déroulement ; structures échangées par les fonctions</td>
+                        <td><code>@Ilan</code>, <code>@ELisa</code></td>
+                        <td>Séparer les règles, la saisie et l’affichage permet de contrôler la logique sans dépendre du clavier ou de la console.</td>
+                    </tr>
+                    <tr data-changelog="s4-04">
+                        <td>Ajouté</td>
+                        <td>Documentation de chaque fonction, des paramètres et retours ; Doxyfile, README d’accueil et CHANGELOG intégrés à la documentation HTML</td>
+                        <td><code>@Tilio</code>, <code>@Mathis</code></td>
+                        <td>Les contrats décrivent le rôle, les paramètres et le retour ; Doxygen rend ces informations consultables avec le README et le journal.</td>
+                    </tr>
+                    <tr data-changelog="s4-05">
+                        <td>Ajouté</td>
+                        <td>Sept fichiers d’entrée rejouables, sorties stdout/stderr séparées, vérifications des limites, résultats et parties successives</td>
+                        <td><code>@Tilio</code></td>
+                        <td>Les entrées sont rejouables ; les sorties normales et les erreurs sont conservées dans des fichiers distincts.</td>
+                    </tr>
+                    <tr data-changelog="s4-06">
+                        <td>Ajouté</td>
+                        <td>Compte rendu HTML : présentation, conception, difficultés et solutions, complétées et confirmées le 23/10</td>
+                        <td><code>@Mathis</code>, <code>@Tilio</code>, <code>@Ilan</code>, <code>@ELisa</code></td>
+                        <td>Le compte rendu explique le jeu, sa conception et le travail du groupe ; il complète la documentation technique.</td>
+                    </tr>
+                    <tr data-changelog="s4-07">
+                        <td>Modifié</td>
+                        <td>23/10 : confirmation des contributions des quatre membres et actualisation du suivi individuel, du README et de la documentation</td>
+                        <td><code>@Mathis</code>, <code>@Ilan</code>, <code>@ELisa</code>, <code>@Tilio</code></td>
+                        <td>La confirmation du 23 octobre est reportée dans les documents pour supprimer les statuts devenus obsolètes.</td>
+                    </tr>
+                    <tr data-changelog="s4-08">
+                        <td>Modifié</td>
+                        <td>22/10 : module de déroulement renommé <code>partie.c/.h</code> ; références et arbre fonctionnel actualisés</td>
+                        <td><code>@ELisa</code>, <code>@Ilan</code>, <code>@Mathis</code></td>
+                        <td>Le nom partie.c/.h exprime la responsabilité du module. Les inclusions et les documents doivent suivre ce renommage.</td>
+                    </tr>
+                    <tr data-changelog="s4-09">
+                        <td>Modifié</td>
+                        <td>Lecture des coups décomposée en fonctions simples ; résultats de saisie et de rejeu nommés par énumérations, sans perdre les contrôles de ligne et de débordement</td>
+                        <td><code>@ELisa</code>, <code>@Ilan</code></td>
+                        <td>La lecture des coordonnées et la vérification de la ligne sont séparées ; des résultats nommés évitent de confondre erreur, fin d’entrée et rejeu.</td>
+                    </tr>
+                    <tr data-changelog="s4-10">
+                        <td>Modifié</td>
+                        <td>Préconditions documentées, branche inaccessible retirée de la boucle, mode d’emploi complété et documentation HTML régénérée</td>
+                        <td><code>@Tilio</code></td>
+                        <td>Les hypothèses des fonctions deviennent explicites. La branche retirée ne pouvait pas être atteinte dans la boucle normale.</td>
+                    </tr>
+                    <tr data-changelog="s4-11">
+                        <td>Modifié</td>
+                        <td>Suivi individuel des quatre premières séances structuré, avec contributions et auteurs confirmés le 23/10 ; portée des vérifications historiques clarifiée</td>
+                        <td><code>@Mathis</code>, <code>@Tilio</code></td>
+                        <td>Le suivi rassemble les contributions confirmées ; les contrôles ponctuels historiques sont distingués des essais livrés et reproductibles.</td>
+                    </tr>
+                    <tr data-changelog="s4-12">
+                        <td>Modifié</td>
+                        <td>Point d’entrée réduit aux arguments, aux noms et à la boucle de rejeu ; abandon du regroupement de tout le jeu dans main</td>
+                        <td><code>@ELisa</code></td>
+                        <td>main conserve le lancement et le rejeu ; le déroulement d’une partie est confié à un module.</td>
+                    </tr>
+                    <tr data-changelog="s4-13">
+                        <td>Modifié</td>
+                        <td>Schéma du README remplacé par un arbre fonctionnel avec signatures et explication des fonctions de lib/</td>
+                        <td><code>@Ilan</code>, <code>@Tilio</code>, <code>@Mathis</code></td>
+                        <td>L’arbre représente les appels réels avec leurs signatures, ce qui explique le découpage et les échanges de données.</td>
+                    </tr>
+                    <tr data-changelog="s4-14">
+                        <td>Modifié</td>
+                        <td>Relecture des huit chapitres, en particulier modules, flux, arguments et Doxygen du chapitre 8</td>
+                        <td><code>@Ilan</code>, <code>@Tilio</code>, <code>@ELisa</code>, <code>@Mathis</code></td>
+                        <td>La relecture sert à limiter les solutions aux notions autorisées et à appliquer les modules, flux et commentaires du chapitre 8.</td>
+                    </tr>
+                    <tr data-changelog="s4-15">
+                        <td>Corrigé</td>
+                        <td>22/10 : restauration de <code>lib/fonctions.c/.h</code>, nécessaires à <code>jouerPartie</code>, après leur suppression</td>
+                        <td><code>@ELisa</code>, <code>@Mathis</code>, <code>@Ilan</code>, <code>@Tilio</code></td>
+                        <td>Les fichiers supprimés contenaient jouerPartie, appelée par main. Ils sont restaurés, puis renommés partie.c/.h ; leur fonction n’est pas supprimée.</td>
+                    </tr>
+                    <tr data-changelog="s4-16">
+                        <td>Corrigé</td>
+                        <td>Après audit du 22/10, suppression de la configuration GDB ajoutée et de sa tâche : les quatre fichiers <code>.vscode/</code> sont strictement identiques au ZIP fourni</td>
+                        <td><code>@Mathis</code></td>
+                        <td>Le fichier launch.json et la tâche supplémentaire sont retirés pour retrouver exactement les quatre fichiers du modèle.</td>
+                    </tr>
+                    <tr data-changelog="s4-17">
+                        <td>Corrigé</td>
+                        <td>Retrait du module d’exemple inutilisé ; README complété avec le rôle de chaque module et la commande de rejeu des essais</td>
+                        <td><code>@ELisa</code>, <code>@Tilio</code></td>
+                        <td>Le module non appelé est retiré ; le README explique les modules utiles et la commande de rejeu.</td>
+                    </tr>
+                    <tr data-changelog="s4-18">
+                        <td>Corrigé</td>
+                        <td>Contrats de <code>jouerCoup</code> et <code>main</code> précisés, documentation et vérifications actualisées</td>
+                        <td><code>@Tilio</code></td>
+                        <td>Les commentaires précisent quand la main passe et les circonstances de retour du programme.</td>
+                    </tr>
+                    <tr data-changelog="s4-19">
+                        <td>Corrigé</td>
+                        <td>Configuration VS Code restaurée à l’identique depuis le ZIP, avec la tâche compilant lib/*.c</td>
+                        <td><code>@Mathis</code></td>
+                        <td>La compilation originale inclut lib/*.c ; elle doit être lancée avec jeu.c actif.</td>
+                    </tr>
+                    <tr data-changelog="s4-20">
+                        <td>Corrigé</td>
+                        <td>Inclusion directe de exemple.c supprimée ; ébauche invalide de fonctions.c remplacée par un module compilable</td>
+                        <td><code>@ELisa</code></td>
+                        <td>Les déclarations sont incluses par les en-têtes .h ; les fichiers .c sont compilés séparément et liés ensemble.</td>
+                    </tr>
+                    <tr data-changelog="s4-21">
+                        <td>Corrigé</td>
+                        <td>Erreurs sur stderr et arrêt immédiat avec code 1 sur entrée incomplète ; code 0 après une session complète</td>
+                        <td><code>@ELisa</code></td>
+                        <td>Elisa est créditée ici de l’implémentation. Les vérifications d’entrée interrompue de Tilio relèvent des jeux d’essai, pas de cette attribution de développement.</td>
+                    </tr>
+                    <tr data-changelog="s4-22">
+                        <td>Corrigé</td>
+                        <td>Date de l’entrée de semaine 3 rétablie au 16/10/26 conformément au retour d’évaluation</td>
+                        <td><code>@Mathis</code></td>
+                        <td>La date du jalon de semaine 3 est corrigée selon le retour d’évaluation ; la confirmation des auteurs reste datée du 23 octobre.</td>
+                    </tr>
+                </tbody>
+            </table>
                 <h2>Suivi individuel des quatre premières séances</h2>
-                <p>
-                    Ce suivi reformule le retour du groupe : projection dans le projet et première conception en semaine 1,
-                    coordination et corrections en semaine 2, puis répartition des livrables et intégration des modules en semaine 4.
-                    La semaine 3 reprend les éléments du CHANGELOG et les contributions confirmées par les membres.
-                    Pour la semaine 4, le défi est collectif et le détail des tâches reprend la répartition confirmée des responsabilités.
-                </p>
-                <p>
-                    Les fichiers cités sont des traces de l’état actuel du projet ou des repères dans son historique :
-                    ils ne prouvent pas à eux seuls l’auteur d’un travail ni la date de sa réalisation.
-                    Mathis Bretonneau, Ilan Guiot, Elisa Mayet et Tilio Dabaji ont confirmé leurs contributions le 23 octobre 2026, selon la confirmation transmise dans l’échange de suivi.
-                </p>
+                <p>Le suivi individuel présente les contributions ainsi que les difficultés personnelles et collectives des quatre premières séances. Il détaille notamment la préparation de l’arborescence par Mathis et Tilio, la collaboration entre Ilan et Elisa et la coordination des corrections.</p>
+                <p>Mathis Bretonneau, Ilan Guiot, Elisa Mayet et Tilio Dabaji ont confirmé l’ensemble des contributions présentées le 23 octobre 2026. Les attributions sont cohérentes avec le CHANGELOG et les fichiers cités permettent de retrouver les éléments du projet concernés.</p>
                 <table>
                     <thead>
                         <tr>
@@ -87,7 +290,7 @@
                             <th scope="col">Membre</th>
                             <th scope="col">Contribution et difficulté</th>
                             <th scope="col">Démarche, solution et traces</th>
-                            <th scope="col">Source et validation</th>
+                            <th scope="col">Validation</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -123,7 +326,7 @@
                             <td>Semaine 2</td>
                             <td>Mathis</td>
                             <td>Coordonner le groupe face aux nouvelles consignes et aux retours du professeur et du client. Homogénéiser le CHANGELOG et faire vérifier le code dans les délais.</td>
-                            <td>Centraliser les corrections et harmoniser le suivi, en s’appuyant sur Ilan comme référent technique et sur Tilio pour une seconde vérification. <br>Traces : journal de semaine 2 et répartition des responsabilités.</td>
+                            <td>Centraliser les corrections et harmoniser le suivi, en s’appuyant sur Ilan comme référent technique et sur Tilio pour une seconde vérification. Traces : journal de semaine 2 et répartition des responsabilités.</td>
                             <td>Contribution confirmée le 23 octobre 2026.</td>
                         </tr>
                         <tr>
@@ -137,7 +340,7 @@
                             <td>Semaine 2</td>
                             <td>Elisa</td>
                             <td>Mettre en place la première représentation du plateau et prendre en compte deux joueurs, en intégrant les corrections demandées.</td>
-                            <td>Construire les tableaux et les données des joueurs avec l’appui de l’algorithme d’Ilan, puis vérifier l’initialisation et l’affichage. Il s’agit de la représentation initiale du plateau, avant les types struct introduits en semaine 3.</td>
+                            <td>Développer avec Ilan la saisie des noms, l’initialisation et l’affichage, puis placer les pions de démonstration directement dans le code. Le recentrage sur les consignes et le README est collectif. Il s’agit de tableaux et de données initiales, avant les types struct de semaine 3.</td>
                             <td>Contribution confirmée le 23 octobre 2026.</td>
                         </tr>
                         <tr>
@@ -151,56 +354,56 @@
                             <td>Semaine 3</td>
                             <td>Mathis</td>
                             <td>Assurer le suivi des changements lors du passage à une partie jouable et maintenir la cohérence entre les consignes, le README et le journal.</td>
-                            <td>Synthèse du journal : suivi de l’organisation et des documents pendant l’ajout des coups et de l’alternance. Traces : section Semaine 3 du CHANGELOG et documentation du projet.</td>
+                            <td>Limiter alors la tâche VS Code à jeu.c et retirer les scripts, tests Python, workflows, notes, traces et exécutables hors rendu. La restauration de la tâche originale intervient en semaine 4.</td>
                             <td>Contribution confirmée le 23 octobre 2026.</td>
                         </tr>
                         <tr>
                             <td>Semaine 3</td>
                             <td>Ilan</td>
                             <td>Organiser les informations du jeu et définir l’alternance des joueurs ainsi que le comptage des coups acceptés.</td>
-                            <td>Synthèse du journal : regroupement en Joueur, Coup et Partie, puis définition des transitions après un coup valide. Traces actuelles : types.h et logique de plateau.c.</td>
+                            <td>Regrouper les informations en Joueur, Coup et Partie, puis définir les transitions après un coup valide. Traces actuelles : types.h et logique de plateau.c.</td>
                             <td>Contribution confirmée le 23 octobre 2026.</td>
                         </tr>
                         <tr>
                             <td>Semaine 3</td>
                             <td>Elisa</td>
                             <td>Rendre les coups jouables tout en refusant les saisies incorrectes et les cases déjà occupées, sans faire perdre son tour au joueur.</td>
-                            <td>Synthèse du journal : lecture des coordonnées, contrôle des limites et de l’occupation, puis placement et alternance après acceptation. Traces actuelles : saisie.c, plateau.c et historique de semaine 3.</td>
+                            <td>Implémenter les contrôles de format et de case, plafonner les nombres pour éviter les débordements et conserver alors le programme dans main. Les structures, coups, compteurs et l’alternance sont réalisés avec Ilan. Ce regroupement historique est remplacé par les modules en semaine 4.</td>
                             <td>Contribution confirmée le 23 octobre 2026.</td>
                         </tr>
                         <tr>
                             <td>Semaine 3</td>
                             <td>Tilio</td>
                             <td>Contrôler les tours et les refus de saisie, puis expliquer le comportement réel dans la documentation.</td>
-                            <td>Synthèse du journal : vérification des coups acceptés ou refusés et mise à jour du README. Traces : entrées de semaine 3 du CHANGELOG et scénarios de vérification développés ensuite.</td>
+                            <td>Détailler le README, signaler l’écart avec la demande de fonctions et vérifier compilation, tours et refus. Tester aussi qu’un alignement ne termine pas la partie à ce stade, avant la détection de victoire de semaine 4.</td>
                             <td>Contribution confirmée le 23 octobre 2026.</td>
                         </tr>
                         <tr>
                             <td>Semaine 4</td>
                             <td>Mathis</td>
                             <td>Clarifier qui réalise chaque tâche entre le compte rendu HTML, les essais, le développement et les vérifications, tout en gardant le README aligné sur les fonctionnalités.</td>
-                            <td>Selon la responsabilité de coordination : organiser la répartition et suivre la cohérence des livrables et des consignes. Traces actuelles : README, CHANGELOG et pages de rapport/.</td>
+                            <td>Contribuer avec Tilio à Doxygen et au suivi ; actualiser le schéma avec Ilan et Tilio ; renommer le module avec Elisa et Ilan. Restaurer les paramètres VS Code et la date de semaine 3. Participer avec les quatre membres à la relecture du cours, à la restauration du module supprimé et à la confirmation des contributions.</td>
                             <td>Contribution confirmée le 23 octobre 2026.</td>
                         </tr>
                         <tr>
                             <td>Semaine 4</td>
                             <td>Ilan</td>
                             <td>Participer à la répartition des tâches et assurer la cohérence de l’algorithme pendant la séparation de jeu.c en modules, la fin de partie et le rejeu.</td>
-                            <td>Selon la responsabilité de conception : définir les données et les échanges entre les modules, et vérifier les règles de victoire et de nul. Traces actuelles : types.h, plateau.c et schéma fonctionnel du README.</td>
+                            <td>Concevoir avec Elisa les règles de victoire et de nul, les modules et la décomposition de saisie ; renommer le module avec Elisa et Mathis. Actualiser l’arbre avec Tilio et Mathis. Participer à la restauration du module, à la relecture des huit chapitres et au compte rendu avec le groupe.</td>
                             <td>Contribution confirmée le 23 octobre 2026.</td>
                         </tr>
                         <tr>
                             <td>Semaine 4</td>
                             <td>Elisa</td>
                             <td>Intégrer les fonctionnalités de fin de partie et de rejeu tout en séparant le programme en bibliothèques qui doivent fonctionner ensemble.</td>
-                            <td>Selon la responsabilité de développement : répartir saisie, règles, affichage et déroulement, puis relier les modules au point d’entrée. Traces actuelles : jeu.c, lib/partie.c et autres modules de lib/.</td>
+                            <td>Implémenter le rejeu et les codes de sortie à EOF ; réaliser avec Ilan les règles, modules et résultats de saisie nommés. Réduire main au point d’entrée, corriger les inclusions et le module non compilable, participer au renommage avec Ilan et Mathis et au retrait de l’exemple avec Tilio. La restauration du module supprimé est collective.</td>
                             <td>Contribution confirmée le 23 octobre 2026.</td>
                         </tr>
                         <tr>
                             <td>Semaine 4</td>
                             <td>Tilio</td>
                             <td>Répartir les travaux de vérification et de documentation avec le groupe, puis contrôler que le jeu reste fonctionnel après le découpage en modules.</td>
-                            <td>Selon la responsabilité de qualité : rejouer les essais, contrôler le rejeu et les erreurs, puis vérifier la cohérence du README et de la documentation des fonctions. Traces actuelles : output/, Doxyfile et documentation HTML.</td>
+                            <td>Préparer les sept essais et vérifier les sorties normales, les erreurs et le rejeu ; documenter Doxygen avec Mathis et l’arbre avec Ilan et Mathis. Préciser les contrats, les préconditions et le protocole des vérifications, puis compléter le README avec Elisa. Pour EOF, vérifier par les essais la gestion d’EOF développée par Elisa. Participer à la restauration du module et aux travaux collectifs.</td>
                             <td>Contribution confirmée le 23 octobre 2026.</td>
                         </tr>
                     </tbody>
