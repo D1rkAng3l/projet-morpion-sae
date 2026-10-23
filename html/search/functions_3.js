@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['initialiserpartie_0',['initialiserPartie',['../plateau_8c.html#abf204084ca128d826fc4c21fad128340',1,'initialiserPartie(struct Partie *partie):&#160;plateau.c'],['../plateau_8h.html#abf204084ca128d826fc4c21fad128340',1,'initialiserPartie(struct Partie *partie):&#160;plateau.c']]]
+  ['estseparateur_0',['estSeparateur',['../saisie_8c.html#a61810c7d6c4ce44af654934508359ba9',1,'estSeparateur(int caractere):&#160;saisie.c'],['../saisie_8h.html#a61810c7d6c4ce44af654934508359ba9',1,'estSeparateur(int caractere):&#160;saisie.c']]]
 ];

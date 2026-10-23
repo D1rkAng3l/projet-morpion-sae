@@ -17,6 +17,11 @@ Les mentions identifient les responsables selon le README ; les contributions pe
 
 ### Modifié
 
+- 22/10 : module de déroulement renommé `partie.c/.h` ; références et arbre fonctionnel actualisés (`@ELisa`, `@Ilan`).
+- Lecture des coups décomposée en fonctions simples ; résultats de saisie et de rejeu nommés par énumérations, sans perdre les contrôles de ligne et de débordement (`@ELisa`, `@Ilan`).
+- Préconditions documentées, branche inaccessible retirée de la boucle, mode d’emploi complété et documentation HTML régénérée (`@Tilio`).
+- Suivi individuel des quatre premières séances structuré, avec contributions et auteurs à renseigner par chaque membre ; portée des vérifications historiques clarifiée (`@Mathis`, `@Tilio`).
+
 - Point d’entrée réduit aux arguments, aux noms et à la boucle de rejeu ; abandon du regroupement de tout le jeu dans main (`@ELisa`).
 - Schéma du README remplacé par un arbre fonctionnel avec signatures et explication des fonctions de lib/ (`@Ilan`, `@Tilio`).
 - Relecture des huit chapitres, en particulier modules, flux, arguments et Doxygen du chapitre 8 (`@Ilan`, `@Tilio`).

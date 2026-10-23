@@ -51,7 +51,7 @@
                         <td>Plateau et résultat sur stdout, sans modifier les règles.</td>
                     </tr>
                     <tr>
-                        <td>fonctions.c/.h</td>
+                        <td>partie.c/.h</td>
                         <td>Coordination d’une partie ; relie saisie, règles et affichage.</td>
                     </tr>
                     <tr>
@@ -72,6 +72,8 @@
                 les paramètres, retours et sources sont expliqués dans la 
                 <a href="../html/index.html">documentation Doxygen</a>.
             </p>
+            <h2>Saisie et contrats</h2>
+            <p>La lecture est décomposée : estSeparateur reconnaît les blancs internes, lireCoordonnee consomme un nombre borné, lireCoup assemble les deux coordonnées et contrôle la fin de ligne. Les résultats de saisie et de rejeu sont des énumérations nommées. Les fonctions documentent les adresses attendues et l’initialisation préalable de la partie.</p>
             <h2>Choix des flux</h2>
             <p>
                 stdout contient le dialogue normal, les plateaux et les résultats ; 
@@ -80,6 +82,6 @@
                 d’un chapitre futur.
             </p>
         </main>
-        <footer>G1E — Semaine 4, 20 octobre 2026. Compte rendu en cours de construction.</footer>
+        <footer>G1E — Semaine 4, 22 octobre 2026. Compte rendu en cours de construction.</footer>
     </body>
     </html>

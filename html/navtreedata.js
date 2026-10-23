@@ -27,28 +27,29 @@ var NAVTREE =
   [ "Morpion — G1E", "index.html", [
     [ "Morpion — SAÉ 1.01 et 1.02", "index.html", "index" ],
     [ "Changelog", "md_CHANGELOG.html", [
-      [ "Semaine 4 &ndash; 20/10/26", "md_CHANGELOG.html#autotoc_md13", [
-        [ "Ajouté", "md_CHANGELOG.html#autotoc_md14", null ],
-        [ "Modifié", "md_CHANGELOG.html#autotoc_md15", null ],
-        [ "Corrigé", "md_CHANGELOG.html#autotoc_md16", null ]
+      [ "Semaine 4 &ndash; 20/10/26", "md_CHANGELOG.html#autotoc_md15", [
+        [ "Ajouté", "md_CHANGELOG.html#autotoc_md16", null ],
+        [ "Modifié", "md_CHANGELOG.html#autotoc_md17", null ],
+        [ "Corrigé", "md_CHANGELOG.html#autotoc_md18", null ]
       ] ],
-      [ "Semaine 3 &ndash; 16/10/26", "md_CHANGELOG.html#autotoc_md17", [
-        [ "Ajouté", "md_CHANGELOG.html#autotoc_md18", null ],
-        [ "Modifié", "md_CHANGELOG.html#autotoc_md19", null ],
-        [ "Corrigé", "md_CHANGELOG.html#autotoc_md20", null ]
+      [ "Semaine 3 &ndash; 16/10/26", "md_CHANGELOG.html#autotoc_md19", [
+        [ "Ajouté", "md_CHANGELOG.html#autotoc_md20", null ],
+        [ "Modifié", "md_CHANGELOG.html#autotoc_md21", null ],
+        [ "Corrigé", "md_CHANGELOG.html#autotoc_md22", null ]
       ] ],
-      [ "Semaine 2 &ndash; 08/10/26", "md_CHANGELOG.html#autotoc_md21", [
-        [ "Ajouté", "md_CHANGELOG.html#autotoc_md22", null ],
-        [ "Modifié", "md_CHANGELOG.html#autotoc_md23", null ]
+      [ "Semaine 2 &ndash; 08/10/26", "md_CHANGELOG.html#autotoc_md23", [
+        [ "Ajouté", "md_CHANGELOG.html#autotoc_md24", null ],
+        [ "Modifié", "md_CHANGELOG.html#autotoc_md25", null ]
       ] ],
-      [ "Semaine 1 &ndash; 01/10/26", "md_CHANGELOG.html#autotoc_md24", [
-        [ "Ajouté", "md_CHANGELOG.html#autotoc_md25", null ],
-        [ "Modifié", "md_CHANGELOG.html#autotoc_md26", null ]
+      [ "Semaine 1 &ndash; 01/10/26", "md_CHANGELOG.html#autotoc_md26", [
+        [ "Ajouté", "md_CHANGELOG.html#autotoc_md27", null ],
+        [ "Modifié", "md_CHANGELOG.html#autotoc_md28", null ]
       ] ]
     ] ],
-    [ "Vérifications réelles", "md_output_2verification.html", [
-      [ "Contrôle après corrections — 22/10/2026", "md_output_2verification.html#autotoc_md29", null ],
-      [ "Contrôle initial — 20/10/2026", "md_output_2verification.html#autotoc_md30", null ]
+    [ "Vérifications de semaine 4", "md_output_2verification.html", [
+      [ "Version après simplification — 22/10/2026", "md_output_2verification.html#autotoc_md31", null ],
+      [ "Vérifications reproductibles avec le rendu", "md_output_2verification.html#autotoc_md32", null ],
+      [ "Contrôles historiques, hors protocole livré", "md_output_2verification.html#autotoc_md33", null ]
     ] ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],

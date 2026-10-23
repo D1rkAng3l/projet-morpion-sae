@@ -101,12 +101,16 @@ $(function(){initNavTree('saisie_8c.html','',''); });
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:a61810c7d6c4ce44af654934508359ba9" id="r_a61810c7d6c4ce44af654934508359ba9"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a61810c7d6c4ce44af654934508359ba9">estSeparateur</a> (int caractere)</td></tr>
+<tr class="memdesc:a61810c7d6c4ce44af654934508359ba9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reconnaît les blancs acceptés à l'intérieur d'une ligne.  <br /></td></tr>
+<tr class="memitem:aba4efd5565f760fcf0d5d3fb93bf82d3" id="r_aba4efd5565f760fcf0d5d3fb93bf82d3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aba4efd5565f760fcf0d5d3fb93bf82d3">lireCoordonnee</a> (int *caractere)</td></tr>
+<tr class="memdesc:aba4efd5565f760fcf0d5d3fb93bf82d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lit un entier sans signe à partir d'un caractère déjà disponible. Saute les séparateurs internes et plafonne la valeur à TAILLE + 1.  <br /></td></tr>
 <tr class="memitem:ac618dcb58c2e32a49ca00bb77932c80a" id="r_ac618dcb58c2e32a49ca00bb77932c80a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac618dcb58c2e32a49ca00bb77932c80a">demanderNom</a> (struct <a class="el" href="structJoueur.html">Joueur</a> *joueur, int numero)</td></tr>
 <tr class="memdesc:ac618dcb58c2e32a49ca00bb77932c80a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Demande un mot de 1 à 63 octets et consomme le reste de sa ligne.  <br /></td></tr>
-<tr class="memitem:a17dff5152a4e6eddb183e30f51a1ab3e" id="r_a17dff5152a4e6eddb183e30f51a1ab3e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a17dff5152a4e6eddb183e30f51a1ab3e">lireCoup</a> (struct <a class="el" href="structCoup.html">Coup</a> *coup)</td></tr>
-<tr class="memdesc:a17dff5152a4e6eddb183e30f51a1ab3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lit deux entiers sans signe, séparés par des blancs, sur une ligne. Les valeurs trop grandes sont plafonnées à TAILLE + 1, sans débordement.  <br /></td></tr>
-<tr class="memitem:a37062bf330254559c29f21394594c207" id="r_a37062bf330254559c29f21394594c207"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a37062bf330254559c29f21394594c207">demanderRejouer</a> (void)</td></tr>
-<tr class="memdesc:a37062bf330254559c29f21394594c207"><td class="mdescLeft">&#160;</td><td class="mdescRight">Demande o/n ; recommence après une réponse invalide.  <br /></td></tr>
+<tr class="memitem:abeff6dba2fdf6c046ac97d88616b30d8" id="r_abeff6dba2fdf6c046ac97d88616b30d8"><td class="memItemLeft" align="right" valign="top">enum <a class="el" href="saisie_8h.html#a331a2dfa6d55f0dee5bee92d97a0e3a7">LectureCoup</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abeff6dba2fdf6c046ac97d88616b30d8">lireCoup</a> (struct <a class="el" href="structCoup.html">Coup</a> *coup)</td></tr>
+<tr class="memdesc:abeff6dba2fdf6c046ac97d88616b30d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lit deux entiers sans signe, séparés par des blancs, sur une ligne. Les valeurs trop grandes sont plafonnées à TAILLE + 1, sans débordement.  <br /></td></tr>
+<tr class="memitem:acd4f1bc3196bcc837cb73274a3115ca7" id="r_acd4f1bc3196bcc837cb73274a3115ca7"><td class="memItemLeft" align="right" valign="top">enum <a class="el" href="saisie_8h.html#a7e95c990a6ebae7a31c24a4228ae955a">ChoixRejeu</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acd4f1bc3196bcc837cb73274a3115ca7">demanderRejouer</a> (void)</td></tr>
+<tr class="memdesc:acd4f1bc3196bcc837cb73274a3115ca7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Demande o/n ; recommence après une réponse invalide.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Saisies bornées avec les entrées-sorties du cours. </p>
@@ -133,27 +137,28 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Demande un mot de 1 à 63 octets et consomme le reste de sa ligne. </p>
+<dl class="section pre"><dt>Precondition</dt><dd>joueur désigne un joueur accessible en écriture ; numero vaut 1 ou 2. </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">joueur</td><td><a class="el" href="structJoueur.html" title="Identité et symbole d&#39;un joueur.">Joueur</a> dont le nom est rempli.</td></tr>
+    <tr><td class="paramname">joueur</td><td><a class="el" href="structJoueur.html" title="Identité et symbole d&#39;un joueur.">Joueur</a> dont le nom est rempli. </td></tr>
     <tr><td class="paramname">numero</td><td>Numéro affiché. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>1 si le nom est accepté, 0 à EOF. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="saisie_8c_source.html#l00008">8</a> of file <a class="el" href="saisie_8c_source.html">saisie.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="saisie_8c_source.html#l00046">46</a> of file <a class="el" href="saisie_8c_source.html">saisie.c</a>.</p>
 
 </div>
 </div>
-<a id="a37062bf330254559c29f21394594c207" name="a37062bf330254559c29f21394594c207"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a37062bf330254559c29f21394594c207">&#9670;&#160;</a></span>demanderRejouer()</h2>
+<a id="acd4f1bc3196bcc837cb73274a3115ca7" name="acd4f1bc3196bcc837cb73274a3115ca7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acd4f1bc3196bcc837cb73274a3115ca7">&#9670;&#160;</a></span>demanderRejouer()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int demanderRejouer </td>
+          <td class="memname">enum <a class="el" href="saisie_8h.html#a7e95c990a6ebae7a31c24a4228ae955a">ChoixRejeu</a> demanderRejouer </td>
           <td>(</td>
           <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
@@ -162,20 +167,77 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Demande o/n ; recommence après une réponse invalide. </p>
-<dl class="section return"><dt>Returns</dt><dd>1 pour rejouer, 0 pour terminer, -1 à EOF. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>REJOUER pour oui, ARRETER pour non, REJEU_INTERROMPU à EOF. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="saisie_8c_source.html#l00058">58</a> of file <a class="el" href="saisie_8c_source.html">saisie.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="saisie_8c_source.html#l00097">97</a> of file <a class="el" href="saisie_8c_source.html">saisie.c</a>.</p>
 
 </div>
 </div>
-<a id="a17dff5152a4e6eddb183e30f51a1ab3e" name="a17dff5152a4e6eddb183e30f51a1ab3e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a17dff5152a4e6eddb183e30f51a1ab3e">&#9670;&#160;</a></span>lireCoup()</h2>
+<a id="a61810c7d6c4ce44af654934508359ba9" name="a61810c7d6c4ce44af654934508359ba9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a61810c7d6c4ce44af654934508359ba9">&#9670;&#160;</a></span>estSeparateur()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int lireCoup </td>
+          <td class="memname">int estSeparateur </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>caractere</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Reconnaît les blancs acceptés à l'intérieur d'une ligne. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">caractere</td><td>Caractère lu avec getchar, ou EOF. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>1 pour espace, tabulation ou retour chariot, 0 sinon. Le saut de ligne termine la saisie et n'est pas un séparateur interne. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="saisie_8c_source.html#l00009">9</a> of file <a class="el" href="saisie_8c_source.html">saisie.c</a>.</p>
+
+</div>
+</div>
+<a id="aba4efd5565f760fcf0d5d3fb93bf82d3" name="aba4efd5565f760fcf0d5d3fb93bf82d3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aba4efd5565f760fcf0d5d3fb93bf82d3">&#9670;&#160;</a></span>lireCoordonnee()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int lireCoordonnee </td>
+          <td>(</td>
+          <td class="paramtype">int *</td>          <td class="paramname"><span class="paramname"><em>caractere</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Lit un entier sans signe à partir d'un caractère déjà disponible. Saute les séparateurs internes et plafonne la valeur à TAILLE + 1. </p>
+<dl class="section pre"><dt>Precondition</dt><dd>caractere désigne un entier accessible contenant le caractère courant. </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">caractere</td><td>Adresse du caractère courant ; reçoit le premier caractère non numérique après la coordonnée, ou la fin de ligne/EOF. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Valeur plafonnée, ou -1 si aucun chiffre n'a été lu. La fonction ne franchit pas la fin de ligne. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="saisie_8c_source.html#l00020">20</a> of file <a class="el" href="saisie_8c_source.html">saisie.c</a>.</p>
+
+</div>
+</div>
+<a id="abeff6dba2fdf6c046ac97d88616b30d8" name="abeff6dba2fdf6c046ac97d88616b30d8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abeff6dba2fdf6c046ac97d88616b30d8">&#9670;&#160;</a></span>lireCoup()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="saisie_8h.html#a331a2dfa6d55f0dee5bee92d97a0e3a7">LectureCoup</a> lireCoup </td>
           <td>(</td>
           <td class="paramtype">struct <a class="el" href="structCoup.html">Coup</a> *</td>          <td class="paramname"><span class="paramname"><em>coup</em></span></td><td>)</td>
           <td></td>
@@ -184,15 +246,16 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Lit deux entiers sans signe, séparés par des blancs, sur une ligne. Les valeurs trop grandes sont plafonnées à TAILLE + 1, sans débordement. </p>
+<dl class="section pre"><dt>Precondition</dt><dd>coup désigne une structure accessible en écriture. </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">coup</td><td>Coordonnées remplies seulement si le format est correct. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>1 si correct, -1 si format invalide, 0 à EOF avant la ligne. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>COUP_LU si correct, FORMAT_INVALIDE sinon, FIN_SAISIE à EOF avant la ligne. Toute la ligne est consommée, même après une erreur. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="saisie_8c_source.html#l00026">26</a> of file <a class="el" href="saisie_8c_source.html">saisie.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="saisie_8c_source.html#l00071">71</a> of file <a class="el" href="saisie_8c_source.html">saisie.c</a>.</p>
 
 </div>
 </div>

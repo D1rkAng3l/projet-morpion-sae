@@ -3,18 +3,24 @@
 #define MORPION_PLATEAU_H
 #include "types.h"
 /** @brief Vide le plateau et remet X au premier tour, sans effacer les noms.
+ * @pre partie désigne une structure accessible en écriture.
  * @param partie Partie à réinitialiser. */
 void initialiserPartie(struct Partie *partie);
 /** @brief Contrôle les limites, l'état et l'occupation sans modifier la partie.
+ * @pre partie désigne une partie initialisée par initialiserPartie ;
+ * les pions des joueurs sont distincts et différents de VIDE.
  * @param partie Partie à consulter. @param coup Case visée.
  * @return Motif du refus ou COUP_VALIDE. */
 enum ControleCoup verifierCoup(const struct Partie *partie, struct Coup coup);
 /** @brief Cherche un alignement de trois pions identiques non vides.
+ * @pre partie désigne une partie initialisée par initialiserPartie ;
+ * les pions des joueurs sont distincts et différents de VIDE.
  * @param partie Partie à consulter. @return Indice du gagnant, ou -1. */
 int chercherGagnant(const struct Partie *partie);
 /** @brief Pose un coup valide et actualise le résultat.
  * La main passe seulement après un coup accepté si la partie continue.
  * Un coup refusé ne modifie aucune information.
+ * @pre partie désigne une partie initialisée et accessible en écriture.
  * @param partie Partie à modifier. @param coup Case visée.
  * @return Motif du refus ou COUP_VALIDE après placement. */
 enum ControleCoup jouerCoup(struct Partie *partie, struct Coup coup);

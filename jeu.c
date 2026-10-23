@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "lib/fonctions.h"
+#include "lib/partie.h"
 #include "lib/saisie.h"
 
 /** @brief Lance les parties ou affiche l'aide.
@@ -35,18 +35,18 @@ int main(int argc, char* argv[]) {
   }
   printf("Joueurs : %s (X) et %s (O).\n", partie.joueurs[0].nom,
          partie.joueurs[1].nom);
-  int rejouer;
+  enum ChoixRejeu rejouer;
   do {
     if (!jouerPartie(&partie)) {
       fprintf(stderr, "Fin de saisie : partie interrompue.\n");
       return 1;
     }
     rejouer = demanderRejouer();
-    if (rejouer == -1) {
+    if (rejouer == REJEU_INTERROMPU) {
       fprintf(stderr, "Fin de saisie avant la reponse de rejeu.\n");
       return 1;
     }
-  } while (rejouer);
+  } while (rejouer == REJOUER);
   printf("Fin du jeu.\n");
   return 0;
 }

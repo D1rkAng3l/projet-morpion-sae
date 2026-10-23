@@ -95,79 +95,126 @@ $(function(){initNavTree('saisie_8c_source.html','',''); });
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &quot;<a class="code" href="saisie_8h.html">saisie.h</a>&quot;</span></div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span></div>
-<div class="foldopen" id="foldopen00008" data-start="{" data-end="}">
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno"><a class="line" href="saisie_8c.html#ac618dcb58c2e32a49ca00bb77932c80a">    8</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="saisie_8c.html#ac618dcb58c2e32a49ca00bb77932c80a">demanderNom</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structJoueur.html">Joueur</a> *joueur, <span class="keywordtype">int</span> numero) {</div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>  <span class="keywordtype">int</span> tropLong;</div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>  <span class="keywordflow">do</span> {</div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>    printf(<span class="stringliteral">&quot;Nom du joueur %d (1 a 63 octets, sans espace) : &quot;</span>, numero);</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    <span class="keywordflow">if</span> (scanf(<span class="stringliteral">&quot;%63s&quot;</span>, joueur-&gt;<a class="code hl_variable" href="structJoueur.html#a3f824de97a839eedca4f7949d3229a4a">nom</a>) != 1) <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    <span class="keywordtype">int</span> caractere = getchar();</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    tropLong = caractere != <span class="charliteral">&#39;\n&#39;</span> &amp;&amp; caractere != <span class="charliteral">&#39; &#39;</span> &amp;&amp;</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>               caractere != <span class="charliteral">&#39;\t&#39;</span> &amp;&amp; caractere != <span class="charliteral">&#39;\r&#39;</span> &amp;&amp; caractere != EOF;</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    <span class="keywordflow">while</span> (caractere != <span class="charliteral">&#39;\n&#39;</span> &amp;&amp; caractere != EOF) caractere = getchar();</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <span class="keywordflow">if</span> (tropLong) fprintf(stderr, <span class="stringliteral">&quot;Nom trop long : recommencez.\n&quot;</span>);</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>  } <span class="keywordflow">while</span> (tropLong);</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>  <span class="keywordflow">return</span> 1;</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>}</div>
+<div class="foldopen" id="foldopen00009" data-start="{" data-end="}">
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno"><a class="line" href="saisie_8c.html#a61810c7d6c4ce44af654934508359ba9">    9</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="saisie_8c.html#a61810c7d6c4ce44af654934508359ba9">estSeparateur</a>(<span class="keywordtype">int</span> caractere) {</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>  <span class="keywordflow">return</span> caractere == <span class="charliteral">&#39; &#39;</span> || caractere == <span class="charliteral">&#39;\t&#39;</span> || caractere == <span class="charliteral">&#39;\r&#39;</span>;</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>}</div>
 </div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span></div>
-<div class="foldopen" id="foldopen00026" data-start="{" data-end="}">
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="saisie_8c.html#a17dff5152a4e6eddb183e30f51a1ab3e">   26</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="saisie_8c.html#a17dff5152a4e6eddb183e30f51a1ab3e">lireCoup</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structCoup.html">Coup</a> *coup) {</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>  <span class="keywordtype">int</span> valeurs[2] = {0, 0};</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>  <span class="keywordtype">int</span> nombre = 0;</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>  <span class="keywordtype">int</span> dansNombre = 0;</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>  <span class="keywordtype">int</span> invalide = 0;</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>  <span class="keywordtype">int</span> caractere = getchar();</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>  <span class="keywordflow">if</span> (caractere == EOF) <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>  <span class="keywordflow">while</span> (caractere != <span class="charliteral">&#39;\n&#39;</span> &amp;&amp; caractere != EOF) {</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="keywordflow">if</span> (caractere &gt;= <span class="charliteral">&#39;0&#39;</span> &amp;&amp; caractere &lt;= <span class="charliteral">&#39;9&#39;</span>) {</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>      <span class="keywordflow">if</span> (!dansNombre) {</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        <span class="keywordflow">if</span> (nombre &lt; 3) nombre++;</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        dansNombre = 1;</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>      }</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>      <span class="keywordflow">if</span> (nombre &lt;= 2) {</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        <span class="keywordflow">if</span> (valeurs[nombre - 1] &lt;= <a class="code hl_define" href="types_8h.html#a7b29335add3a553ed85d0e3ace85629c">TAILLE</a>) {</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>          valeurs[nombre - 1] = valeurs[nombre - 1] * 10 + caractere - <span class="charliteral">&#39;0&#39;</span>;</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>          <span class="keywordflow">if</span> (valeurs[nombre - 1] &gt; <a class="code hl_define" href="types_8h.html#a7b29335add3a553ed85d0e3ace85629c">TAILLE</a>) valeurs[nombre - 1] = <a class="code hl_define" href="types_8h.html#a7b29335add3a553ed85d0e3ace85629c">TAILLE</a> + 1;</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        }</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>      } <span class="keywordflow">else</span> invalide = 1;</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (caractere == <span class="charliteral">&#39; &#39;</span> || caractere == <span class="charliteral">&#39;\t&#39;</span> || caractere == <span class="charliteral">&#39;\r&#39;</span>) {</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>      dansNombre = 0;</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    } <span class="keywordflow">else</span> invalide = 1;</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    caractere = getchar();</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>  }</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>  <span class="keywordflow">if</span> (invalide || nombre != 2) <span class="keywordflow">return</span> -1;</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>  coup-&gt;<a class="code hl_variable" href="structCoup.html#a742fec4d6f2e479b396c8e1570e58840">ligne</a> = valeurs[0];</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>  coup-&gt;<a class="code hl_variable" href="structCoup.html#ad2cbc4c902d39eb6714567d624b13152">colonne</a> = valeurs[1];</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>  <span class="keywordflow">return</span> 1;</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>}</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span></div>
+<div class="foldopen" id="foldopen00020" data-start="{" data-end="}">
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="saisie_8c.html#aba4efd5565f760fcf0d5d3fb93bf82d3">   20</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="saisie_8c.html#aba4efd5565f760fcf0d5d3fb93bf82d3">lireCoordonnee</a>(<span class="keywordtype">int</span> *caractere) {</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>  <span class="keywordflow">while</span> (<a class="code hl_function" href="saisie_8c.html#a61810c7d6c4ce44af654934508359ba9">estSeparateur</a>(*caractere)) {</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    *caractere = getchar();</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>  }</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>  <span class="keywordflow">if</span> (*caractere &lt; <span class="charliteral">&#39;0&#39;</span> || *caractere &gt; <span class="charliteral">&#39;9&#39;</span>) {</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="keywordflow">return</span> -1;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>  }</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>  <span class="keywordtype">int</span> valeur = 0;</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>  <span class="keywordflow">while</span> (*caractere &gt;= <span class="charliteral">&#39;0&#39;</span> &amp;&amp; *caractere &lt;= <span class="charliteral">&#39;9&#39;</span>) {</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="comment">// Après dépassement, lire les chiffres restants sans continuer le calcul.</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="keywordflow">if</span> (valeur &lt;= <a class="code hl_define" href="types_8h.html#a7b29335add3a553ed85d0e3ace85629c">TAILLE</a>) {</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>      valeur = valeur * 10 + *caractere - <span class="charliteral">&#39;0&#39;</span>;</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>      <span class="keywordflow">if</span> (valeur &gt; <a class="code hl_define" href="types_8h.html#a7b29335add3a553ed85d0e3ace85629c">TAILLE</a>) {</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        valeur = <a class="code hl_define" href="types_8h.html#a7b29335add3a553ed85d0e3ace85629c">TAILLE</a> + 1;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>      }</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    }</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    *caractere = getchar();</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>  }</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>  <span class="keywordflow">return</span> valeur;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>}</div>
 </div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span></div>
-<div class="foldopen" id="foldopen00058" data-start="{" data-end="}">
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="saisie_8c.html#a37062bf330254559c29f21394594c207">   58</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="saisie_8c.html#a37062bf330254559c29f21394594c207">demanderRejouer</a>(<span class="keywordtype">void</span>) {</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>  <span class="keywordflow">while</span> (1) {</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    printf(<span class="stringliteral">&quot;Rejouer avec les memes joueurs ? (o/n) : &quot;</span>);</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="keywordtype">int</span> reponse = 0;</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="keywordtype">int</span> invalide = 0;</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    <span class="keywordtype">int</span> caractere = getchar();</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <span class="keywordflow">if</span> (caractere == EOF) <span class="keywordflow">return</span> -1;</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    <span class="keywordflow">while</span> (caractere != <span class="charliteral">&#39;\n&#39;</span> &amp;&amp; caractere != EOF) {</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>      <span class="keywordflow">if</span> (caractere != <span class="charliteral">&#39; &#39;</span> &amp;&amp; caractere != <span class="charliteral">&#39;\t&#39;</span> &amp;&amp; caractere != <span class="charliteral">&#39;\r&#39;</span>) {</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        <span class="keywordflow">if</span> (reponse == 0) reponse = caractere;</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>        <span class="keywordflow">else</span> invalide = 1;</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>      }</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>      caractere = getchar();</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    }</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="keywordflow">if</span> (!invalide &amp;&amp; (reponse == <span class="charliteral">&#39;o&#39;</span> || reponse == <span class="charliteral">&#39;O&#39;</span>)) <span class="keywordflow">return</span> 1;</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <span class="keywordflow">if</span> (!invalide &amp;&amp; (reponse == <span class="charliteral">&#39;n&#39;</span> || reponse == <span class="charliteral">&#39;N&#39;</span>)) <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    fprintf(stderr, <span class="stringliteral">&quot;Reponse invalide : entrez o ou n.\n&quot;</span>);</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span></div>
+<div class="foldopen" id="foldopen00046" data-start="{" data-end="}">
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="saisie_8c.html#ac618dcb58c2e32a49ca00bb77932c80a">   46</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="saisie_8c.html#ac618dcb58c2e32a49ca00bb77932c80a">demanderNom</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structJoueur.html">Joueur</a> *joueur, <span class="keywordtype">int</span> numero) {</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>  <span class="keywordtype">int</span> tropLong;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>  <span class="keywordflow">do</span> {</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    printf(<span class="stringliteral">&quot;Nom du joueur %d (1 a 63 octets, sans espace) : &quot;</span>, numero);</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="keywordflow">if</span> (scanf(<span class="stringliteral">&quot;%63s&quot;</span>, joueur-&gt;<a class="code hl_variable" href="structJoueur.html#a3f824de97a839eedca4f7949d3229a4a">nom</a>) != 1) {</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>      <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    }</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="keywordtype">int</span> caractere = getchar();</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    tropLong = caractere != <span class="charliteral">&#39;\n&#39;</span> &amp;&amp; !<a class="code hl_function" href="saisie_8c.html#a61810c7d6c4ce44af654934508359ba9">estSeparateur</a>(caractere) &amp;&amp; caractere != EOF;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="keywordflow">while</span> (caractere != <span class="charliteral">&#39;\n&#39;</span> &amp;&amp; caractere != EOF) {</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>      caractere = getchar();</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    }</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <span class="keywordflow">if</span> (tropLong) {</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>      fprintf(stderr, <span class="stringliteral">&quot;Nom trop long : recommencez.\n&quot;</span>);</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    }</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>  } <span class="keywordflow">while</span> (tropLong);</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>  <span class="keywordflow">return</span> 1;</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>}</div>
+</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span></div>
+<div class="foldopen" id="foldopen00071" data-start="{" data-end="}">
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="saisie_8c.html#abeff6dba2fdf6c046ac97d88616b30d8">   71</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="saisie_8h.html#a331a2dfa6d55f0dee5bee92d97a0e3a7">LectureCoup</a> <a class="code hl_function" href="saisie_8c.html#abeff6dba2fdf6c046ac97d88616b30d8">lireCoup</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structCoup.html">Coup</a> *coup) {</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>  <span class="keywordtype">int</span> caractere = getchar();</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>  <span class="keywordflow">if</span> (caractere == EOF) {</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    <span class="keywordflow">return</span> <a class="code hl_enumvalue" href="saisie_8h.html#a331a2dfa6d55f0dee5bee92d97a0e3a7a2fae8314a9a4c37027cc058ccd2948ec">FIN_SAISIE</a>;</div>
 <div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>  }</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>}</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>  <span class="keyword">struct </span><a class="code hl_struct" href="structCoup.html">Coup</a> lu;</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>  lu.<a class="code hl_variable" href="structCoup.html#a742fec4d6f2e479b396c8e1570e58840">ligne</a> = <a class="code hl_function" href="saisie_8c.html#aba4efd5565f760fcf0d5d3fb93bf82d3">lireCoordonnee</a>(&amp;caractere);</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>  lu.<a class="code hl_variable" href="structCoup.html#ad2cbc4c902d39eb6714567d624b13152">colonne</a> = <a class="code hl_function" href="saisie_8c.html#aba4efd5565f760fcf0d5d3fb93bf82d3">lireCoordonnee</a>(&amp;caractere);</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>  <span class="keywordflow">while</span> (<a class="code hl_function" href="saisie_8c.html#a61810c7d6c4ce44af654934508359ba9">estSeparateur</a>(caractere)) {</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    caractere = getchar();</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>  }</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>  <span class="keywordtype">int</span> correct = lu.<a class="code hl_variable" href="structCoup.html#a742fec4d6f2e479b396c8e1570e58840">ligne</a> &gt;= 0 &amp;&amp; lu.<a class="code hl_variable" href="structCoup.html#ad2cbc4c902d39eb6714567d624b13152">colonne</a> &gt;= 0 &amp;&amp;</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>                (caractere == <span class="charliteral">&#39;\n&#39;</span> || caractere == EOF);</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>  <span class="comment">// Consommer les éléments supplémentaires pour repartir sur la ligne suivante.</span></div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>  <span class="keywordflow">while</span> (caractere != <span class="charliteral">&#39;\n&#39;</span> &amp;&amp; caractere != EOF) {</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    caractere = getchar();</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>  }</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>  <span class="keywordflow">if</span> (!correct) {</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    <span class="keywordflow">return</span> <a class="code hl_enumvalue" href="saisie_8h.html#a331a2dfa6d55f0dee5bee92d97a0e3a7aa1e748227eda38aef8049629e0db2152">FORMAT_INVALIDE</a>;</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>  }</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>  *coup = lu;</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>  <span class="keywordflow">return</span> <a class="code hl_enumvalue" href="saisie_8h.html#a331a2dfa6d55f0dee5bee92d97a0e3a7aec78322dd1ea1c1ea8270544827a2be7">COUP_LU</a>;</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>}</div>
 </div>
-<div class="ttc" id="asaisie_8c_html_a17dff5152a4e6eddb183e30f51a1ab3e"><div class="ttname"><a href="saisie_8c.html#a17dff5152a4e6eddb183e30f51a1ab3e">lireCoup</a></div><div class="ttdeci">int lireCoup(struct Coup *coup)</div><div class="ttdoc">Lit deux entiers sans signe, séparés par des blancs, sur une ligne. Les valeurs trop grandes sont pla...</div><div class="ttdef"><b>Definition</b> <a href="#l00026">saisie.c:26</a></div></div>
-<div class="ttc" id="asaisie_8c_html_a37062bf330254559c29f21394594c207"><div class="ttname"><a href="saisie_8c.html#a37062bf330254559c29f21394594c207">demanderRejouer</a></div><div class="ttdeci">int demanderRejouer(void)</div><div class="ttdoc">Demande o/n ; recommence après une réponse invalide.</div><div class="ttdef"><b>Definition</b> <a href="#l00058">saisie.c:58</a></div></div>
-<div class="ttc" id="asaisie_8c_html_ac618dcb58c2e32a49ca00bb77932c80a"><div class="ttname"><a href="saisie_8c.html#ac618dcb58c2e32a49ca00bb77932c80a">demanderNom</a></div><div class="ttdeci">int demanderNom(struct Joueur *joueur, int numero)</div><div class="ttdoc">Demande un mot de 1 à 63 octets et consomme le reste de sa ligne.</div><div class="ttdef"><b>Definition</b> <a href="#l00008">saisie.c:8</a></div></div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span></div>
+<div class="foldopen" id="foldopen00097" data-start="{" data-end="}">
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno"><a class="line" href="saisie_8c.html#acd4f1bc3196bcc837cb73274a3115ca7">   97</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="saisie_8h.html#a7e95c990a6ebae7a31c24a4228ae955a">ChoixRejeu</a> <a class="code hl_function" href="saisie_8c.html#acd4f1bc3196bcc837cb73274a3115ca7">demanderRejouer</a>(<span class="keywordtype">void</span>) {</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>  <span class="keywordflow">while</span> (1) {</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    printf(<span class="stringliteral">&quot;Rejouer avec les memes joueurs ? (o/n) : &quot;</span>);</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    <span class="keywordtype">int</span> reponse = 0;</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    <span class="keywordtype">int</span> invalide = 0;</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    <span class="keywordtype">int</span> caractere = getchar();</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    <span class="keywordflow">if</span> (caractere == EOF) {</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>      <span class="keywordflow">return</span> <a class="code hl_enumvalue" href="saisie_8h.html#a7e95c990a6ebae7a31c24a4228ae955aa9860d5ad2628b6dd7cba8fdef5b6d4e6">REJEU_INTERROMPU</a>;</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    }</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    <span class="keywordflow">while</span> (caractere != <span class="charliteral">&#39;\n&#39;</span> &amp;&amp; caractere != EOF) {</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>      <span class="keywordflow">if</span> (!<a class="code hl_function" href="saisie_8c.html#a61810c7d6c4ce44af654934508359ba9">estSeparateur</a>(caractere)) {</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>        <span class="keywordflow">if</span> (reponse == 0) {</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>          reponse = caractere;</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>          invalide = 1;</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>        }</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>      }</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>      caractere = getchar();</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    }</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    <span class="keywordflow">if</span> (!invalide &amp;&amp; (reponse == <span class="charliteral">&#39;o&#39;</span> || reponse == <span class="charliteral">&#39;O&#39;</span>)) {</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>      <span class="keywordflow">return</span> <a class="code hl_enumvalue" href="saisie_8h.html#a7e95c990a6ebae7a31c24a4228ae955aabc9414002c249702217ec3733c710347">REJOUER</a>;</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    }</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    <span class="keywordflow">if</span> (!invalide &amp;&amp; (reponse == <span class="charliteral">&#39;n&#39;</span> || reponse == <span class="charliteral">&#39;N&#39;</span>)) {</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>      <span class="keywordflow">return</span> <a class="code hl_enumvalue" href="saisie_8h.html#a7e95c990a6ebae7a31c24a4228ae955aa957de39e25a316b798c25954665691d0">ARRETER</a>;</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    }</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    fprintf(stderr, <span class="stringliteral">&quot;Reponse invalide : entrez o ou n.\n&quot;</span>);</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>  }</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>}</div>
+</div>
+<div class="ttc" id="asaisie_8c_html_a61810c7d6c4ce44af654934508359ba9"><div class="ttname"><a href="saisie_8c.html#a61810c7d6c4ce44af654934508359ba9">estSeparateur</a></div><div class="ttdeci">int estSeparateur(int caractere)</div><div class="ttdoc">Reconnaît les blancs acceptés à l&#39;intérieur d&#39;une ligne.</div><div class="ttdef"><b>Definition</b> <a href="#l00009">saisie.c:9</a></div></div>
+<div class="ttc" id="asaisie_8c_html_aba4efd5565f760fcf0d5d3fb93bf82d3"><div class="ttname"><a href="saisie_8c.html#aba4efd5565f760fcf0d5d3fb93bf82d3">lireCoordonnee</a></div><div class="ttdeci">int lireCoordonnee(int *caractere)</div><div class="ttdoc">Lit un entier sans signe à partir d&#39;un caractère déjà disponible. Saute les séparateurs internes et p...</div><div class="ttdef"><b>Definition</b> <a href="#l00020">saisie.c:20</a></div></div>
+<div class="ttc" id="asaisie_8c_html_abeff6dba2fdf6c046ac97d88616b30d8"><div class="ttname"><a href="saisie_8c.html#abeff6dba2fdf6c046ac97d88616b30d8">lireCoup</a></div><div class="ttdeci">enum LectureCoup lireCoup(struct Coup *coup)</div><div class="ttdoc">Lit deux entiers sans signe, séparés par des blancs, sur une ligne. Les valeurs trop grandes sont pla...</div><div class="ttdef"><b>Definition</b> <a href="#l00071">saisie.c:71</a></div></div>
+<div class="ttc" id="asaisie_8c_html_ac618dcb58c2e32a49ca00bb77932c80a"><div class="ttname"><a href="saisie_8c.html#ac618dcb58c2e32a49ca00bb77932c80a">demanderNom</a></div><div class="ttdeci">int demanderNom(struct Joueur *joueur, int numero)</div><div class="ttdoc">Demande un mot de 1 à 63 octets et consomme le reste de sa ligne.</div><div class="ttdef"><b>Definition</b> <a href="#l00046">saisie.c:46</a></div></div>
+<div class="ttc" id="asaisie_8c_html_acd4f1bc3196bcc837cb73274a3115ca7"><div class="ttname"><a href="saisie_8c.html#acd4f1bc3196bcc837cb73274a3115ca7">demanderRejouer</a></div><div class="ttdeci">enum ChoixRejeu demanderRejouer(void)</div><div class="ttdoc">Demande o/n ; recommence après une réponse invalide.</div><div class="ttdef"><b>Definition</b> <a href="#l00097">saisie.c:97</a></div></div>
 <div class="ttc" id="asaisie_8h_html"><div class="ttname"><a href="saisie_8h.html">saisie.h</a></div><div class="ttdoc">Lecture de stdin et signalement des saisies invalides.</div></div>
+<div class="ttc" id="asaisie_8h_html_a331a2dfa6d55f0dee5bee92d97a0e3a7"><div class="ttname"><a href="saisie_8h.html#a331a2dfa6d55f0dee5bee92d97a0e3a7">LectureCoup</a></div><div class="ttdeci">LectureCoup</div><div class="ttdoc">Résultat de lecture du format d&#39;un coup, avant contrôle du plateau.</div><div class="ttdef"><b>Definition</b> <a href="saisie_8h_source.html#l00007">saisie.h:7</a></div></div>
+<div class="ttc" id="asaisie_8h_html_a331a2dfa6d55f0dee5bee92d97a0e3a7a2fae8314a9a4c37027cc058ccd2948ec"><div class="ttname"><a href="saisie_8h.html#a331a2dfa6d55f0dee5bee92d97a0e3a7a2fae8314a9a4c37027cc058ccd2948ec">FIN_SAISIE</a></div><div class="ttdeci">@ FIN_SAISIE</div><div class="ttdef"><b>Definition</b> <a href="saisie_8h_source.html#l00008">saisie.h:8</a></div></div>
+<div class="ttc" id="asaisie_8h_html_a331a2dfa6d55f0dee5bee92d97a0e3a7aa1e748227eda38aef8049629e0db2152"><div class="ttname"><a href="saisie_8h.html#a331a2dfa6d55f0dee5bee92d97a0e3a7aa1e748227eda38aef8049629e0db2152">FORMAT_INVALIDE</a></div><div class="ttdeci">@ FORMAT_INVALIDE</div><div class="ttdef"><b>Definition</b> <a href="saisie_8h_source.html#l00010">saisie.h:10</a></div></div>
+<div class="ttc" id="asaisie_8h_html_a331a2dfa6d55f0dee5bee92d97a0e3a7aec78322dd1ea1c1ea8270544827a2be7"><div class="ttname"><a href="saisie_8h.html#a331a2dfa6d55f0dee5bee92d97a0e3a7aec78322dd1ea1c1ea8270544827a2be7">COUP_LU</a></div><div class="ttdeci">@ COUP_LU</div><div class="ttdef"><b>Definition</b> <a href="saisie_8h_source.html#l00009">saisie.h:9</a></div></div>
+<div class="ttc" id="asaisie_8h_html_a7e95c990a6ebae7a31c24a4228ae955a"><div class="ttname"><a href="saisie_8h.html#a7e95c990a6ebae7a31c24a4228ae955a">ChoixRejeu</a></div><div class="ttdeci">ChoixRejeu</div><div class="ttdoc">Réponse à la proposition de nouvelle partie.</div><div class="ttdef"><b>Definition</b> <a href="saisie_8h_source.html#l00014">saisie.h:14</a></div></div>
+<div class="ttc" id="asaisie_8h_html_a7e95c990a6ebae7a31c24a4228ae955aa957de39e25a316b798c25954665691d0"><div class="ttname"><a href="saisie_8h.html#a7e95c990a6ebae7a31c24a4228ae955aa957de39e25a316b798c25954665691d0">ARRETER</a></div><div class="ttdeci">@ ARRETER</div><div class="ttdef"><b>Definition</b> <a href="saisie_8h_source.html#l00015">saisie.h:15</a></div></div>
+<div class="ttc" id="asaisie_8h_html_a7e95c990a6ebae7a31c24a4228ae955aa9860d5ad2628b6dd7cba8fdef5b6d4e6"><div class="ttname"><a href="saisie_8h.html#a7e95c990a6ebae7a31c24a4228ae955aa9860d5ad2628b6dd7cba8fdef5b6d4e6">REJEU_INTERROMPU</a></div><div class="ttdeci">@ REJEU_INTERROMPU</div><div class="ttdef"><b>Definition</b> <a href="saisie_8h_source.html#l00017">saisie.h:17</a></div></div>
+<div class="ttc" id="asaisie_8h_html_a7e95c990a6ebae7a31c24a4228ae955aabc9414002c249702217ec3733c710347"><div class="ttname"><a href="saisie_8h.html#a7e95c990a6ebae7a31c24a4228ae955aabc9414002c249702217ec3733c710347">REJOUER</a></div><div class="ttdeci">@ REJOUER</div><div class="ttdef"><b>Definition</b> <a href="saisie_8h_source.html#l00016">saisie.h:16</a></div></div>
 <div class="ttc" id="astructCoup_html"><div class="ttname"><a href="structCoup.html">Coup</a></div><div class="ttdoc">Coordonnées saisies, numérotées à partir de 1.</div><div class="ttdef"><b>Definition</b> <a href="types_8h_source.html#l00014">types.h:14</a></div></div>
 <div class="ttc" id="astructCoup_html_a742fec4d6f2e479b396c8e1570e58840"><div class="ttname"><a href="structCoup.html#a742fec4d6f2e479b396c8e1570e58840">Coup::ligne</a></div><div class="ttdeci">int ligne</div><div class="ttdef"><b>Definition</b> <a href="types_8h_source.html#l00015">types.h:15</a></div></div>
 <div class="ttc" id="astructCoup_html_ad2cbc4c902d39eb6714567d624b13152"><div class="ttname"><a href="structCoup.html#ad2cbc4c902d39eb6714567d624b13152">Coup::colonne</a></div><div class="ttdeci">int colonne</div><div class="ttdef"><b>Definition</b> <a href="types_8h_source.html#l00016">types.h:16</a></div></div>

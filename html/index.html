@@ -107,7 +107,7 @@ $(function(){initNavTree('index.html','',''); });
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Tilio Dabaji  </td><td class="markdownTableBodyNone"><span class="tt">@Tilio</span>  </td><td class="markdownTableBodyNone">Essais, documentation et qualité  </td></tr>
 </table>
-<p>Les mentions du journal désignent les responsables selon cette répartition ; chaque membre doit relire et valider ses contributions. Elles ne prouvent pas, seules, une participation individuelle.</p>
+<p>La répartition ci-dessus décrit les responsabilités prévues. Les mentions du journal et les auteurs des contributions doivent être confirmés par les personnes concernées avant le rendu : une responsabilité prévue ne prouve pas une réalisation personnelle.</p>
 <h1 class="doxsection"><a class="anchor" id="autotoc_md2"></a>
 Version actuelle : semaine 4</h1>
 <p>Le morpion se joue à deux sur une grille de 3 × 3. Le premier joueur utilise X, le second O. Les joueurs alternent uniquement après un coup accepté. Trois pions identiques alignés sur une ligne, une colonne ou une diagonale donnent la victoire, annoncée avec le nom du gagnant. Si le plateau est plein sans alignement, le programme annonce un match nul. Une victoire au neuvième coup reste une victoire.</p>
@@ -118,10 +118,20 @@ Compilation sous Linux</h1>
 <div class="fragment"><div class="line">gcc -std=c23 -Wall -Werror jeu.c lib/*.c -o jeu -lm</div>
 <div class="line">./jeu</div>
 </div><!-- fragment --><h1 class="doxsection"><a class="anchor" id="autotoc_md4"></a>
+Jouer et arrêter une session</h1>
+<ol type="1">
+<li>Saisir le nom de chacun des deux joueurs, un nom par ligne. Un nom est un mot sans espace de 1 à 63 octets. Les lignes blanches sont ignorées ; si une ligne contient plusieurs mots, seul le premier est conservé. Un nom trop long est refusé et le reste de sa ligne est consommé. Les accents UTF-8 peuvent occuper plusieurs octets.</li>
+<li>Le joueur appelé saisit la ligne puis la colonne sur une seule ligne : <span class="tt">2 3</span> vise la ligne 2, colonne 3. Les repères vont de 1 à 3. Espaces, tabulations et retours chariot sont acceptés comme séparateurs internes.</li>
+<li>Une ligne vide, du texte, un nombre signé ou décimal, une coordonnée manquante ou un élément supplémentaire est refusé. Les cases hors plateau et les cases occupées ont des messages distincts. Le même joueur recommence sans modification du plateau ni du compteur.</li>
+<li>Après le résultat, répondre <span class="tt">o</span> pour rejouer ou <span class="tt">n</span> pour terminer ; les majuscules sont acceptées. Toute autre réponse est refusée. Le rejeu conserve les noms, vide le plateau et redonne le premier tour à X.</li>
+</ol>
+<p>Sous Linux, <b>Ctrl+D</b> sur une entrée vide signale la fin de saisie. Si la session est incomplète, le programme s’arrête avec un message sur <span class="tt">stderr</span> et le code 1. Une session terminée par <span class="tt">n</span> renvoie 0. Une dernière ligne complète sans retour à la ligne est traitée.</p>
+<p><span class="tt">./jeu --aide</span> affiche le mode d’emploi et renvoie 0. Les autres arguments sont refusés avec le code 1.</p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md5"></a>
 Configuration VS Code du modèle</h1>
 <p>Le dossier <span class="tt">.vscode/</span> contient uniquement les quatre fichiers du ZIP fourni, identiques octet par octet : <span class="tt">tasks.json</span>, <span class="tt">settings.json</span>, <span class="tt">c_cpp_properties.json</span> et <span class="tt">extensions.json</span>. Aucune tâche supplémentaire ni configuration <span class="tt">launch.json</span> n’est conservée.</p>
 <p>Pour <b>Ctrl+Maj+B</b>, ouvrir <span class="tt"><a class="el" href="jeu_8c.html" title="Point d&#39;entrée : arguments, joueurs et boucle de rejeu.">jeu.c</a></span> à la racine comme fichier actif. La tâche originale utilise <span class="tt">${file}</span> et compile aussi <span class="tt">lib/*.c</span>. Lancer cette tâche avec un autre onglet actif ne compile pas correctement le projet. Aucune configuration personnalisée de F5 n’est livrée.</p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md5"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md6"></a>
 Organisation du projet</h1>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -137,7 +147,7 @@ Organisation du projet</h1>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone"><span class="tt"><a class="el" href="affichage_8c.html" title="Présentation console indépendante des règles.">lib/affichage.c</a>/.h</span>  </td><td class="markdownTableBodyNone">Affichage du plateau, du compteur et du résultat  </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><span class="tt"><a class="el" href="fonctions_8c.html" title="Coordination de la saisie, des règles et de l&#39;affichage.">lib/fonctions.c</a>/.h</span>  </td><td class="markdownTableBodyNone">Déroulement d’une partie et coordination des autres modules  </td></tr>
+<td class="markdownTableBodyNone"><span class="tt"><a class="el" href="partie_8c.html" title="Coordination de la saisie, des règles et de l&#39;affichage.">lib/partie.c</a>/.h</span>  </td><td class="markdownTableBodyNone">Déroulement d’une partie et coordination des autres modules  </td></tr>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone"><span class="tt">Doxyfile</span>  </td><td class="markdownTableBodyNone">Configuration de la documentation générée dans <span class="tt">html/</span>  </td></tr>
 <tr class="markdownTableRowEven">
@@ -145,23 +155,33 @@ Organisation du projet</h1>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone"><span class="tt">rapport/</span>  </td><td class="markdownTableBodyNone">Compte rendu HTML : présentation, conception et suivi  </td></tr>
 </table>
-<p>Les fonctions échangent les structures ; les fonctions qui consultent la partie reçoivent un pointeur constant. Les règles peuvent être utilisées sans lire le clavier ni afficher de texte. <span class="tt"><a class="el" href="fonctions_8c.html" title="Coordination de la saisie, des règles et de l&#39;affichage.">lib/fonctions.c</a>/.h</span> sont nécessaires à <span class="tt"><a class="el" href="fonctions_8c.html#abe79c37aa81faabcea9b3cf61c210c36" title="Réinitialise puis conduit une partie jusqu&#39;au résultat ou à EOF.">jouerPartie</a></span> et doivent être conservés avec le reste des sources. Le module d’exemple inutilisé a été retiré.</p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md6"></a>
+<p>Les fonctions échangent les structures ; les fonctions qui consultent la partie reçoivent un pointeur constant. Les règles peuvent être utilisées sans lire le clavier ni afficher de texte. <span class="tt"><a class="el" href="partie_8c.html" title="Coordination de la saisie, des règles et de l&#39;affichage.">lib/partie.c</a>/.h</span> sont nécessaires à <span class="tt"><a class="el" href="partie_8c.html#abe79c37aa81faabcea9b3cf61c210c36" title="Réinitialise puis conduit une partie jusqu&#39;au résultat ou à EOF.">jouerPartie</a></span> et doivent être conservés avec le reste des sources. Le module d’exemple inutilisé a été retiré.</p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md7"></a>
+Contrats et saisie</h1>
+<p>Les préconditions sont indiquées dans les commentaires de chaque fonction : adresses accessibles, partie initialisée pour les règles, noms terminés par le caractère nul pour le dialogue. Elles décrivent les obligations du programme appelant ; les erreurs de l’utilisateur sont contrôlées séparément et ne provoquent pas d’assertion.</p>
+<p><span class="tt"><a class="el" href="saisie_8c.html#aba4efd5565f760fcf0d5d3fb93bf82d3" title="Lit un entier sans signe à partir d&#39;un caractère déjà disponible. Saute les séparateurs internes et p...">lireCoordonnee</a></span> consomme un entier sans signe et conserve le premier caractère qui suit. Les valeurs supérieures au plateau sont plafonnées à <span class="tt"><a class="el" href="types_8h.html#a7b29335add3a553ed85d0e3ace85629c">TAILLE</a> + 1</span> ; les chiffres suivants sont consommés sans poursuivre le calcul. <span class="tt"><a class="el" href="saisie_8c.html#abeff6dba2fdf6c046ac97d88616b30d8" title="Lit deux entiers sans signe, séparés par des blancs, sur une ligne. Les valeurs trop grandes sont pla...">lireCoup</a></span> assemble deux coordonnées et refuse tout élément supplémentaire, sans franchir la fin de ligne ni laisser ses restes pour le tour suivant.</p>
+<p><span class="tt">enum <a class="el" href="saisie_8h.html#a331a2dfa6d55f0dee5bee92d97a0e3a7" title="Résultat de lecture du format d&#39;un coup, avant contrôle du plateau.">LectureCoup</a></span> distingue <span class="tt"><a class="el" href="saisie_8h.html#a331a2dfa6d55f0dee5bee92d97a0e3a7aec78322dd1ea1c1ea8270544827a2be7">COUP_LU</a></span>, <span class="tt"><a class="el" href="saisie_8h.html#a331a2dfa6d55f0dee5bee92d97a0e3a7aa1e748227eda38aef8049629e0db2152">FORMAT_INVALIDE</a></span> et <span class="tt"><a class="el" href="saisie_8h.html#a331a2dfa6d55f0dee5bee92d97a0e3a7a2fae8314a9a4c37027cc058ccd2948ec">FIN_SAISIE</a></span>. <span class="tt">enum <a class="el" href="saisie_8h.html#a7e95c990a6ebae7a31c24a4228ae955a" title="Réponse à la proposition de nouvelle partie.">ChoixRejeu</a></span> distingue <span class="tt"><a class="el" href="saisie_8h.html#a7e95c990a6ebae7a31c24a4228ae955aabc9414002c249702217ec3733c710347">REJOUER</a></span>, <span class="tt"><a class="el" href="saisie_8h.html#a7e95c990a6ebae7a31c24a4228ae955aa957de39e25a316b798c25954665691d0">ARRETER</a></span> et <span class="tt"><a class="el" href="saisie_8h.html#a7e95c990a6ebae7a31c24a4228ae955aa9860d5ad2628b6dd7cba8fdef5b6d4e6">REJEU_INTERROMPU</a></span>. Le format d’un coup est ainsi séparé du contrôle des règles, réalisé par <span class="tt"><a class="el" href="plateau_8c.html#a436aba543dcc0f6fbda6f89030de082f" title="Contrôle les limites, l&#39;état et l&#39;occupation sans modifier la partie.">verifierCoup</a></span> et <span class="tt"><a class="el" href="plateau_8c.html#aa36009d40eccf8f5a4ff691f68aaf945" title="Pose un coup valide et actualise le résultat. La main passe seulement après un coup accepté si la par...">jouerCoup</a></span>.</p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md8"></a>
 Arbre fonctionnel avec signatures</h1>
 <div class="fragment"><div class="line">int main(int argc, char *argv[])</div>
 <div class="line">├── int demanderNom(struct Joueur *joueur, int numero) [pour chaque joueur]</div>
+<div class="line">│   └── int estSeparateur(int caractere)</div>
 <div class="line">└── boucle de rejeu</div>
 <div class="line">    ├── int jouerPartie(struct Partie *partie)</div>
 <div class="line">    │   ├── void initialiserPartie(struct Partie *partie)</div>
 <div class="line">    │   ├── void afficherPartie(const struct Partie *partie) [initial puis coups acceptés]</div>
 <div class="line">    │   ├── boucle tant que etat == EN_COURS</div>
-<div class="line">    │   │   ├── int lireCoup(struct Coup *coup)</div>
+<div class="line">    │   │   ├── enum LectureCoup lireCoup(struct Coup *coup)</div>
+<div class="line">    │   │   │   ├── int lireCoordonnee(int *caractere) [ligne puis colonne]</div>
+<div class="line">    │   │   │   │   └── int estSeparateur(int caractere)</div>
+<div class="line">    │   │   │   └── int estSeparateur(int caractere) [blancs en fin de ligne]</div>
 <div class="line">    │   │   └── enum ControleCoup jouerCoup(struct Partie *partie, struct Coup coup)</div>
 <div class="line">    │   │       ├── enum ControleCoup verifierCoup(const struct Partie *partie, struct Coup coup)</div>
 <div class="line">    │   │       └── int chercherGagnant(const struct Partie *partie)</div>
 <div class="line">    │   └── void afficherResultat(const struct Partie *partie)</div>
-<div class="line">    └── int demanderRejouer(void)</div>
-</div><!-- fragment --><h1 class="doxsection"><a class="anchor" id="autotoc_md7"></a>
+<div class="line">    └── enum ChoixRejeu demanderRejouer(void)</div>
+<div class="line">        └── int estSeparateur(int caractere)</div>
+</div><!-- fragment --><h1 class="doxsection"><a class="anchor" id="autotoc_md9"></a>
 Arbre des dossiers</h1>
 <div class="fragment"><div class="line"> /</div>
 <div class="line">├── jeu.c</div>
@@ -184,24 +204,24 @@ Arbre des dossiers</h1>
 <div class="line">    ├── plateau.h</div>
 <div class="line">    ├── affichage.c</div>
 <div class="line">    ├── affichage.h</div>
-<div class="line">    ├── fonctions.c</div>
-<div class="line">    └── fonctions.h</div>
-</div><!-- fragment --><h1 class="doxsection"><a class="anchor" id="autotoc_md8"></a>
+<div class="line">    ├── partie.c</div>
+<div class="line">    └── partie.h</div>
+</div><!-- fragment --><h1 class="doxsection"><a class="anchor" id="autotoc_md10"></a>
 Documentation Doxygen</h1>
 <p>Chaque fonction est documentée avant sa déclaration avec son rôle, ses paramètres et son retour lorsqu’elle en a un. Les définitions reprennent explicitement ces contrats. Les structures, champs et énumérations sont également décrits.</p>
 <div class="fragment"><div class="line">doxygen Doxyfile</div>
-</div><!-- fragment --><p>Ouvrir ensuite <span class="tt">html/index.html</span>. Le README est la page d’accueil, le <a class="el" href="md_CHANGELOG.html">CHANGELOG</a> est aussi intégré. <span class="tt"><a class="el" href="jeu_8c.html" title="Point d&#39;entrée : arguments, joueurs et boucle de rejeu.">jeu.c</a></span> et tous les fichiers <span class="tt">.c/.h</span> de <span class="tt">lib/</span> figurent dans la documentation avec leurs sources. La configuration traite les avertissements comme des erreurs et ne génère pas de PDF/LaTeX.</p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md9"></a>
+</div><!-- fragment --><p>Ouvrir ensuite <span class="tt">html/index.html</span>. Le dossier <span class="tt">html/</span> est suivi par Git et fait partie de la documentation à remettre ; il doit être régénéré après toute modification des sources ou des documents. Le README est la page d’accueil, le <a class="el" href="md_CHANGELOG.html">CHANGELOG</a> est aussi intégré. <span class="tt"><a class="el" href="jeu_8c.html" title="Point d&#39;entrée : arguments, joueurs et boucle de rejeu.">jeu.c</a></span> et tous les fichiers <span class="tt">.c/.h</span> de <span class="tt">lib/</span> figurent dans la documentation avec leurs sources. La configuration traite les avertissements comme des erreurs et ne génère pas de PDF/LaTeX.</p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md11"></a>
 Jeux d’essai et flux standard</h1>
 <p>Le dialogue, les plateaux et les résultats vont sur <span class="tt">stdout</span>. Les seuls messages sur <span class="tt">stderr</span> sont les erreurs : saisie invalide, coup refusé, argument invalide ou fin prématurée d’entrée. Une erreur de saisie récupérable ne termine pas le jeu.</p>
 <p>Les sept jeux d’essai sont décrits dans <a class="el" href="dir_cf6d034fbb8a82be17b39265b6ed736a.html">output/README.md</a>. Pour en rejouer un depuis la racine, séparer les deux flux :</p>
 <div class="fragment"><div class="line">./jeu &lt; output/partie-01.in &gt; output/partie-01.out 2&gt; output/partie-01.err</div>
 </div><!-- fragment --><p>Remplacer <span class="tt">01</span> par le numéro souhaité. Les scénarios 01 à 04, 06 et 07 terminent normalement avec le code 0. Le scénario 05 coupe volontairement l’entrée : le programme annonce l’interruption sur <span class="tt">stderr</span> et renvoie 1 sans redemander indéfiniment un coup. Une même entrée donne les mêmes sorties ; aucun hasard n’est utilisé.</p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md10"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md12"></a>
 Compte rendu HTML et suivi</h1>
 <p>Le compte rendu HTML (<span class="tt">rapport/index.html</span>) contient la présentation du jeu et des fonctionnalités, la conception en modules, et un tableau des difficultés et solutions avec responsables. Les membres doivent compléter les observations personnelles au fil des séances ; aucune participation passée n’est inventée. Ce compte rendu est distinct de la documentation Doxygen.</p>
 <p><a class="el" href="md_CHANGELOG.html">CHANGELOG.md</a> suit les modifications par semaine. Aucun script de génération ni workflow n’est ajouté. Les exécutables locaux et les métadonnées de Git ne font pas partie du rendu. Aucun ZIP n’est créé.</p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md11"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md13"></a>
 Licences</h1>
 <p>Code : [The Unlicense](LICENCE). Contenu écrit : [CC BY-SA 4.0](LICENCE-CONTENT). </p>
 </div></div><!-- PageDoc -->

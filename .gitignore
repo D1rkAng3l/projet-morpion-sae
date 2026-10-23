@@ -1,24 +1,13 @@
-# ne suit pas les exécutables
+# Exécutables et objets locaux, exclus du rendu
 jeu
-
-
-# backups
-*.bak/
-# Verification locale et outils temporaires
-.tools/
-.cache/
-__pycache__/
-*.pyc
-
-
-# Artefacts du compilateur portable utilisé pour les contrôles locaux
-*.obj
-*.pdb
+jeu.exe
 *.o
-*.ilk
-*.idb
-*.pch
-*.ipch
-*.exp
-*.tlog
+*.obj
+*.exe
 
+# Archives locales et sauvegardes
+*.zip
+*.bak
+*.bak/
+
+# La documentation html/, les essais output/ et le rapport restent suivis.
