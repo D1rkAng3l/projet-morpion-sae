@@ -11,7 +11,7 @@
 | Elisa Mayet       | `@ELisa`  | Développement et intégration         |
 | Tilio Dabaji      | `@Tilio`  | Essais, documentation et qualité     |
 
-La répartition ci-dessus décrit les responsabilités prévues. Les mentions du journal et les auteurs des contributions doivent être confirmés par les personnes concernées avant le rendu : une responsabilité prévue ne prouve pas une réalisation personnelle.
+Mathis Bretonneau, Ilan Guiot, Elisa Mayet et Tilio Dabaji ont confirmé leurs contributions le 23 octobre 2026, selon la confirmation transmise dans l’échange de suivi. La répartition ci-dessus et le suivi individuel du rapport reprennent ces contributions.
 
 ## Version actuelle : semaine 4
 
@@ -143,7 +143,7 @@ Remplacer `01` par le numéro souhaité. Les scénarios 01 à 04, 06 et 07 termi
 
 ## Compte rendu HTML et suivi
 
-Le compte rendu HTML (`rapport/index.html`) contient la présentation du jeu et des fonctionnalités, la conception en modules, et un tableau des difficultés et solutions avec responsables. Les membres doivent compléter les observations personnelles au fil des séances ; aucune participation passée n’est inventée. Ce compte rendu est distinct de la documentation Doxygen.
+Le compte rendu HTML (`rapport/index.html`) contient la présentation du jeu et des fonctionnalités, la conception en modules, et un tableau des difficultés et solutions avec responsables. Les observations des quatre premières séances ont été confirmées par les quatre membres le 23 octobre 2026 ; le suivi sera poursuivi lors des prochaines séances. Ce compte rendu est distinct de la documentation Doxygen.
 
 [CHANGELOG.md](CHANGELOG.md) suit les modifications par semaine. Aucun script de génération ni workflow n’est ajouté. Les exécutables locaux et les métadonnées de Git ne font pas partie du rendu. Aucun ZIP n’est créé.
 

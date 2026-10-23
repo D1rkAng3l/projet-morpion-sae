@@ -1,39 +1,41 @@
 # Changelog
 
-Morpion — G1E. Les mentions de semaine 3 désignent les responsables selon les rôles du README, à valider par chacun. Les mentions historiques des semaines précédentes sont conservées.
+Morpion — G1E. Mathis, Ilan, Elisa et Tilio ont confirmé leurs contributions le 23/10/26, selon la confirmation transmise dans l’échange de suivi. Les mentions historiques des semaines précédentes sont conservées.
 
 ## Semaine 4 -- 20/10/26
 
-Les mentions identifient les responsables selon le README ; les contributions personnelles restent à valider par chacun.
+Les mentions identifient les contributeurs selon le README et le suivi individuel confirmé le 23/10/26.
 
 ### Ajouté
 
 - Détection des trois lignes, trois colonnes et deux diagonales gagnantes, annonce du vainqueur ou du nul, priorité à la victoire au neuvième coup (`@Ilan`, `@ELisa`).
 - Rejeu avec les mêmes joueurs sur un plateau vide, compteur réinitialisé et X au premier tour (`@ELisa`).
 - Modules de logique, saisie, affichage et déroulement ; structures échangées par les fonctions (`@Ilan`, `@ELisa`).
-- Documentation de chaque fonction, des paramètres et retours ; Doxyfile, README d’accueil et CHANGELOG intégrés à la documentation HTML (`@Tilio`).
+- Documentation de chaque fonction, des paramètres et retours ; Doxyfile, README d’accueil et CHANGELOG intégrés à la documentation HTML (`@Tilio`, `@Mathis`).
 - Sept fichiers d’entrée rejouables, sorties stdout/stderr séparées, vérifications des limites, résultats et parties successives (`@Tilio`).
-- Compte rendu HTML : présentation, conception, difficultés et solutions à compléter par les responsables (`@Mathis`, `@Tilio`, `@Ilan`, `@ELisa`).
+- Compte rendu HTML : présentation, conception, difficultés et solutions, complétées et confirmées le 23/10 (`@Mathis`, `@Tilio`, `@Ilan`, `@ELisa`).
 
 ### Modifié
 
-- 22/10 : module de déroulement renommé `partie.c/.h` ; références et arbre fonctionnel actualisés (`@ELisa`, `@Ilan`).
+- 23/10 : confirmation des contributions des quatre membres et actualisation du suivi individuel, du README et de la documentation (`@Mathis`, `@Ilan`, `@ELisa`, `@Tilio`).
+
+- 22/10 : module de déroulement renommé `partie.c/.h` ; références et arbre fonctionnel actualisés (`@ELisa`, `@Ilan`, `@Mathis`).
 - Lecture des coups décomposée en fonctions simples ; résultats de saisie et de rejeu nommés par énumérations, sans perdre les contrôles de ligne et de débordement (`@ELisa`, `@Ilan`).
 - Préconditions documentées, branche inaccessible retirée de la boucle, mode d’emploi complété et documentation HTML régénérée (`@Tilio`).
-- Suivi individuel des quatre premières séances structuré, avec contributions et auteurs à renseigner par chaque membre ; portée des vérifications historiques clarifiée (`@Mathis`, `@Tilio`).
+- Suivi individuel des quatre premières séances structuré, avec contributions et auteurs confirmés le 23/10 ; portée des vérifications historiques clarifiée (`@Mathis`, `@Tilio`).
 
 - Point d’entrée réduit aux arguments, aux noms et à la boucle de rejeu ; abandon du regroupement de tout le jeu dans main (`@ELisa`).
-- Schéma du README remplacé par un arbre fonctionnel avec signatures et explication des fonctions de lib/ (`@Ilan`, `@Tilio`).
-- Relecture des huit chapitres, en particulier modules, flux, arguments et Doxygen du chapitre 8 (`@Ilan`, `@Tilio`).
+- Schéma du README remplacé par un arbre fonctionnel avec signatures et explication des fonctions de lib/ (`@Ilan`, `@Tilio`, `@Mathis`).
+- Relecture des huit chapitres, en particulier modules, flux, arguments et Doxygen du chapitre 8 (`@Ilan`, `@Tilio`,`@ELisa`, `@Mathis`).
 
 ### Corrigé
 
-- 22/10 : restauration de `lib/fonctions.c/.h`, nécessaires à `jouerPartie`, après leur suppression (`@ELisa`).
+- 22/10 : restauration de `lib/fonctions.c/.h`, nécessaires à `jouerPartie`, après leur suppression (`@ELisa`,`@Mathis`,`@Ilan`, `@Tilio`).
 - Après audit du 22/10, suppression de la configuration GDB ajoutée et de sa tâche : les quatre fichiers `.vscode/` sont strictement identiques au ZIP fourni (`@Mathis`).
 - Retrait du module d’exemple inutilisé ; README complété avec le rôle de chaque module et la commande de rejeu des essais (`@ELisa`, `@Tilio`).
 - Contrats de `jouerCoup` et `main` précisés, documentation et vérifications actualisées (`@Tilio`).
 
-- Configuration VS Code restaurée à l’identique depuis le ZIP, avec la tâche compilant lib/*.c ; aucune réécriture de cette tâche (`@Mathis`).
+- Configuration VS Code restaurée à l’identique depuis le ZIP, avec la tâche compilant lib/*.c (`@Mathis`).
 - Inclusion directe de exemple.c supprimée ; ébauche invalide de fonctions.c remplacée par un module compilable (`@ELisa`).
 - Erreurs sur stderr et arrêt immédiat avec code 1 sur entrée incomplète ; code 0 après une session complète (`@ELisa`).
 - Date de l’entrée de semaine 3 rétablie au 16/10/26 conformément au retour d’évaluation (`@Mathis`).
