@@ -26,7 +26,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Morpion — G1E<span id="projectnumber">&#160;Semaine 4</span>
+   <div id="projectname">Morpion — G1E
    </div>
   </td>
  </tr>
@@ -98,9 +98,7 @@ $(function(){initNavTree('jeu_8c.html','',''); });
 <code>#include &lt;string.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="partie_8h_source.html">lib/partie.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="saisie_8h_source.html">lib/saisie.h</a>&quot;</code><br />
-</div>
-<p><a href="jeu_8c_source.html">Go to the source code of this file.</a></p>
-<table class="memberdecls">
+</div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a0ddf1224851353fc92bfbff6f499fa97" id="r_a0ddf1224851353fc92bfbff6f499fa97"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0ddf1224851353fc92bfbff6f499fa97">main</a> (int argc, char *argv[])</td></tr>
@@ -108,8 +106,6 @@ Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Point d'entrée : arguments, joueurs et boucle de rejeu. </p>
-
-<p class="definition">Definition in file <a class="el" href="jeu_8c_source.html">jeu.c</a>.</p>
 </div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
 <a id="a0ddf1224851353fc92bfbff6f499fa97" name="a0ddf1224851353fc92bfbff6f499fa97"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0ddf1224851353fc92bfbff6f499fa97">&#9670;&#160;</a></span>main()</h2>
@@ -139,9 +135,50 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>0 après une sortie normale, 1 si les arguments sont invalides ou si l’entrée se termine avant la fin attendue de la session. </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="jeu_8c_source.html#l00015">15</a> of file <a class="el" href="jeu_8c_source.html">jeu.c</a>.</p>
-
+<div class="fragment"><div class="line"><span class="lineno">   15</span>                                 {</div>
+<div class="line"><span class="lineno">   16</span>  <span class="keywordflow">if</span> (argc == 2 &amp;&amp; strcmp(argv[1], <span class="stringliteral">&quot;--aide&quot;</span>) == 0) {</div>
+<div class="line"><span class="lineno">   17</span>    printf(</div>
+<div class="line"><span class="lineno">   18</span>        <span class="stringliteral">&quot;Morpion : ./jeu [--aide]\nDeux noms puis un coup ligne colonne par &quot;</span></div>
+<div class="line"><span class="lineno">   19</span>        <span class="stringliteral">&quot;ligne.\n&quot;</span></div>
+<div class="line"><span class="lineno">   20</span>        <span class="stringliteral">&quot;Apres le resultat : o pour rejouer, n pour terminer.\n&quot;</span></div>
+<div class="line"><span class="lineno">   21</span>        <span class="stringliteral">&quot;Rejeu automatique : ./jeu &lt; output/partie-01.in &gt; &quot;</span></div>
+<div class="line"><span class="lineno">   22</span>        <span class="stringliteral">&quot;output/partie-01.out 2&gt; output/partie-01.err\n&quot;</span>);</div>
+<div class="line"><span class="lineno">   23</span>    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><span class="lineno">   24</span>  }</div>
+<div class="line"><span class="lineno">   25</span>  <span class="keywordflow">if</span> (argc != 1) {</div>
+<div class="line"><span class="lineno">   26</span>    fprintf(stderr, <span class="stringliteral">&quot;Argument invalide. Utilisez ./jeu --aide.\n&quot;</span>);</div>
+<div class="line"><span class="lineno">   27</span>    <span class="keywordflow">return</span> 1;</div>
+<div class="line"><span class="lineno">   28</span>  }</div>
+<div class="line"><span class="lineno">   29</span>  <span class="keyword">struct </span><a class="code hl_struct" href="structPartie.html">Partie</a> partie;</div>
+<div class="line"><span class="lineno">   30</span>  <span class="keywordflow">for</span> (<span class="keywordtype">int</span> joueur = 0; joueur &lt; <a class="code hl_define" href="types_8h.html#afdb4f6f91f985d95ef85c525e9c6f3e8">NB_JOUEURS</a>; joueur++) {</div>
+<div class="line"><span class="lineno">   31</span>    <span class="keywordflow">if</span> (!<a class="code hl_function" href="saisie_8c.html#ac618dcb58c2e32a49ca00bb77932c80a">demanderNom</a>(&amp;partie.joueurs[joueur], joueur + 1)) {</div>
+<div class="line"><span class="lineno">   32</span>      fprintf(stderr, <span class="stringliteral">&quot;Fin de saisie avant les deux noms.\n&quot;</span>);</div>
+<div class="line"><span class="lineno">   33</span>      <span class="keywordflow">return</span> 1;</div>
+<div class="line"><span class="lineno">   34</span>    }</div>
+<div class="line"><span class="lineno">   35</span>  }</div>
+<div class="line"><span class="lineno">   36</span>  printf(<span class="stringliteral">&quot;Joueurs : %s (X) et %s (O).\n&quot;</span>, partie.joueurs[0].nom,</div>
+<div class="line"><span class="lineno">   37</span>         partie.joueurs[1].nom);</div>
+<div class="line"><span class="lineno">   38</span>  <span class="keywordtype">int</span> rejouer;</div>
+<div class="line"><span class="lineno">   39</span>  <span class="keywordflow">do</span> {</div>
+<div class="line"><span class="lineno">   40</span>    <span class="keywordflow">if</span> (!<a class="code hl_function" href="partie_8c.html#abe79c37aa81faabcea9b3cf61c210c36">jouerPartie</a>(&amp;partie)) {</div>
+<div class="line"><span class="lineno">   41</span>      fprintf(stderr, <span class="stringliteral">&quot;Fin de saisie : partie interrompue.\n&quot;</span>);</div>
+<div class="line"><span class="lineno">   42</span>      <span class="keywordflow">return</span> 1;</div>
+<div class="line"><span class="lineno">   43</span>    }</div>
+<div class="line"><span class="lineno">   44</span>    rejouer = <a class="code hl_function" href="saisie_8c.html#a37062bf330254559c29f21394594c207">demanderRejouer</a>();</div>
+<div class="line"><span class="lineno">   45</span>    <span class="keywordflow">if</span> (rejouer == -1) {</div>
+<div class="line"><span class="lineno">   46</span>      fprintf(stderr, <span class="stringliteral">&quot;Fin de saisie avant la reponse de rejeu.\n&quot;</span>);</div>
+<div class="line"><span class="lineno">   47</span>      <span class="keywordflow">return</span> 1;</div>
+<div class="line"><span class="lineno">   48</span>    }</div>
+<div class="line"><span class="lineno">   49</span>  } <span class="keywordflow">while</span> (rejouer == 1);</div>
+<div class="line"><span class="lineno">   50</span>  printf(<span class="stringliteral">&quot;Fin du jeu.\n&quot;</span>);</div>
+<div class="line"><span class="lineno">   51</span>  <span class="keywordflow">return</span> 0;</div>
+<div class="line"><span class="lineno">   52</span>}</div>
+<div class="ttc" id="apartie_8c_html_abe79c37aa81faabcea9b3cf61c210c36"><div class="ttname"><a href="partie_8c.html#abe79c37aa81faabcea9b3cf61c210c36">jouerPartie</a></div><div class="ttdeci">int jouerPartie(struct Partie *partie)</div><div class="ttdoc">Réinitialise puis conduit une partie jusqu&#39;au résultat ou à EOF.</div><div class="ttdef"><b>Definition</b> partie.c:13</div></div>
+<div class="ttc" id="asaisie_8c_html_a37062bf330254559c29f21394594c207"><div class="ttname"><a href="saisie_8c.html#a37062bf330254559c29f21394594c207">demanderRejouer</a></div><div class="ttdeci">int demanderRejouer(void)</div><div class="ttdoc">Demande o/n et recommence après une réponse incorrecte.</div><div class="ttdef"><b>Definition</b> saisie.c:57</div></div>
+<div class="ttc" id="asaisie_8c_html_ac618dcb58c2e32a49ca00bb77932c80a"><div class="ttname"><a href="saisie_8c.html#ac618dcb58c2e32a49ca00bb77932c80a">demanderNom</a></div><div class="ttdeci">int demanderNom(struct Joueur *joueur, int numero)</div><div class="ttdoc">Demande un nom sans espace, limité à 63 octets.</div><div class="ttdef"><b>Definition</b> saisie.c:24</div></div>
+<div class="ttc" id="astructPartie_html"><div class="ttname"><a href="structPartie.html">Partie</a></div><div class="ttdoc">Ensemble des informations d&#39;une partie.</div><div class="ttdef"><b>Definition</b> types.h:19</div></div>
+<div class="ttc" id="atypes_8h_html_afdb4f6f91f985d95ef85c525e9c6f3e8"><div class="ttname"><a href="types_8h.html#afdb4f6f91f985d95ef85c525e9c6f3e8">NB_JOUEURS</a></div><div class="ttdeci">#define NB_JOUEURS</div><div class="ttdef"><b>Definition</b> types.h:7</div></div>
+</div><!-- fragment -->
 </div>
 </div>
 </div><!-- contents -->

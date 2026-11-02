@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.15.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Morpion — G1E: Vérifications de semaine 4</title>
+<title>Morpion — G1E: Vérification après le retour d’évaluation — 2 novembre 2026</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -26,7 +26,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Morpion — G1E<span id="projectnumber">&#160;Semaine 4</span>
+   <div id="projectname">Morpion — G1E
    </div>
   </td>
  </tr>
@@ -88,32 +88,31 @@ $(function(){initNavTree('md_output_2verification.html','',''); });
 </div>
 
 <div><div class="header">
-  <div class="headertitle"><div class="title">Vérifications de semaine 4 </div></div>
+  <div class="headertitle"><div class="title">Vérification après le retour d’évaluation — 2 novembre 2026 </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md30"></a></p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md31"></a>
-Version après simplification — 22/10/2026</h1>
+<div class="textblock"><p><a class="anchor" id="autotoc_md21"></a></p>
 <ul>
-<li>Compilation GCC/Linux avec <span class="tt">-std=c23 -Wall -Wextra -Werror -pedantic</span> et l’analyseur GCC : réussite sans diagnostic.</li>
-<li>Les quatre fichiers <span class="tt">.vscode/</span> sont identiques octet par octet au ZIP fourni ; aucun fichier supplémentaire n’est présent.</li>
-<li>Les sept scénarios livrés ont été rejoués : sorties <span class="tt">.out</span>, <span class="tt">.err</span> et codes conformes aux références, y compris après le renommage en <span class="tt"><a class="el" href="partie_8c.html" title="Coordination de la saisie, des règles et de l&#39;affichage.">partie.c</a>/.h</span>.</li>
-<li>La lecture simplifiée a été comparée à celle de la version précédente sur 5 014 lignes : formats corrects, incorrects, longues entrées, blancs et dernière ligne sans retour. Les résultats et coordonnées sont identiques. Ce contrôle ponctuel utilise des outils temporaires et n’est pas inclus dans les fichiers d’essai livrés.</li>
-<li>Les résultats de saisie et de rejeu sont désormais nommés par énumérations ; les refus de coup ne modifient toujours pas la partie.</li>
-<li>Les 13 fonctions et procédures disposent de commentaires de documentation ; les contrats précisent les préconditions des adresses et de l’état de la partie.</li>
-<li>Documentation générée avec <span class="tt">doxygen Doxyfile</span>, sans avertissement. Le dossier <span class="tt">html/</span> est suivi par Git et doit être régénéré après modification.</li>
+<li>Compilation GCC/Linux avec <span class="tt">-std=c23 -Wall -Wextra -Werror -pedantic</span> : réussie.</li>
+<li>Sept scénarios rejoués deux fois : résultats, sorties et codes reproductibles. Le scénario 05 renvoie 1 ; les autres renvoient 0.</li>
+<li>Le message de format dans <span class="tt">partie-01.err</span> demande désormais deux chiffres ; les autres sorties de référence sont inchangées.</li>
+<li>Victoire au neuvième coup, victoire de chaque joueur, nul et rejeu conservés.</li>
+<li>EOF testé avant les noms, pendant un coup et avant le choix de rejeu : arrêt avec code 1, sans boucle infinie.</li>
+<li>Noms de 63/64 octets, texte, coordonnées 0/4, éléments supplémentaires et très longue saisie essayés : les refus sont sur stderr et le joueur recommence.</li>
+<li>Les quatre fichiers <span class="tt">.vscode/</span> sont strictement identiques au ZIP fourni.</li>
+<li>Doxyfile comparé au modèle : les 2 987 lignes et les commentaires sont conservés ; cinq lignes de réglage seulement sont modifiées.</li>
+<li>Documentation générée avec Doxygen ; toutes les fonctions et procédures des fichiers actuels y figurent.</li>
 </ul>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md32"></a>
-Vérifications reproductibles avec le rendu</h1>
-<p>Depuis la racine :</p>
-<div class="fragment"><div class="line">gcc -std=c23 -Wall -Wextra -Werror -pedantic jeu.c lib/*.c -o jeu -lm</div>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md22"></a>
+Reproduire les essais livrés</h1>
+<div class="fragment"><div class="line">gcc -std=c23 -Wall -Werror jeu.c lib/*.c -o jeu -lm</div>
 <div class="line">./jeu &lt; output/partie-01.in &gt; output/partie-01.out 2&gt; output/partie-01.err</div>
-</div><!-- fragment --><p>Rejouer de la même manière les scénarios 02 à 07. Le code de retour attendu et le rôle de chaque scénario sont dans le fichier <span class="tt">output/README.md</span>. Le scénario 05 doit renvoyer 1 car son entrée s’interrompt ; les six autres renvoient 0. Les sorties de référence sont conservées dans les fichiers <span class="tt">.out</span> et <span class="tt">.err</span> livrés.</p>
-<div class="fragment"><div class="line">doxygen Doxyfile</div>
-</div><!-- fragment --><p>La génération doit réussir et produire <span class="tt">html/index.html</span>, la page du CHANGELOG et celles des fonctions de <span class="tt"><a class="el" href="jeu_8c.html" title="Point d&#39;entrée : arguments, joueurs et boucle de rejeu.">jeu.c</a></span> et <span class="tt">lib/</span>.</p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md33"></a>
-Contrôles historiques, hors protocole livré</h1>
-<p>Le 20/10, un outil temporaire a parcouru 549 946 positions sur les chemins légaux, dont 255 168 parties terminées, et vérifié les règles avec AddressSanitizer et UndefinedBehaviorSanitizer. La détection des fuites était désactivée pour la compatibilité avec l’environnement. Cette observation est historique : l’outil n’est pas livré, et les sept scénarios ci-dessus ne reproduisent pas à eux seuls cette vérification exhaustive. Elle ne remplace donc pas le protocole reproductible du rendu. </p>
+<div class="line">doxygen Doxyfile</div>
+</div><!-- fragment --><p>Remplacer <span class="tt">01</span> par <span class="tt">02</span> à <span class="tt">07</span>. Les descriptions et les codes attendus sont dans <span class="tt">output/README.md</span>.</p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md23"></a>
+Portée des contrôles</h1>
+<p>La lecture utilise maintenant scanf, qui ignore les blancs entre les coordonnées ; elle ne prétend plus contrôler un format strict de deux nombres par ligne. Le nettoyage vérifie les caractères supplémentaires après la paire. Chaque coordonnée est limitée à un chiffre, sans conversion manuelle ni plafonnement.</p>
+<p>Un contrôle temporaire des règles a aussi été exécuté avec AddressSanitizer et UndefinedBehaviorSanitizer sur les chemins légaux du morpion. Cet outil n’est pas livré ; il ne remplace pas les sept scénarios reproductibles ci-dessus. La détection des fuites est désactivée pour la compatibilité avec l’environnement ; le jeu n’alloue pas de mémoire dynamique. </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->

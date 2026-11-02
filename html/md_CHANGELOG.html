@@ -26,7 +26,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Morpion — G1E<span id="projectnumber">&#160;Semaine 4</span>
+   <div id="projectname">Morpion — G1E
    </div>
   </td>
  </tr>
@@ -91,48 +91,52 @@ $(function(){initNavTree('md_CHANGELOG.html','',''); });
   <div class="headertitle"><div class="title">Changelog </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md14"></a></p>
+<div class="textblock"><p><a class="anchor" id="autotoc_md5"></a></p>
 <p>Morpion — G1E. Mathis, Ilan, Elisa et Tilio ont confirmé leurs contributions le 23/10/26, selon la confirmation transmise dans l’échange de suivi. Les mentions historiques des semaines précédentes sont conservées.</p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md15"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md6"></a>
 Semaine 4 &ndash; 20/10/26</h1>
 <p>Les mentions identifient les contributeurs selon le README et le suivi individuel confirmé le 23/10/26.</p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md16"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md7"></a>
 Ajouté</h2>
 <ul>
 <li>Détection des trois lignes, trois colonnes et deux diagonales gagnantes, annonce du vainqueur ou du nul, priorité à la victoire au neuvième coup (<span class="tt">@Ilan</span>, <span class="tt">@ELisa</span>).</li>
 <li>Rejeu avec les mêmes joueurs sur un plateau vide, compteur réinitialisé et X au premier tour (<span class="tt">@ELisa</span>).</li>
 <li>Modules de logique, saisie, affichage et déroulement ; structures échangées par les fonctions (<span class="tt">@Ilan</span>, <span class="tt">@ELisa</span>).</li>
-<li>Documentation de chaque fonction, des paramètres et retours ; Doxyfile, README d’accueil et CHANGELOG intégrés à la documentation HTML (<span class="tt">@Tilio</span>).</li>
+<li>Documentation de chaque fonction, des paramètres et retours ; Doxyfile, README d’accueil et CHANGELOG intégrés à la documentation HTML (<span class="tt">@Tilio</span>, <span class="tt">@Mathis</span>).</li>
 <li>Sept fichiers d’entrée rejouables, sorties stdout/stderr séparées, vérifications des limites, résultats et parties successives (<span class="tt">@Tilio</span>).</li>
 <li>Compte rendu HTML : présentation, conception, difficultés et solutions, complétées et confirmées le 23/10 (<span class="tt">@Mathis</span>, <span class="tt">@Tilio</span>, <span class="tt">@Ilan</span>, <span class="tt">@ELisa</span>).</li>
 </ul>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md17"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md8"></a>
 Modifié</h2>
 <ul>
 <li>23/10 : confirmation des contributions des quatre membres et actualisation du suivi individuel, du README et de la documentation (<span class="tt">@Mathis</span>, <span class="tt">@Ilan</span>, <span class="tt">@ELisa</span>, <span class="tt">@Tilio</span>).</li>
-<li>22/10 : module de déroulement renommé <span class="tt"><a class="el" href="partie_8c.html" title="Coordination de la saisie, des règles et de l&#39;affichage.">partie.c</a>/.h</span> ; références et arbre fonctionnel actualisés (<span class="tt">@ELisa</span>, <span class="tt">@Ilan</span>).</li>
+<li>22/10 : module de déroulement renommé <span class="tt"><a class="el" href="partie_8c.html" title="Coordination de la saisie, des règles et de l&#39;affichage.">partie.c</a>/.h</span> ; références et arbre fonctionnel actualisés (<span class="tt">@ELisa</span>, <span class="tt">@Ilan</span>, <span class="tt">@Mathis</span>).</li>
 <li>Lecture des coups décomposée en fonctions simples ; résultats de saisie et de rejeu nommés par énumérations, sans perdre les contrôles de ligne et de débordement (<span class="tt">@ELisa</span>, <span class="tt">@Ilan</span>).</li>
 <li>Préconditions documentées, branche inaccessible retirée de la boucle, mode d’emploi complété et documentation HTML régénérée (<span class="tt">@Tilio</span>).</li>
 <li>Suivi individuel des quatre premières séances structuré, avec contributions et auteurs confirmés le 23/10 ; portée des vérifications historiques clarifiée (<span class="tt">@Mathis</span>, <span class="tt">@Tilio</span>).</li>
 <li>Point d’entrée réduit aux arguments, aux noms et à la boucle de rejeu ; abandon du regroupement de tout le jeu dans main (<span class="tt">@ELisa</span>).</li>
-<li>Schéma du README remplacé par un arbre fonctionnel avec signatures et explication des fonctions de lib/ (<span class="tt">@Ilan</span>, <span class="tt">@Tilio</span>).</li>
-<li>Relecture des huit chapitres, en particulier modules, flux, arguments et Doxygen du chapitre 8 (<span class="tt">@Ilan</span>, <span class="tt">@Tilio</span>).</li>
+<li>Schéma du README remplacé par un arbre fonctionnel avec signatures et explication des fonctions de lib/ (<span class="tt">@Ilan</span>, <span class="tt">@Tilio</span>, <span class="tt">@Mathis</span>).</li>
+<li>Relecture des huit chapitres, en particulier modules, flux, arguments et Doxygen du chapitre 8 (<span class="tt">@Ilan</span>, <span class="tt">@Tilio</span>,<span class="tt">@ELisa</span>, <span class="tt">@Mathis</span>).</li>
 </ul>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md18"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md9"></a>
 Corrigé</h2>
 <ul>
-<li>22/10 : restauration de <span class="tt">lib/fonctions.c/.h</span>, nécessaires à <span class="tt"><a class="el" href="partie_8c.html#abe79c37aa81faabcea9b3cf61c210c36" title="Réinitialise puis conduit une partie jusqu&#39;au résultat ou à EOF.">jouerPartie</a></span>, après leur suppression (<span class="tt">@ELisa</span>).</li>
+<li>02/11, après évaluation : saisie des coordonnées avec <span class="tt">scanf</span> limitée à un chiffre par coordonnée ; suppression de la conversion caractère par caractère et du plafonnement des grands nombres (<span class="tt">@ELisa</span>, <span class="tt">@Ilan</span>).</li>
+<li>Suppression des énumérations de résultats et de l’état de partie redondant ; le gagnant et le compteur suffisent à déterminer la fin de partie (<span class="tt">@ELisa</span>, <span class="tt">@Ilan</span>).</li>
+<li>README raccourci et Doxyfile original restauré, avec seulement cinq réglages adaptés au projet (<span class="tt">@Mathis</span>, <span class="tt">@Tilio</span>).</li>
+<li>Sept scénarios conservés et revérifiés ; erreurs de saisie et de coup sur <span class="tt">stderr</span>, dialogue sur <span class="tt">stdout</span> (<span class="tt">@Tilio</span>).</li>
+<li>22/10 : restauration de <span class="tt">lib/fonctions.c/.h</span>, nécessaires à <span class="tt"><a class="el" href="partie_8c.html#abe79c37aa81faabcea9b3cf61c210c36" title="Réinitialise puis conduit une partie jusqu&#39;au résultat ou à EOF.">jouerPartie</a></span>, après leur suppression (<span class="tt">@ELisa</span>,<span class="tt">@Mathis</span>,<span class="tt">@Ilan</span>, <span class="tt">@Tilio</span>).</li>
 <li>Après audit du 22/10, suppression de la configuration GDB ajoutée et de sa tâche : les quatre fichiers <span class="tt">.vscode/</span> sont strictement identiques au ZIP fourni (<span class="tt">@Mathis</span>).</li>
 <li>Retrait du module d’exemple inutilisé ; README complété avec le rôle de chaque module et la commande de rejeu des essais (<span class="tt">@ELisa</span>, <span class="tt">@Tilio</span>).</li>
-<li>Contrats de <span class="tt"><a class="el" href="plateau_8c.html#aa36009d40eccf8f5a4ff691f68aaf945" title="Pose un coup valide et actualise le résultat. La main passe seulement après un coup accepté si la par...">jouerCoup</a></span> et <span class="tt"><a class="el" href="jeu_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="Lance les parties ou affiche l&#39;aide.">main</a></span> précisés, documentation et vérifications actualisées (<span class="tt">@Tilio</span>).</li>
-<li>Configuration VS Code restaurée à l’identique depuis le ZIP, avec la tâche compilant lib/*.c ; aucune réécriture de cette tâche (<span class="tt">@Mathis</span>).</li>
+<li>Contrats de <span class="tt"><a class="el" href="plateau_8c.html#aac1bc6181c1d5d5fdbe8c62471eca2e1" title="Pose un coup valide et actualise le résultat. La main passe seulement après un coup accepté si la par...">jouerCoup</a></span> et <span class="tt"><a class="el" href="jeu_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="Lance les parties ou affiche l&#39;aide.">main</a></span> précisés, documentation et vérifications actualisées (<span class="tt">@Tilio</span>).</li>
+<li>Configuration VS Code restaurée à l’identique depuis le ZIP, avec la tâche compilant lib/*.c (<span class="tt">@Mathis</span>).</li>
 <li>Inclusion directe de exemple.c supprimée ; ébauche invalide de fonctions.c remplacée par un module compilable (<span class="tt">@ELisa</span>).</li>
 <li>Erreurs sur stderr et arrêt immédiat avec code 1 sur entrée incomplète ; code 0 après une session complète (<span class="tt">@ELisa</span>).</li>
 <li>Date de l’entrée de semaine 3 rétablie au 16/10/26 conformément au retour d’évaluation (<span class="tt">@Mathis</span>).</li>
 </ul>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md19"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md10"></a>
 Semaine 3 &ndash; 16/10/26</h1>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md20"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md11"></a>
 Ajouté</h2>
 <ul>
 <li><a class="el" href="structPartie.html" title="Ensemble des informations d&#39;une partie.">Partie</a> à deux joueurs : saisie des coordonnées, placement des pions et alternance après chaque coup accepté (<span class="tt">@ELisa</span>, <span class="tt">@Ilan</span>).</li>
@@ -140,14 +144,14 @@ Ajouté</h2>
 <li>Contrôle des formats, des cases hors plateau et des cases occupées ; nouvelle tentative du même joueur après un refus (<span class="tt">@ELisa</span>).</li>
 <li>Compteur des coups acceptés et arrêt au plateau plein, sans détection de victoire (<span class="tt">@Ilan</span>, <span class="tt">@ELisa</span>).</li>
 </ul>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md21"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md12"></a>
 Modifié</h2>
 <ul>
 <li>Toutes les instructions et structures du morpion regroupées dans <span class="tt"><a class="el" href="jeu_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="Lance les parties ou affiche l&#39;aide.">main</a></span> de <span class="tt"><a class="el" href="jeu_8c.html" title="Point d&#39;entrée : arguments, joueurs et boucle de rejeu.">jeu.c</a></span>, selon la demande de l’utilisateur (<span class="tt">@ELisa</span>).</li>
 <li>README détaillé : cours de référence, notions autorisées, utilisation, structures et schéma de <span class="tt"><a class="el" href="jeu_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="Lance les parties ou affiche l&#39;aide.">main</a></span> ; écart avec la demande de fonctions de semaine 3 explicité (<span class="tt">@Tilio</span>).</li>
 <li>Tâche VS Code limitée à <span class="tt"><a class="el" href="jeu_8c.html" title="Point d&#39;entrée : arguments, joueurs et boucle de rejeu.">jeu.c</a></span>, avec compilation stricte GCC/Linux (<span class="tt">@Mathis</span>).</li>
 </ul>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md22"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md13"></a>
 Corrigé</h2>
 <ul>
 <li>Retrait des saisies avancées et des modules propres au jeu ; utilisation des notions des chapitres 1 à 7 (<span class="tt">@ELisa</span>, <span class="tt">@Ilan</span>).</li>
@@ -155,29 +159,29 @@ Corrigé</h2>
 <li>Retrait des scripts, tests Python, workflows, notes algorithmiques, traces et exécutables hors rendu (<span class="tt">@Mathis</span>).</li>
 <li>Vérifications de compilation, des tours, des refus et de la poursuite après un alignement (<span class="tt">@Tilio</span>).</li>
 </ul>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md23"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md14"></a>
 Semaine 2 &ndash; 08/10/26</h1>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md24"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md15"></a>
 Ajouté</h2>
 <ul>
 <li>Saisie des noms, initialisation du plateau et affichage repéré (<span class="tt">@ELisa</span>, <span class="tt">@Ilan</span>).</li>
 <li>Pions de démonstration placés directement dans le code (<span class="tt">@ELisa</span>).</li>
 </ul>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md25"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md16"></a>
 Modifié</h2>
 <ul>
 <li>Recentrage du programme sur le jalon de semaine 2 et mise à jour du README (<span class="tt">@ELisa</span>, <span class="tt">@Ilan</span>, <span class="tt">@Tilio</span>, <span class="tt">@Mathis</span>).</li>
 <li>Paramètres du modèle et suivi du projet (<span class="tt">@Mathis</span>).</li>
 </ul>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md26"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md17"></a>
 Semaine 1 &ndash; 01/10/26</h1>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md27"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md18"></a>
 Ajouté</h2>
 <ul>
 <li>Premières idées de conception et décomposition du morpion (<span class="tt">@ELisa</span>, <span class="tt">@Ilan</span>).</li>
 <li>Présentation du groupe et répartition des rôles (<span class="tt">@Mathis</span>).</li>
 </ul>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md28"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md19"></a>
 Modifié</h2>
 <ul>
 <li>Mise à jour du README et organisation du journal (<span class="tt">@Mathis</span>). </li>

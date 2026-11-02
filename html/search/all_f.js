@@ -1,11 +1,11 @@
 var searchData=
 [
-  ['le_20rendu_0',['Vérifications reproductibles avec le rendu',['../md_output_2verification.html#autotoc_md32',1,'']]],
-  ['lecturecoup_1',['LectureCoup',['../saisie_8h.html#a331a2dfa6d55f0dee5bee92d97a0e3a7',1,'saisie.h']]],
-  ['licences_2',['Licences',['../index.html#autotoc_md13',1,'']]],
-  ['ligne_3',['ligne',['../structCoup.html#a742fec4d6f2e479b396c8e1570e58840',1,'Coup']]],
-  ['linux_4',['Compilation sous Linux',['../index.html#autotoc_md3',1,'']]],
-  ['lirecoordonnee_5',['lireCoordonnee',['../saisie_8c.html#aba4efd5565f760fcf0d5d3fb93bf82d3',1,'lireCoordonnee(int *caractere):&#160;saisie.c'],['../saisie_8h.html#aba4efd5565f760fcf0d5d3fb93bf82d3',1,'lireCoordonnee(int *caractere):&#160;saisie.c']]],
-  ['lirecoup_6',['lireCoup',['../saisie_8c.html#abeff6dba2fdf6c046ac97d88616b30d8',1,'lireCoup(struct Coup *coup):&#160;saisie.c'],['../saisie_8h.html#abeff6dba2fdf6c046ac97d88616b30d8',1,'lireCoup(struct Coup *coup):&#160;saisie.c']]],
-  ['livré_7',['Contrôles historiques, hors protocole livré',['../md_output_2verification.html#autotoc_md33',1,'']]]
+  ['nb_5fjoueurs_0',['NB_JOUEURS',['../types_8h.html#afdb4f6f91f985d95ef85c525e9c6f3e8',1,'types.h']]],
+  ['ndash_2001_2010_2026_1',['Semaine 1 &amp;ndash; 01/10/26',['../md_CHANGELOG.html#autotoc_md17',1,'']]],
+  ['ndash_2008_2010_2026_2',['Semaine 2 &amp;ndash; 08/10/26',['../md_CHANGELOG.html#autotoc_md14',1,'']]],
+  ['ndash_2016_2010_2026_3',['Semaine 3 &amp;ndash; 16/10/26',['../md_CHANGELOG.html#autotoc_md10',1,'']]],
+  ['ndash_2020_2010_2026_4',['Semaine 4 &amp;ndash; 20/10/26',['../md_CHANGELOG.html#autotoc_md6',1,'']]],
+  ['nom_5',['nom',['../structJoueur.html#a3f824de97a839eedca4f7949d3229a4a',1,'Joueur']]],
+  ['nombrecoups_6',['nombreCoups',['../structPartie.html#ad6cde991751a40bb89958fc4b9c82562',1,'Partie']]],
+  ['novembre_202026_7',['Vérification après le retour d’évaluation — 2 novembre 2026',['../md_output_2verification.html',1,'']]]
 ];

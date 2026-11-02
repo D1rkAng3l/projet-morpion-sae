@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['gagnant_0',['gagnant',['../structPartie.html#afec29672b40f904da05e60c04012426e',1,'Partie']]],
-  ['grille_1',['grille',['../structPartie.html#a909588b4553cbb6d50e7891af79dc99b',1,'Partie']]]
+  ['joueurcourant_0',['joueurCourant',['../structPartie.html#af15bb3b33cc497ca572793d633625237',1,'Partie']]],
+  ['joueurs_1',['joueurs',['../structPartie.html#a9a4c359234ed79fb7f02452c372e29ae',1,'Partie']]]
 ];

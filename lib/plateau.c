@@ -9,7 +9,6 @@ void initialiserPartie(struct Partie *partie) {
   partie->joueurs[1].pion = 'O';
   partie->joueurCourant = 0;
   partie->nombreCoups = 0;
-  partie->etat = EN_COURS;
   partie->gagnant = -1;
   for (int ligne = 0; ligne < TAILLE; ligne++) {
     for (int colonne = 0; colonne < TAILLE; colonne++) {
@@ -22,19 +21,19 @@ void initialiserPartie(struct Partie *partie) {
  * @pre partie désigne une partie initialisée par initialiserPartie ;
  * les pions des joueurs sont distincts et différents de VIDE.
  * @param partie Partie à consulter. @param coup Case visée.
- * @return Motif du refus ou COUP_VALIDE. */
-enum ControleCoup verifierCoup(const struct Partie *partie, struct Coup coup) {
-  if (partie->etat != EN_COURS) {
-    return PARTIE_TERMINEE;
+ * @return 1 si le coup est autorisé, 0 sinon. */
+int verifierCoup(const struct Partie *partie, struct Coup coup) {
+  if (partie->gagnant != -1 || partie->nombreCoups == TAILLE * TAILLE) {
+    return 0;
   }
   if (coup.ligne < 1 || coup.ligne > TAILLE ||
       coup.colonne < 1 || coup.colonne > TAILLE) {
-    return HORS_PLATEAU;
+    return 0;
   }
   if (partie->grille[coup.ligne - 1][coup.colonne - 1] != VIDE) {
-    return CASE_OCCUPEE;
+    return 0;
   }
-  return COUP_VALIDE;
+  return 1;
 }
 
 /** @brief Cherche un alignement de trois pions identiques non vides.
@@ -88,25 +87,17 @@ int chercherGagnant(const struct Partie *partie) {
  * Un coup refusé ne modifie aucune information.
  * @pre partie désigne une partie initialisée et accessible en écriture.
  * @param partie Partie à modifier. @param coup Case visée.
- * @return Motif du refus ou COUP_VALIDE après placement. */
-enum ControleCoup jouerCoup(struct Partie *partie, struct Coup coup) {
-  enum ControleCoup controle = verifierCoup(partie, coup);
-  if (controle != COUP_VALIDE) {
-    return controle;
+ * @return 1 si le coup est accepté, 0 sinon. */
+int jouerCoup(struct Partie *partie, struct Coup coup) {
+  if (!verifierCoup(partie, coup)) {
+    return 0;
   }
   partie->grille[coup.ligne - 1][coup.colonne - 1] =
       partie->joueurs[partie->joueurCourant].pion;
   partie->nombreCoups++;
   partie->gagnant = chercherGagnant(partie);
-  // Une victoire au neuvième coup doit être annoncée avant un éventuel nul.
-  if (partie->gagnant != -1) {
-    partie->etat = GAGNEE;
-  }
-  else if (partie->nombreCoups == TAILLE * TAILLE) {
-    partie->etat = NULLE;
-  }
-  else {
+  if (partie->gagnant == -1 && partie->nombreCoups < TAILLE * TAILLE) {
     partie->joueurCourant = (partie->joueurCourant + 1) % NB_JOUEURS;
   }
-  return COUP_VALIDE;
+  return 1;
 }

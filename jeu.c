@@ -35,18 +35,18 @@ int main(int argc, char* argv[]) {
   }
   printf("Joueurs : %s (X) et %s (O).\n", partie.joueurs[0].nom,
          partie.joueurs[1].nom);
-  enum ChoixRejeu rejouer;
+  int rejouer;
   do {
     if (!jouerPartie(&partie)) {
       fprintf(stderr, "Fin de saisie : partie interrompue.\n");
       return 1;
     }
     rejouer = demanderRejouer();
-    if (rejouer == REJEU_INTERROMPU) {
+    if (rejouer == -1) {
       fprintf(stderr, "Fin de saisie avant la reponse de rejeu.\n");
       return 1;
     }
-  } while (rejouer == REJOUER);
+  } while (rejouer == 1);
   printf("Fin du jeu.\n");
   return 0;
 }

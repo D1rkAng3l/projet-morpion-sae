@@ -26,7 +26,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Morpion — G1E<span id="projectnumber">&#160;Semaine 4</span>
+   <div id="projectname">Morpion — G1E
    </div>
   </td>
  </tr>
@@ -107,8 +107,6 @@ Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Affichage de la partie sur stdout. </p>
-
-<p class="definition">Definition in file <a class="el" href="affichage_8h_source.html">affichage.h</a>.</p>
 </div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
 <a id="a31d628f032b8d9a57cfced84ad26c289" name="a31d628f032b8d9a57cfced84ad26c289"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a31d628f032b8d9a57cfced84ad26c289">&#9670;&#160;</a></span>afficherPartie()</h2>
@@ -133,9 +131,33 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-
-<p class="definition">Definition at line <a class="el" href="affichage_8c_source.html#l00008">8</a> of file <a class="el" href="affichage_8c_source.html">affichage.c</a>.</p>
-
+<div class="fragment"><div class="line"><span class="lineno">    8</span>                                                 {</div>
+<div class="line"><span class="lineno">    9</span>  printf(<span class="stringliteral">&quot;\nCoups poses : %d\n    &quot;</span>, partie-&gt;<a class="code hl_variable" href="structPartie.html#ad6cde991751a40bb89958fc4b9c82562">nombreCoups</a>);</div>
+<div class="line"><span class="lineno">   10</span>  <span class="keywordflow">for</span> (<span class="keywordtype">int</span> colonne = 0; colonne &lt; <a class="code hl_define" href="types_8h.html#a7b29335add3a553ed85d0e3ace85629c">TAILLE</a>; colonne++) {</div>
+<div class="line"><span class="lineno">   11</span>    printf(<span class="stringliteral">&quot; %2d &quot;</span>, colonne + 1);</div>
+<div class="line"><span class="lineno">   12</span>  }</div>
+<div class="line"><span class="lineno">   13</span>  printf(<span class="stringliteral">&quot;\n&quot;</span>);</div>
+<div class="line"><span class="lineno">   14</span>  <span class="keywordflow">for</span> (<span class="keywordtype">int</span> ligne = 0; ligne &lt; <a class="code hl_define" href="types_8h.html#a7b29335add3a553ed85d0e3ace85629c">TAILLE</a>; ligne++) {</div>
+<div class="line"><span class="lineno">   15</span>    printf(<span class="stringliteral">&quot;    &quot;</span>);</div>
+<div class="line"><span class="lineno">   16</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> colonne = 0; colonne &lt; <a class="code hl_define" href="types_8h.html#a7b29335add3a553ed85d0e3ace85629c">TAILLE</a>; colonne++) {</div>
+<div class="line"><span class="lineno">   17</span>      printf(<span class="stringliteral">&quot;+---&quot;</span>);</div>
+<div class="line"><span class="lineno">   18</span>    }</div>
+<div class="line"><span class="lineno">   19</span>    printf(<span class="stringliteral">&quot;+\n%3d &quot;</span>, ligne + 1);</div>
+<div class="line"><span class="lineno">   20</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> colonne = 0; colonne &lt; <a class="code hl_define" href="types_8h.html#a7b29335add3a553ed85d0e3ace85629c">TAILLE</a>; colonne++) {</div>
+<div class="line"><span class="lineno">   21</span>      printf(<span class="stringliteral">&quot;| %c &quot;</span>, partie-&gt;<a class="code hl_variable" href="structPartie.html#a909588b4553cbb6d50e7891af79dc99b">grille</a>[ligne][colonne]);</div>
+<div class="line"><span class="lineno">   22</span>    }</div>
+<div class="line"><span class="lineno">   23</span>    printf(<span class="stringliteral">&quot;|\n&quot;</span>);</div>
+<div class="line"><span class="lineno">   24</span>  }</div>
+<div class="line"><span class="lineno">   25</span>  printf(<span class="stringliteral">&quot;    &quot;</span>);</div>
+<div class="line"><span class="lineno">   26</span>  <span class="keywordflow">for</span> (<span class="keywordtype">int</span> colonne = 0; colonne &lt; <a class="code hl_define" href="types_8h.html#a7b29335add3a553ed85d0e3ace85629c">TAILLE</a>; colonne++) {</div>
+<div class="line"><span class="lineno">   27</span>    printf(<span class="stringliteral">&quot;+---&quot;</span>);</div>
+<div class="line"><span class="lineno">   28</span>  }</div>
+<div class="line"><span class="lineno">   29</span>  printf(<span class="stringliteral">&quot;+\n&quot;</span>);</div>
+<div class="line"><span class="lineno">   30</span>}</div>
+<div class="ttc" id="astructPartie_html_a909588b4553cbb6d50e7891af79dc99b"><div class="ttname"><a href="structPartie.html#a909588b4553cbb6d50e7891af79dc99b">Partie::grille</a></div><div class="ttdeci">char grille[TAILLE][TAILLE]</div><div class="ttdef"><b>Definition</b> types.h:20</div></div>
+<div class="ttc" id="astructPartie_html_ad6cde991751a40bb89958fc4b9c82562"><div class="ttname"><a href="structPartie.html#ad6cde991751a40bb89958fc4b9c82562">Partie::nombreCoups</a></div><div class="ttdeci">int nombreCoups</div><div class="ttdef"><b>Definition</b> types.h:23</div></div>
+<div class="ttc" id="atypes_8h_html_a7b29335add3a553ed85d0e3ace85629c"><div class="ttname"><a href="types_8h.html#a7b29335add3a553ed85d0e3ace85629c">TAILLE</a></div><div class="ttdeci">#define TAILLE</div><div class="ttdef"><b>Definition</b> types.h:4</div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a5adb5bb9af7a34f8c606ea8ca966c8fe" name="a5adb5bb9af7a34f8c606ea8ca966c8fe"></a>
@@ -161,9 +183,19 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-
-<p class="definition">Definition at line <a class="el" href="affichage_8c_source.html#l00036">36</a> of file <a class="el" href="affichage_8c_source.html">affichage.c</a>.</p>
-
+<div class="fragment"><div class="line"><span class="lineno">   36</span>                                                   {</div>
+<div class="line"><span class="lineno">   37</span>  <span class="keywordflow">if</span> (partie-&gt;<a class="code hl_variable" href="structPartie.html#afec29672b40f904da05e60c04012426e">gagnant</a> != -1) {</div>
+<div class="line"><span class="lineno">   38</span>    printf(<span class="stringliteral">&quot;Victoire de %s (%c) !\n&quot;</span>, partie-&gt;<a class="code hl_variable" href="structPartie.html#a9a4c359234ed79fb7f02452c372e29ae">joueurs</a>[partie-&gt;<a class="code hl_variable" href="structPartie.html#afec29672b40f904da05e60c04012426e">gagnant</a>].<a class="code hl_variable" href="structJoueur.html#a3f824de97a839eedca4f7949d3229a4a">nom</a>,</div>
+<div class="line"><span class="lineno">   39</span>           partie-&gt;<a class="code hl_variable" href="structPartie.html#a9a4c359234ed79fb7f02452c372e29ae">joueurs</a>[partie-&gt;<a class="code hl_variable" href="structPartie.html#afec29672b40f904da05e60c04012426e">gagnant</a>].<a class="code hl_variable" href="structJoueur.html#afb83396786e9a94c5227047c74fa3e87">pion</a>);</div>
+<div class="line"><span class="lineno">   40</span>  } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (partie-&gt;<a class="code hl_variable" href="structPartie.html#ad6cde991751a40bb89958fc4b9c82562">nombreCoups</a> == <a class="code hl_define" href="types_8h.html#a7b29335add3a553ed85d0e3ace85629c">TAILLE</a> * <a class="code hl_define" href="types_8h.html#a7b29335add3a553ed85d0e3ace85629c">TAILLE</a>) {</div>
+<div class="line"><span class="lineno">   41</span>    printf(<span class="stringliteral">&quot;Match nul : le plateau est plein.\n&quot;</span>);</div>
+<div class="line"><span class="lineno">   42</span>  }</div>
+<div class="line"><span class="lineno">   43</span>}</div>
+<div class="ttc" id="astructJoueur_html_a3f824de97a839eedca4f7949d3229a4a"><div class="ttname"><a href="structJoueur.html#a3f824de97a839eedca4f7949d3229a4a">Joueur::nom</a></div><div class="ttdeci">char nom[CAPACITE_NOM]</div><div class="ttdef"><b>Definition</b> types.h:10</div></div>
+<div class="ttc" id="astructJoueur_html_afb83396786e9a94c5227047c74fa3e87"><div class="ttname"><a href="structJoueur.html#afb83396786e9a94c5227047c74fa3e87">Joueur::pion</a></div><div class="ttdeci">char pion</div><div class="ttdef"><b>Definition</b> types.h:11</div></div>
+<div class="ttc" id="astructPartie_html_a9a4c359234ed79fb7f02452c372e29ae"><div class="ttname"><a href="structPartie.html#a9a4c359234ed79fb7f02452c372e29ae">Partie::joueurs</a></div><div class="ttdeci">struct Joueur joueurs[NB_JOUEURS]</div><div class="ttdef"><b>Definition</b> types.h:21</div></div>
+<div class="ttc" id="astructPartie_html_afec29672b40f904da05e60c04012426e"><div class="ttname"><a href="structPartie.html#afec29672b40f904da05e60c04012426e">Partie::gagnant</a></div><div class="ttdeci">int gagnant</div><div class="ttdef"><b>Definition</b> types.h:24</div></div>
+</div><!-- fragment -->
 </div>
 </div>
 </div><!-- contents -->

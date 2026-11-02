@@ -1,11 +1,11 @@
 var searchData=
 [
-  ['nb_5fjoueurs_0',['NB_JOUEURS',['../types_8h.html#afdb4f6f91f985d95ef85c525e9c6f3e8',1,'types.h']]],
-  ['ndash_2001_2010_2026_1',['Semaine 1 &amp;ndash; 01/10/26',['../md_CHANGELOG.html#autotoc_md26',1,'']]],
-  ['ndash_2008_2010_2026_2',['Semaine 2 &amp;ndash; 08/10/26',['../md_CHANGELOG.html#autotoc_md23',1,'']]],
-  ['ndash_2016_2010_2026_3',['Semaine 3 &amp;ndash; 16/10/26',['../md_CHANGELOG.html#autotoc_md19',1,'']]],
-  ['ndash_2020_2010_2026_4',['Semaine 4 &amp;ndash; 20/10/26',['../md_CHANGELOG.html#autotoc_md15',1,'']]],
-  ['nom_5',['nom',['../structJoueur.html#a3f824de97a839eedca4f7949d3229a4a',1,'Joueur']]],
-  ['nombrecoups_6',['nombreCoups',['../structPartie.html#ad6cde991751a40bb89958fc4b9c82562',1,'Partie']]],
-  ['nulle_7',['NULLE',['../types_8h.html#a5dbbd394e904f276296339033fd1e220a304c8c25d3cf28c1bdc197697fd152c6',1,'types.h']]]
+  ['partie_0',['Partie',['../structPartie.html',1,'']]],
+  ['partie_2ec_1',['partie.c',['../partie_8c.html',1,'']]],
+  ['partie_2eh_2',['partie.h',['../partie_8h.html',1,'']]],
+  ['pion_3',['pion',['../structJoueur.html#afb83396786e9a94c5227047c74fa3e87',1,'Joueur']]],
+  ['plateau_2ec_4',['plateau.c',['../plateau_8c.html',1,'']]],
+  ['plateau_2eh_5',['plateau.h',['../plateau_8h.html',1,'']]],
+  ['portée_20des_20contrôles_6',['Portée des contrôles',['../md_output_2verification.html#autotoc_md23',1,'']]],
+  ['projet_7',['Organisation du projet',['../index.html#autotoc_md2',1,'']]]
 ];

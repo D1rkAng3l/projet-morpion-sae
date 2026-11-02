@@ -26,7 +26,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Morpion — G1E<span id="projectnumber">&#160;Semaine 4</span>
+   <div id="projectname">Morpion — G1E
    </div>
   </td>
  </tr>
@@ -57,7 +57,7 @@ $(function() {
       <div id="nav-sync" class="sync"></div>
     </div>
   </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
+  <div id="splitbar" style="-moz-user-select:none;"
        class="ui-resizable-handle">
   </div>
 </div>
@@ -92,30 +92,24 @@ $(function(){initNavTree('saisie_8c.html','',''); });
 </div><!--header-->
 <div class="contents">
 
-<p>Saisies bornées avec les entrées-sorties du cours.  
+<p>Lecture avec scanf et nettoyage de la fin de ligne.
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="saisie_8h_source.html">saisie.h</a>&quot;</code><br />
 <code>#include &lt;stdio.h&gt;</code><br />
-</div>
-<p><a href="saisie_8c_source.html">Go to the source code of this file.</a></p>
-<table class="memberdecls">
+</div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a61810c7d6c4ce44af654934508359ba9" id="r_a61810c7d6c4ce44af654934508359ba9"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a61810c7d6c4ce44af654934508359ba9">estSeparateur</a> (int caractere)</td></tr>
-<tr class="memdesc:a61810c7d6c4ce44af654934508359ba9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reconnaît les blancs acceptés à l'intérieur d'une ligne.  <br /></td></tr>
-<tr class="memitem:aba4efd5565f760fcf0d5d3fb93bf82d3" id="r_aba4efd5565f760fcf0d5d3fb93bf82d3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aba4efd5565f760fcf0d5d3fb93bf82d3">lireCoordonnee</a> (int *caractere)</td></tr>
-<tr class="memdesc:aba4efd5565f760fcf0d5d3fb93bf82d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lit un entier sans signe à partir d'un caractère déjà disponible. Saute les séparateurs internes et plafonne la valeur à TAILLE + 1.  <br /></td></tr>
+<tr class="memitem:a3b9c17a6cfb14d3ec943701eb7c9764d" id="r_a3b9c17a6cfb14d3ec943701eb7c9764d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3b9c17a6cfb14d3ec943701eb7c9764d">terminerLigne</a> (void)</td></tr>
+<tr class="memdesc:a3b9c17a6cfb14d3ec943701eb7c9764d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Consomme la fin de ligne et vérifie qu'elle ne contient que des blancs.  <br /></td></tr>
 <tr class="memitem:ac618dcb58c2e32a49ca00bb77932c80a" id="r_ac618dcb58c2e32a49ca00bb77932c80a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac618dcb58c2e32a49ca00bb77932c80a">demanderNom</a> (struct <a class="el" href="structJoueur.html">Joueur</a> *joueur, int numero)</td></tr>
-<tr class="memdesc:ac618dcb58c2e32a49ca00bb77932c80a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Demande un mot de 1 à 63 octets et consomme le reste de sa ligne.  <br /></td></tr>
-<tr class="memitem:abeff6dba2fdf6c046ac97d88616b30d8" id="r_abeff6dba2fdf6c046ac97d88616b30d8"><td class="memItemLeft" align="right" valign="top">enum <a class="el" href="saisie_8h.html#a331a2dfa6d55f0dee5bee92d97a0e3a7">LectureCoup</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abeff6dba2fdf6c046ac97d88616b30d8">lireCoup</a> (struct <a class="el" href="structCoup.html">Coup</a> *coup)</td></tr>
-<tr class="memdesc:abeff6dba2fdf6c046ac97d88616b30d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lit deux entiers sans signe, séparés par des blancs, sur une ligne. Les valeurs trop grandes sont plafonnées à TAILLE + 1, sans débordement.  <br /></td></tr>
-<tr class="memitem:acd4f1bc3196bcc837cb73274a3115ca7" id="r_acd4f1bc3196bcc837cb73274a3115ca7"><td class="memItemLeft" align="right" valign="top">enum <a class="el" href="saisie_8h.html#a7e95c990a6ebae7a31c24a4228ae955a">ChoixRejeu</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acd4f1bc3196bcc837cb73274a3115ca7">demanderRejouer</a> (void)</td></tr>
-<tr class="memdesc:acd4f1bc3196bcc837cb73274a3115ca7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Demande o/n ; recommence après une réponse invalide.  <br /></td></tr>
+<tr class="memdesc:ac618dcb58c2e32a49ca00bb77932c80a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Demande un nom sans espace, limité à 63 octets.  <br /></td></tr>
+<tr class="memitem:a17dff5152a4e6eddb183e30f51a1ab3e" id="r_a17dff5152a4e6eddb183e30f51a1ab3e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a17dff5152a4e6eddb183e30f51a1ab3e">lireCoup</a> (struct <a class="el" href="structCoup.html">Coup</a> *coup)</td></tr>
+<tr class="memdesc:a17dff5152a4e6eddb183e30f51a1ab3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lit deux coordonnées à un chiffre avec scanf.  <br /></td></tr>
+<tr class="memitem:a37062bf330254559c29f21394594c207" id="r_a37062bf330254559c29f21394594c207"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a37062bf330254559c29f21394594c207">demanderRejouer</a> (void)</td></tr>
+<tr class="memdesc:a37062bf330254559c29f21394594c207"><td class="mdescLeft">&#160;</td><td class="mdescRight">Demande o/n et recommence après une réponse incorrecte.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Saisies bornées avec les entrées-sorties du cours. </p>
-
-<p class="definition">Definition in file <a class="el" href="saisie_8c_source.html">saisie.c</a>.</p>
+<div class="textblock"><p>Lecture avec scanf et nettoyage de la fin de ligne. </p>
 </div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
 <a id="ac618dcb58c2e32a49ca00bb77932c80a" name="ac618dcb58c2e32a49ca00bb77932c80a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac618dcb58c2e32a49ca00bb77932c80a">&#9670;&#160;</a></span>demanderNom()</h2>
@@ -136,8 +130,8 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Demande un mot de 1 à 63 octets et consomme le reste de sa ligne. </p>
-<dl class="section pre"><dt>Precondition</dt><dd>joueur désigne un joueur accessible en écriture ; numero vaut 1 ou 2. </dd></dl>
+<p>Demande un nom sans espace, limité à 63 octets. </p>
+<dl class="section pre"><dt>Precondition</dt><dd>joueur est accessible en écriture. </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">joueur</td><td><a class="el" href="structJoueur.html" title="Identité et symbole d&#39;un joueur.">Joueur</a> dont le nom est rempli. </td></tr>
@@ -145,20 +139,32 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>1 si le nom est accepté, 0 à EOF. </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="saisie_8c_source.html#l00046">46</a> of file <a class="el" href="saisie_8c_source.html">saisie.c</a>.</p>
-
+<dl class="section return"><dt>Returns</dt><dd>1 si le nom est lu, 0 si l'entrée est épuisée. </dd></dl>
+<div class="fragment"><div class="line"><span class="lineno">   24</span>                                                   {</div>
+<div class="line"><span class="lineno">   25</span>  <span class="keywordflow">while</span> (1) {</div>
+<div class="line"><span class="lineno">   26</span>    printf(<span class="stringliteral">&quot;Nom du joueur %d (1 a 63 octets, sans espace) : &quot;</span>, numero);</div>
+<div class="line"><span class="lineno">   27</span>    <span class="keywordflow">if</span> (scanf(<span class="stringliteral">&quot;%63s&quot;</span>, joueur-&gt;<a class="code hl_variable" href="structJoueur.html#a3f824de97a839eedca4f7949d3229a4a">nom</a>) != 1) {</div>
+<div class="line"><span class="lineno">   28</span>      <span class="keywordflow">return</span> 0;</div>
+<div class="line"><span class="lineno">   29</span>    }</div>
+<div class="line"><span class="lineno">   30</span>    <span class="keywordflow">if</span> (<a class="code hl_function" href="#a3b9c17a6cfb14d3ec943701eb7c9764d">terminerLigne</a>()) {</div>
+<div class="line"><span class="lineno">   31</span>      <span class="keywordflow">return</span> 1;</div>
+<div class="line"><span class="lineno">   32</span>    }</div>
+<div class="line"><span class="lineno">   33</span>    fprintf(stderr, <span class="stringliteral">&quot;Nom trop long ou contenant plusieurs mots : recommencez.\n&quot;</span>);</div>
+<div class="line"><span class="lineno">   34</span>  }</div>
+<div class="line"><span class="lineno">   35</span>}</div>
+<div class="ttc" id="asaisie_8c_html_a3b9c17a6cfb14d3ec943701eb7c9764d"><div class="ttname"><a href="#a3b9c17a6cfb14d3ec943701eb7c9764d">terminerLigne</a></div><div class="ttdeci">int terminerLigne(void)</div><div class="ttdoc">Consomme la fin de ligne et vérifie qu&#39;elle ne contient que des blancs.</div><div class="ttdef"><b>Definition</b> saisie.c:7</div></div>
+<div class="ttc" id="astructJoueur_html_a3f824de97a839eedca4f7949d3229a4a"><div class="ttname"><a href="structJoueur.html#a3f824de97a839eedca4f7949d3229a4a">Joueur::nom</a></div><div class="ttdeci">char nom[CAPACITE_NOM]</div><div class="ttdef"><b>Definition</b> types.h:10</div></div>
+</div><!-- fragment -->
 </div>
 </div>
-<a id="acd4f1bc3196bcc837cb73274a3115ca7" name="acd4f1bc3196bcc837cb73274a3115ca7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acd4f1bc3196bcc837cb73274a3115ca7">&#9670;&#160;</a></span>demanderRejouer()</h2>
+<a id="a37062bf330254559c29f21394594c207" name="a37062bf330254559c29f21394594c207"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a37062bf330254559c29f21394594c207">&#9670;&#160;</a></span>demanderRejouer()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">enum <a class="el" href="saisie_8h.html#a7e95c990a6ebae7a31c24a4228ae955a">ChoixRejeu</a> demanderRejouer </td>
+          <td class="memname">int demanderRejouer </td>
           <td>(</td>
           <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
@@ -166,78 +172,36 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Demande o/n ; recommence après une réponse invalide. </p>
-<dl class="section return"><dt>Returns</dt><dd>REJOUER pour oui, ARRETER pour non, REJEU_INTERROMPU à EOF. </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="saisie_8c_source.html#l00097">97</a> of file <a class="el" href="saisie_8c_source.html">saisie.c</a>.</p>
-
+<p>Demande o/n et recommence après une réponse incorrecte. </p>
+<dl class="section return"><dt>Returns</dt><dd>1 pour rejouer, 0 pour arrêter, -1 si l'entrée est épuisée. </dd></dl>
+<div class="fragment"><div class="line"><span class="lineno">   57</span>                          {</div>
+<div class="line"><span class="lineno">   58</span>  <span class="keywordtype">char</span> reponse;</div>
+<div class="line"><span class="lineno">   59</span>  <span class="keywordflow">while</span> (1) {</div>
+<div class="line"><span class="lineno">   60</span>    printf(<span class="stringliteral">&quot;Rejouer avec les memes joueurs ? (o/n) : &quot;</span>);</div>
+<div class="line"><span class="lineno">   61</span>    <span class="keywordflow">if</span> (scanf(<span class="stringliteral">&quot; %c&quot;</span>, &amp;reponse) != 1) {</div>
+<div class="line"><span class="lineno">   62</span>      <span class="keywordflow">return</span> -1;</div>
+<div class="line"><span class="lineno">   63</span>    }</div>
+<div class="line"><span class="lineno">   64</span>    <span class="keywordtype">int</span> finCorrecte = <a class="code hl_function" href="#a3b9c17a6cfb14d3ec943701eb7c9764d">terminerLigne</a>();</div>
+<div class="line"><span class="lineno">   65</span>    <span class="keywordflow">if</span> (finCorrecte &amp;&amp; (reponse == <span class="charliteral">&#39;o&#39;</span> || reponse == <span class="charliteral">&#39;O&#39;</span>)) {</div>
+<div class="line"><span class="lineno">   66</span>      <span class="keywordflow">return</span> 1;</div>
+<div class="line"><span class="lineno">   67</span>    }</div>
+<div class="line"><span class="lineno">   68</span>    <span class="keywordflow">if</span> (finCorrecte &amp;&amp; (reponse == <span class="charliteral">&#39;n&#39;</span> || reponse == <span class="charliteral">&#39;N&#39;</span>)) {</div>
+<div class="line"><span class="lineno">   69</span>      <span class="keywordflow">return</span> 0;</div>
+<div class="line"><span class="lineno">   70</span>    }</div>
+<div class="line"><span class="lineno">   71</span>    fprintf(stderr, <span class="stringliteral">&quot;Reponse invalide : entrez o ou n.\n&quot;</span>);</div>
+<div class="line"><span class="lineno">   72</span>  }</div>
+<div class="line"><span class="lineno">   73</span>}</div>
+</div><!-- fragment -->
 </div>
 </div>
-<a id="a61810c7d6c4ce44af654934508359ba9" name="a61810c7d6c4ce44af654934508359ba9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a61810c7d6c4ce44af654934508359ba9">&#9670;&#160;</a></span>estSeparateur()</h2>
+<a id="a17dff5152a4e6eddb183e30f51a1ab3e" name="a17dff5152a4e6eddb183e30f51a1ab3e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a17dff5152a4e6eddb183e30f51a1ab3e">&#9670;&#160;</a></span>lireCoup()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int estSeparateur </td>
-          <td>(</td>
-          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>caractere</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Reconnaît les blancs acceptés à l'intérieur d'une ligne. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">caractere</td><td>Caractère lu avec getchar, ou EOF. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>1 pour espace, tabulation ou retour chariot, 0 sinon. Le saut de ligne termine la saisie et n'est pas un séparateur interne. </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="saisie_8c_source.html#l00009">9</a> of file <a class="el" href="saisie_8c_source.html">saisie.c</a>.</p>
-
-</div>
-</div>
-<a id="aba4efd5565f760fcf0d5d3fb93bf82d3" name="aba4efd5565f760fcf0d5d3fb93bf82d3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aba4efd5565f760fcf0d5d3fb93bf82d3">&#9670;&#160;</a></span>lireCoordonnee()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int lireCoordonnee </td>
-          <td>(</td>
-          <td class="paramtype">int *</td>          <td class="paramname"><span class="paramname"><em>caractere</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Lit un entier sans signe à partir d'un caractère déjà disponible. Saute les séparateurs internes et plafonne la valeur à TAILLE + 1. </p>
-<dl class="section pre"><dt>Precondition</dt><dd>caractere désigne un entier accessible contenant le caractère courant. </dd></dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">caractere</td><td>Adresse du caractère courant ; reçoit le premier caractère non numérique après la coordonnée, ou la fin de ligne/EOF. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Valeur plafonnée, ou -1 si aucun chiffre n'a été lu. La fonction ne franchit pas la fin de ligne. </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="saisie_8c_source.html#l00020">20</a> of file <a class="el" href="saisie_8c_source.html">saisie.c</a>.</p>
-
-</div>
-</div>
-<a id="abeff6dba2fdf6c046ac97d88616b30d8" name="abeff6dba2fdf6c046ac97d88616b30d8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abeff6dba2fdf6c046ac97d88616b30d8">&#9670;&#160;</a></span>lireCoup()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">enum <a class="el" href="saisie_8h.html#a331a2dfa6d55f0dee5bee92d97a0e3a7">LectureCoup</a> lireCoup </td>
+          <td class="memname">int lireCoup </td>
           <td>(</td>
           <td class="paramtype">struct <a class="el" href="structCoup.html">Coup</a> *</td>          <td class="paramname"><span class="paramname"><em>coup</em></span></td><td>)</td>
           <td></td>
@@ -245,18 +209,60 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Lit deux entiers sans signe, séparés par des blancs, sur une ligne. Les valeurs trop grandes sont plafonnées à TAILLE + 1, sans débordement. </p>
-<dl class="section pre"><dt>Precondition</dt><dd>coup désigne une structure accessible en écriture. </dd></dl>
+<p>Lit deux coordonnées à un chiffre avec scanf. </p>
+<dl class="section pre"><dt>Precondition</dt><dd>coup est accessible en écriture. </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">coup</td><td>Coordonnées remplies seulement si le format est correct. </td></tr>
+    <tr><td class="paramname">coup</td><td>Coordonnées lues, à contrôler avant de jouer. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>COUP_LU si correct, FORMAT_INVALIDE sinon, FIN_SAISIE à EOF avant la ligne. Toute la ligne est consommée, même après une erreur. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>1 si deux chiffres sont lus sans texte supplémentaire, -1 si le format est incorrect, 0 si aucune coordonnée n'est disponible à la fin de l'entrée. Les blancs sont ignorés par scanf ; les valeurs restent à vérifier. </dd></dl>
+<div class="fragment"><div class="line"><span class="lineno">   43</span>                                {</div>
+<div class="line"><span class="lineno">   44</span>  <span class="keywordtype">int</span> nombreLu = scanf(<span class="stringliteral">&quot;%1d %1d&quot;</span>, &amp;coup-&gt;<a class="code hl_variable" href="structCoup.html#a742fec4d6f2e479b396c8e1570e58840">ligne</a>, &amp;coup-&gt;<a class="code hl_variable" href="structCoup.html#ad2cbc4c902d39eb6714567d624b13152">colonne</a>);</div>
+<div class="line"><span class="lineno">   45</span>  <span class="keywordflow">if</span> (nombreLu == EOF) {</div>
+<div class="line"><span class="lineno">   46</span>    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><span class="lineno">   47</span>  }</div>
+<div class="line"><span class="lineno">   48</span>  <span class="keywordtype">int</span> finCorrecte = <a class="code hl_function" href="#a3b9c17a6cfb14d3ec943701eb7c9764d">terminerLigne</a>();</div>
+<div class="line"><span class="lineno">   49</span>  <span class="keywordflow">if</span> (nombreLu != 2 || !finCorrecte) {</div>
+<div class="line"><span class="lineno">   50</span>    <span class="keywordflow">return</span> -1;</div>
+<div class="line"><span class="lineno">   51</span>  }</div>
+<div class="line"><span class="lineno">   52</span>  <span class="keywordflow">return</span> 1;</div>
+<div class="line"><span class="lineno">   53</span>}</div>
+<div class="ttc" id="astructCoup_html_a742fec4d6f2e479b396c8e1570e58840"><div class="ttname"><a href="structCoup.html#a742fec4d6f2e479b396c8e1570e58840">Coup::ligne</a></div><div class="ttdeci">int ligne</div><div class="ttdef"><b>Definition</b> types.h:15</div></div>
+<div class="ttc" id="astructCoup_html_ad2cbc4c902d39eb6714567d624b13152"><div class="ttname"><a href="structCoup.html#ad2cbc4c902d39eb6714567d624b13152">Coup::colonne</a></div><div class="ttdeci">int colonne</div><div class="ttdef"><b>Definition</b> types.h:16</div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a3b9c17a6cfb14d3ec943701eb7c9764d" name="a3b9c17a6cfb14d3ec943701eb7c9764d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3b9c17a6cfb14d3ec943701eb7c9764d">&#9670;&#160;</a></span>terminerLigne()</h2>
 
-<p class="definition">Definition at line <a class="el" href="saisie_8c_source.html#l00071">71</a> of file <a class="el" href="saisie_8c_source.html">saisie.c</a>.</p>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int terminerLigne </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
+<p>Consomme la fin de ligne et vérifie qu'elle ne contient que des blancs. </p>
+<dl class="section return"><dt>Returns</dt><dd>1 si seuls des espaces, tabulations ou retours chariot restent, 0 sinon. </dd></dl>
+<div class="fragment"><div class="line"><span class="lineno">    7</span>                        {</div>
+<div class="line"><span class="lineno">    8</span>  <span class="keywordtype">int</span> correct = 1;</div>
+<div class="line"><span class="lineno">    9</span>  <span class="keywordtype">int</span> caractere = getchar();</div>
+<div class="line"><span class="lineno">   10</span>  <span class="keywordflow">while</span> (caractere != <span class="charliteral">&#39;\n&#39;</span> &amp;&amp; caractere != EOF) {</div>
+<div class="line"><span class="lineno">   11</span>    <span class="keywordflow">if</span> (caractere != <span class="charliteral">&#39; &#39;</span> &amp;&amp; caractere != <span class="charliteral">&#39;\t&#39;</span> &amp;&amp; caractere != <span class="charliteral">&#39;\r&#39;</span>) {</div>
+<div class="line"><span class="lineno">   12</span>      correct = 0;</div>
+<div class="line"><span class="lineno">   13</span>    }</div>
+<div class="line"><span class="lineno">   14</span>    caractere = getchar();</div>
+<div class="line"><span class="lineno">   15</span>  }</div>
+<div class="line"><span class="lineno">   16</span>  <span class="keywordflow">return</span> correct;</div>
+<div class="line"><span class="lineno">   17</span>}</div>
+</div><!-- fragment -->
 </div>
 </div>
 </div><!-- contents -->

@@ -13,25 +13,25 @@
 int jouerPartie(struct Partie *partie) {
   initialiserPartie(partie);
   afficherPartie(partie);
-  while (partie->etat == EN_COURS) {
+  while (partie->gagnant == -1 && partie->nombreCoups < TAILLE * TAILLE) {
     printf("A %s de jouer (%c). Saisir ligne colonne (1 a %d) : ",
            partie->joueurs[partie->joueurCourant].nom,
            partie->joueurs[partie->joueurCourant].pion, TAILLE);
     struct Coup coup;
-    enum LectureCoup statut = lireCoup(&coup);
-    if (statut == FIN_SAISIE) {
+    int statut = lireCoup(&coup);
+    if (statut == 0) {
       return 0;
     }
-    if (statut == FORMAT_INVALIDE) {
-      fprintf(stderr, "Saisie invalide : entrez deux entiers sans signe, par exemple 2 3.\n");
+    if (statut == -1) {
+      fprintf(stderr, "Saisie invalide : entrez deux chiffres, par exemple 2 3.\n");
     } else {
-      enum ControleCoup controle = jouerCoup(partie, coup);
-      if (controle == HORS_PLATEAU) {
-        fprintf(stderr, "Case hors du plateau : ligne et colonne doivent etre entre 1 et %d.\n", TAILLE);
-      } else if (controle == CASE_OCCUPEE) {
-        fprintf(stderr, "Case deja occupee : choisissez une case vide.\n");
-      } else {
+      if (jouerCoup(partie, coup)) {
         afficherPartie(partie);
+      } else if (coup.ligne < 1 || coup.ligne > TAILLE ||
+                 coup.colonne < 1 || coup.colonne > TAILLE) {
+        fprintf(stderr, "Case hors du plateau : ligne et colonne doivent etre entre 1 et %d.\n", TAILLE);
+      } else {
+        fprintf(stderr, "Case deja occupee : choisissez une case vide.\n");
       }
     }
   }

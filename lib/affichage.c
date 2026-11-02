@@ -34,10 +34,10 @@ void afficherPartie(const struct Partie *partie) {
  * gagnant vaut 0 ou 1 et désigne un joueur dont le nom est terminé par le caractère nul.
  * @param partie Partie terminée dont le résultat est affiché. */
 void afficherResultat(const struct Partie *partie) {
-  if (partie->etat == GAGNEE) {
+  if (partie->gagnant != -1) {
     printf("Victoire de %s (%c) !\n", partie->joueurs[partie->gagnant].nom,
            partie->joueurs[partie->gagnant].pion);
-  } else if (partie->etat == NULLE) {
+  } else if (partie->nombreCoups == TAILLE * TAILLE) {
     printf("Match nul : le plateau est plein.\n");
   }
 }

@@ -30,6 +30,12 @@ Les mentions identifient les contributeurs selon le README et le suivi individue
 
 ### Corrigé
 
+- 02/11, après évaluation : saisie des coordonnées avec `scanf` limitée à un chiffre par coordonnée ; suppression de la conversion caractère par caractère et du plafonnement des grands nombres (`@ELisa`, `@Ilan`).
+- Suppression des énumérations de résultats et de l’état de partie redondant ; le gagnant et le compteur suffisent à déterminer la fin de partie (`@ELisa`, `@Ilan`).
+- README raccourci et Doxyfile original restauré, avec seulement cinq réglages adaptés au projet (`@Mathis`, `@Tilio`).
+- Sept scénarios conservés et revérifiés ; erreurs de saisie et de coup sur `stderr`, dialogue sur `stdout` (`@Tilio`).
+
+
 - 22/10 : restauration de `lib/fonctions.c/.h`, nécessaires à `jouerPartie`, après leur suppression (`@ELisa`,`@Mathis`,`@Ilan`, `@Tilio`).
 - Après audit du 22/10, suppression de la configuration GDB ajoutée et de sa tâche : les quatre fichiers `.vscode/` sont strictement identiques au ZIP fourni (`@Mathis`).
 - Retrait du module d’exemple inutilisé ; README complété avec le rôle de chaque module et la commande de rejeu des essais (`@ELisa`, `@Tilio`).

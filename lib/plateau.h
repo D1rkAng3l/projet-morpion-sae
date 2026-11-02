@@ -10,8 +10,8 @@ void initialiserPartie(struct Partie *partie);
  * @pre partie désigne une partie initialisée par initialiserPartie ;
  * les pions des joueurs sont distincts et différents de VIDE.
  * @param partie Partie à consulter. @param coup Case visée.
- * @return Motif du refus ou COUP_VALIDE. */
-enum ControleCoup verifierCoup(const struct Partie *partie, struct Coup coup);
+ * @return 1 si le coup est autorisé, 0 sinon. */
+int verifierCoup(const struct Partie *partie, struct Coup coup);
 /** @brief Cherche un alignement de trois pions identiques non vides.
  * @pre partie désigne une partie initialisée par initialiserPartie ;
  * les pions des joueurs sont distincts et différents de VIDE.
@@ -22,6 +22,6 @@ int chercherGagnant(const struct Partie *partie);
  * Un coup refusé ne modifie aucune information.
  * @pre partie désigne une partie initialisée et accessible en écriture.
  * @param partie Partie à modifier. @param coup Case visée.
- * @return Motif du refus ou COUP_VALIDE après placement. */
-enum ControleCoup jouerCoup(struct Partie *partie, struct Coup coup);
+ * @return 1 si le coup est accepté, 0 sinon. */
+int jouerCoup(struct Partie *partie, struct Coup coup);
 #endif

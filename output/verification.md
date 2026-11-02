@@ -1,32 +1,27 @@
-# Vérifications de semaine 4
+# Vérification après le retour d’évaluation — 2 novembre 2026
 
-## Version après simplification — 22/10/2026
+- Compilation GCC/Linux avec `-std=c23 -Wall -Wextra -Werror -pedantic` : réussie.
+- Sept scénarios rejoués deux fois : résultats, sorties et codes reproductibles. Le scénario 05 renvoie 1 ; les autres renvoient 0.
+- Le message de format dans `partie-01.err` demande désormais deux chiffres ; les autres sorties de référence sont inchangées.
+- Victoire au neuvième coup, victoire de chaque joueur, nul et rejeu conservés.
+- EOF testé avant les noms, pendant un coup et avant le choix de rejeu : arrêt avec code 1, sans boucle infinie.
+- Noms de 63/64 octets, texte, coordonnées 0/4, éléments supplémentaires et très longue saisie essayés : les refus sont sur stderr et le joueur recommence.
+- Les quatre fichiers `.vscode/` sont strictement identiques au ZIP fourni.
+- Doxyfile comparé au modèle : les 2 987 lignes et les commentaires sont conservés ; cinq lignes de réglage seulement sont modifiées.
+- Documentation générée avec Doxygen ; toutes les fonctions et procédures des fichiers actuels y figurent.
 
-- Compilation GCC/Linux avec `-std=c23 -Wall -Wextra -Werror -pedantic` et l’analyseur GCC : réussite sans diagnostic.
-- Les quatre fichiers `.vscode/` sont identiques octet par octet au ZIP fourni ; aucun fichier supplémentaire n’est présent.
-- Les sept scénarios livrés ont été rejoués : sorties `.out`, `.err` et codes conformes aux références, y compris après le renommage en `partie.c/.h`.
-- La lecture simplifiée a été comparée à celle de la version précédente sur 5 014 lignes : formats corrects, incorrects, longues entrées, blancs et dernière ligne sans retour. Les résultats et coordonnées sont identiques. Ce contrôle ponctuel utilise des outils temporaires et n’est pas inclus dans les fichiers d’essai livrés.
-- Les résultats de saisie et de rejeu sont désormais nommés par énumérations ; les refus de coup ne modifient toujours pas la partie.
-- Les 13 fonctions et procédures disposent de commentaires de documentation ; les contrats précisent les préconditions des adresses et de l’état de la partie.
-- Documentation générée avec `doxygen Doxyfile`, sans avertissement. Le dossier `html/` est suivi par Git et doit être régénéré après modification.
-
-## Vérifications reproductibles avec le rendu
-
-Depuis la racine :
+## Reproduire les essais livrés
 
 ```bash
-gcc -std=c23 -Wall -Wextra -Werror -pedantic jeu.c lib/*.c -o jeu -lm
+gcc -std=c23 -Wall -Werror jeu.c lib/*.c -o jeu -lm
 ./jeu < output/partie-01.in > output/partie-01.out 2> output/partie-01.err
-```
-
-Rejouer de la même manière les scénarios 02 à 07. Le code de retour attendu et le rôle de chaque scénario sont dans le fichier `output/README.md`. Le scénario 05 doit renvoyer 1 car son entrée s’interrompt ; les six autres renvoient 0. Les sorties de référence sont conservées dans les fichiers `.out` et `.err` livrés.
-
-```bash
 doxygen Doxyfile
 ```
 
-La génération doit réussir et produire `html/index.html`, la page du CHANGELOG et celles des fonctions de `jeu.c` et `lib/`.
+Remplacer `01` par `02` à `07`. Les descriptions et les codes attendus sont dans `output/README.md`.
 
-## Contrôles historiques, hors protocole livré
+## Portée des contrôles
 
-Le 20/10, un outil temporaire a parcouru 549 946 positions sur les chemins légaux, dont 255 168 parties terminées, et vérifié les règles avec AddressSanitizer et UndefinedBehaviorSanitizer. La détection des fuites était désactivée pour la compatibilité avec l’environnement. Cette observation est historique : l’outil n’est pas livré, et les sept scénarios ci-dessus ne reproduisent pas à eux seuls cette vérification exhaustive. Elle ne remplace donc pas le protocole reproductible du rendu.
+La lecture utilise maintenant scanf, qui ignore les blancs entre les coordonnées ; elle ne prétend plus contrôler un format strict de deux nombres par ligne. Le nettoyage vérifie les caractères supplémentaires après la paire. Chaque coordonnée est limitée à un chiffre, sans conversion manuelle ni plafonnement.
+
+Un contrôle temporaire des règles a aussi été exécuté avec AddressSanitizer et UndefinedBehaviorSanitizer sur les chemins légaux du morpion. Cet outil n’est pas livré ; il ne remplace pas les sept scénarios reproductibles ci-dessus. La détection des fuites est désactivée pour la compatibilité avec l’environnement ; le jeu n’alloue pas de mémoire dynamique.

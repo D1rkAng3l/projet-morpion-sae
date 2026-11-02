@@ -30,7 +30,7 @@
                 <tbody>
                     <tr>
                         <td>types.h</td>
-                        <td>Contrat commun des structures et états.</td>
+                        <td>Structures communes du joueur, du coup et de la partie.</td>
                     </tr>
                     <tr>
                         <td>plateau.c/.h</td>
@@ -72,8 +72,9 @@
                 les paramètres, retours et sources sont expliqués dans la 
                 <a href="../html/index.html">documentation Doxygen</a>.
             </p>
-            <h2>Saisie et contrats</h2>
-            <p>La lecture est décomposée : estSeparateur reconnaît les blancs internes, lireCoordonnee consomme un nombre borné, lireCoup assemble les deux coordonnées et contrôle la fin de ligne. Les résultats de saisie et de rejeu sont des énumérations nommées. Les fonctions documentent les adresses attendues et l’initialisation préalable de la partie.</p>
+            <h2>Saisie simplifiée après évaluation</h2>
+            <p>scanf lit directement les deux coordonnées à un chiffre. terminerLigne consomme le reste de la ligne et détecte le texte supplémentaire. La conversion numérique caractère par caractère et les énumérations de résultats ont été supprimées. Chaque fonction explique simplement ses retours dans son commentaire.</p>
+            <p>La partie ne conserve plus d’état redondant : le gagnant vaut -1 en l’absence d’alignement et le compteur indique si les neuf cases sont occupées. Les préconditions précisent les adresses attendues et l’initialisation préalable de la partie.</p>
             <h2>Choix des flux</h2>
             <p>
                 stdout contient le dialogue normal, les plateaux et les résultats ; 
@@ -82,6 +83,6 @@
                 d’un chapitre futur.
             </p>
         </main>
-        <footer>G1E — Semaine 4, 22 octobre 2026. Compte rendu en cours de construction.</footer>
+        <footer>G1E — Semaine 4, 2 novembre 2026. Compte rendu en cours de construction.</footer>
     </body>
     </html>

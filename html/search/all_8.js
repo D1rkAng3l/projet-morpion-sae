@@ -1,14 +1,8 @@
 var searchData=
 [
-  ['d’essai_20de_20semaine_204_0',['Jeux d’essai de semaine 4',['../dir_cf6d034fbb8a82be17b39265b6ed736a.html#autotoc_md29',1,'']]],
-  ['d’essai_20et_20flux_20standard_1',['Jeux d’essai et flux standard',['../index.html#autotoc_md11',1,'']]],
-  ['de_20semaine_204_2',['de semaine 4',['../dir_cf6d034fbb8a82be17b39265b6ed736a.html#autotoc_md29',1,'Jeux d’essai de semaine 4'],['../md_output_2verification.html',1,'Vérifications de semaine 4']]],
-  ['demandernom_3',['demanderNom',['../saisie_8c.html#ac618dcb58c2e32a49ca00bb77932c80a',1,'demanderNom(struct Joueur *joueur, int numero):&#160;saisie.c'],['../saisie_8h.html#ac618dcb58c2e32a49ca00bb77932c80a',1,'demanderNom(struct Joueur *joueur, int numero):&#160;saisie.c']]],
-  ['demanderrejouer_4',['demanderRejouer',['../saisie_8c.html#acd4f1bc3196bcc837cb73274a3115ca7',1,'demanderRejouer(void):&#160;saisie.c'],['../saisie_8h.html#acd4f1bc3196bcc837cb73274a3115ca7',1,'demanderRejouer(void):&#160;saisie.c']]],
-  ['des_20dossiers_5',['Arbre des dossiers',['../index.html#autotoc_md9',1,'']]],
-  ['documentation_20doxygen_6',['Documentation Doxygen',['../index.html#autotoc_md10',1,'']]],
-  ['dossiers_7',['Arbre des dossiers',['../index.html#autotoc_md9',1,'']]],
-  ['doxygen_8',['Documentation Doxygen',['../index.html#autotoc_md10',1,'']]],
-  ['du_20modèle_9',['Configuration VS Code du modèle',['../index.html#autotoc_md5',1,'']]],
-  ['du_20projet_10',['Organisation du projet',['../index.html#autotoc_md6',1,'']]]
+  ['essais_20et_20documentation_0',['Essais et documentation',['../index.html#autotoc_md4',1,'']]],
+  ['essais_20livrés_1',['Reproduire les essais livrés',['../md_output_2verification.html#autotoc_md22',1,'']]],
+  ['et_201_2002_2',['Morpion — SAÉ 1.01 et 1.02',['../index.html',1,'']]],
+  ['et_20documentation_3',['Essais et documentation',['../index.html#autotoc_md4',1,'']]],
+  ['et_20jouer_20sous_20linux_4',['Compiler et jouer sous Linux',['../index.html#autotoc_md1',1,'']]]
 ];

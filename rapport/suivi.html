@@ -280,6 +280,17 @@
                     </tr>
                 </tbody>
             </table>
+            <h2>Correction après évaluation — 2 novembre 2026</h2>
+            <p>Les étapes datées d’octobre ci-dessus décrivent les versions précédentes. Le retour d’évaluation demande de simplifier le code et de conserver le Doxyfile fourni. Les corrections suivantes remplacent donc les choix précédents, sans effacer leur historique.</p>
+            <table>
+                <thead><tr><th scope="col">Catégorie</th><th scope="col">Évolution consignée dans le CHANGELOG</th><th scope="col">Auteurs du journal</th><th scope="col">Explication</th></tr></thead>
+                <tbody>
+                    <tr data-changelog="correction-0211-1"><td>Corrigé</td><td>02/11, après évaluation : saisie des coordonnées avec <code>scanf</code> limitée à un chiffre par coordonnée ; suppression de la conversion caractère par caractère et du plafonnement des grands nombres</td><td><code>@ELisa</code>, <code>@Ilan</code></td><td>La largeur de lecture est limitée à un chiffre par coordonnée. Les caractères restants sont seulement consommés pour refuser une saisie incorrecte, sans reconstruire les nombres.</td></tr>
+                    <tr data-changelog="correction-0211-2"><td>Corrigé</td><td>Suppression des énumérations de résultats et de l’état de partie redondant ; le gagnant et le compteur suffisent à déterminer la fin de partie</td><td><code>@ELisa</code>, <code>@Ilan</code></td><td>La partie est terminée quand un gagnant est trouvé ou que le compteur atteint neuf. Les résultats des fonctions sont des entiers simples expliqués dans leurs commentaires.</td></tr>
+                    <tr data-changelog="correction-0211-3"><td>Corrigé</td><td>README raccourci et Doxyfile original restauré, avec seulement cinq réglages adaptés au projet</td><td><code>@Mathis</code>, <code>@Tilio</code></td><td>Le Doxyfile conserve les 2 987 lignes du modèle ; cinq réglages sont adaptés. Le README passe de 150 à 75 lignes en conservant les commandes, les règles et le schéma fonctionnel.</td></tr>
+                    <tr data-changelog="correction-0211-4"><td>Corrigé</td><td>Sept scénarios conservés et revérifiés ; erreurs de saisie et de coup sur <code>stderr</code>, dialogue sur <code>stdout</code></td><td><code>@Tilio</code></td><td>Les sept scénarios conservent leurs résultats et leurs codes. Le message de format est précisé pour demander deux chiffres ; les erreurs restent séparées du dialogue.</td></tr>
+                </tbody>
+            </table>
                 <h2>Suivi individuel des quatre premières séances</h2>
                 <p>Le suivi individuel présente les contributions ainsi que les difficultés personnelles et collectives des quatre premières séances. Il détaille notamment la préparation de l’arborescence par Mathis et Tilio, la collaboration entre Ilan et Elisa et la coordination des corrections.</p>
                 <p>Mathis Bretonneau, Ilan Guiot, Elisa Mayet et Tilio Dabaji ont confirmé l’ensemble des contributions présentées le 23 octobre 2026. Les attributions sont cohérentes avec le CHANGELOG et les fichiers cités permettent de retrouver les éléments du projet concernés.</p>
@@ -409,6 +420,6 @@
                     </tbody>
                 </table>
                 </main>
-                <footer>G1E — Suivi actualisé le 23 octobre 2026. Compte rendu en cours de construction.</footer>
+                <footer>G1E — Suivi actualisé le 2 novembre 2026. Compte rendu en cours de construction.</footer>
             </body>
             </html>
