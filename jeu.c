@@ -27,12 +27,35 @@ int main(int argc, char* argv[]) {
     return 1;
   }
   struct Partie partie;
-  for (int joueur = 0; joueur < NB_JOUEURS; joueur++) {
-    if (!demanderNom(&partie.joueurs[joueur], joueur + 1)) {
-      fprintf(stderr, "Fin de saisie avant les deux noms.\n");
+
+  /* Choix du mode de jeu */
+  printf("Choisissez votre mode de jeu :\n");
+  printf("1 - Deux joueurs humains\n");
+  printf("2 - Contre l'ordinateur\n");
+  printf("Votre choix : ");
+  if (scanf("%d", &partie.mode) != 1 ||
+      (partie.mode != MODE_DEUX_JOUEURS && partie.mode != MODE_ORDINATEUR)) {
+    fprintf(stderr, "Mode de jeu invalide.\n");
+    return 1;
+  }
+
+  /* Saisie du premier joueur */
+  if (!demanderNom(&partie.joueurs[0], 1)) {
+    fprintf(stderr, "Fin de saisie avant le nom du joueur.\n");
+    return 1;
+  }
+
+  /* Saisie du deuxième joueur ou nom de l'ordinateur */
+  if (partie.mode == MODE_DEUX_JOUEURS) {
+    if (!demanderNom(&partie.joueurs[1], 2)) {
+      fprintf(stderr, "Fin de saisie avant le deuxieme nom.\n");
       return 1;
     }
+
+  } else {
+    strcpy(partie.joueurs[1].nom, "Ordinateur");
   }
+
   printf("Joueurs : %s (X) et %s (O).\n", partie.joueurs[0].nom,
          partie.joueurs[1].nom);
   int rejouer;

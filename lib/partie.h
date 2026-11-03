@@ -7,5 +7,6 @@
  * par le caractère nul. Son plateau et ses compteurs seront réinitialisés.
  * @param partie Partie contenant les noms déjà saisis.
  * @return 1 si terminée normalement, 0 si l'entrée est interrompue. */
-int jouerPartie(struct Partie *partie);
+int jouerPartie(struct Partie* partie);
+void jouerOrdinateur(struct Partie* partie);
 #endif
